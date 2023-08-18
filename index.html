@@ -18,8 +18,8 @@
 <body>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <a class="navbar -brand" href="#">
-                <img src="#" alt="Logo">
+            <a class="navbar-brand" href="#" >
+                <img src="img/LOGOS/logo_original.jpeg" alt="Logo" width="200px" class="d-inline-block align-text-top">
             </a>
 
 
@@ -38,11 +38,11 @@
 
             <div class="row">
                 <div class="col">
-                    <button class="button" id="btnEntrar" onclick="fcPopupLogin()">Entrar</button>
+                    <button class="button btn" id="btnEntrar" onclick="fcPopupLogin()">Entrar</button>
                 </div>
 
                 <div class="col">
-                    <button class="button" id="btnCadastrar" onclick="fcPopupCadastrar()">Cadastrar</button>
+                    <button class="button btn" id="btnCadastrar" onclick="fcPopupCadastrar()">Cadastrar</button>
                 </div>
             </div>
 
@@ -52,87 +52,26 @@
             </button>
         </nav>
     </div>
-    <dialog class="container"  id="popupLogin">
+
+    <dialog class="container" id="popupLogin">
 
         <div class="justify-content-end row">
-            <button  class="btn " id="fechar" onclick="fcPopupFechar()">Fechar</button>
+            <div class="col-10"></div>
+            <button class="btn button col-1" id="fechar" onclick="fcPopupFechar()">Fechar</button>
+            <div class="col-1"></div>
         </div>
-        
+
         <div class="row my-5">
 
-            <div class="col-2"></div>
+            <div class="col-1"></div>
 
-            <div class="container col-8" id="popup_content">
+            <div class="container col-10" id="popup_content">
+
                 <div class="row">
 
-                    <div class="col-2"></div>
+                    <div class="col-1"></div>
+                    <form class="col-10" action="form/cadastrar.php" method="post">
 
-                    <form class="col-8" action="form/cadastrar.php" method="post">
-                        
-                            <div class="mb-3">
-                                <label for="InputNome" class="form-label">Nome </label>
-                                <input type="text" class="form-control" name="nome_cad">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="InputEmail1" class="form-label">Email </label>
-                                <input type="email" class="form-control" name="email_cad" aria-describedby="emailHelp">
-                                
-                                <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="InputSenha" class="form-label">Senha</label>
-                                <input type="password" class="form-control" name="senha_cad">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="InputNasc" class="form-label">Data de Nacimento</label>
-                                <input type="date" id="InputNasc" name="nasc_cad" value="2023-08-" max="2008-08-16" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="InputNome" class="form-label">Telefone </label>
-                                <input type="number" class="form-control" name="fone_cad">
-                            </div>
-
-                            <!-- check
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            -->
-                        
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                        
-                    </form>
-
-                    <div class="col-2"></div>
-
-                </div>
-
-            </div>
-            <div class="col-2"></div>
-
-        </div>
-
-    </dialog>
-
-    <dialog  id="popupCadastrar" >
-        <div class="justify-content-end row">
-                <button  class="button btn " id="fechar" onclick="fcPopupFechar()">Fechar</button>
-        </div>
-        
-        <div class="row my-5">
-        <div class="col-2"></div>
-        <div class="container col-8" id="popup_content">
-            
-            
-            
-            <div class="row">
-                <div class="col-2"></div>
-                <form class="col-8" action="form/cadastrar.php" method="post">
-                    
                         <div class="mb-3">
                             <label for="InputNome" class="form-label">Nome </label>
                             <input type="text" class="form-control" name="nome_cad">
@@ -141,7 +80,7 @@
                         <div class="mb-3">
                             <label for="InputEmail1" class="form-label">Email </label>
                             <input type="email" class="form-control" name="email_cad" aria-describedby="emailHelp">
-                            
+
                             <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
                         </div>
 
@@ -161,24 +100,98 @@
                         </div>
 
                         <!-- check
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>
+                            -->
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <button type="submit" class="col-8 btn button btn-primary">Login</button>
+                            <div class="col-2"></div>
                         </div>
-                        -->
-                    
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    
-                </form>
-                <div class="col-2"></div>
+                    </form>
+
+                    <div class="col-1"></div>
+
+                </div>
+
             </div>
+            <div class="col-1"></div>
+
         </div>
-        <div class="col-2"></div>
-    </div>
 
-    
+    </dialog>
 
-</dialog>
+    <dialog class="container" id="popupCadastrar">
+
+        <div class="justify-content-end row">
+            <div class="col-10"></div>
+            <button class="btn button col-1" id="fechar" onclick="fcPopupFechar()">Fechar</button>
+            <div class="col-1"></div>
+        </div>
+
+        <div class="row my-5">
+
+            <div class="col-1"></div>
+
+            <div class="container col-10" id="popup_content">
+
+                <div class="row">
+
+                    <div class="col-1"></div>
+                    <form class="col-10" action="form/cadastrar.php" method="post">
+
+                        <div class="mb-3">
+                            <label for="InputNome" class="form-label">Nome </label>
+                            <input type="text" class="form-control" name="nome_cad">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="InputEmail1" class="form-label">Email </label>
+                            <input type="email" class="form-control" name="email_cad" aria-describedby="emailHelp">
+
+                            <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="InputSenha" class="form-label">Senha</label>
+                            <input type="password" class="form-control" name="senha_cad">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="InputNasc" class="form-label">Data de Nacimento</label>
+                            <input type="date" id="InputNasc" name="nasc_cad" value="2023-08-" max="2008-08-16" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="InputNome" class="form-label">Telefone </label>
+                            <input type="number" class="form-control" name="fone_cad">
+                        </div>
+
+                        <!-- check
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>
+                            -->
+
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <button type="submit" class="col-8 btn button btn-primary">Cadastrar</button>
+                            <div class="col-2"></div>
+                        </div>
+                    </form>
+
+                    <div class="col-1"></div>
+
+                </div>
+
+            </div>
+
+            <div class="col-1"></div>
+        </div>
+
     </dialog>
 
     <!-- Banners -->
@@ -253,13 +266,24 @@
                     <div class="row">
                         <p class="footer-fonts-h2">(48) 99140-7636</p>
                     </div>
+                    <div class="row">
+                        <p class="footer-fonts-h2">(48) 9977-4587</p>
+                    </div>
                 </div>
                 <div class="col m-3">
                     <div class="row">
                         <h1 class="footer-fonts-h1">Email</h1>
                     </div>
                     <div class="row">
-                        <p class="footer-fonts-h2">vag.vinicius.goulart2006@gmail.com</p>
+                        <p class="footer-fonts-h2">Art.Organizer01@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col m-3">
+                    <div class="row">
+                        <h1 class="footer-fonts-h1">Instagram</h1>
+                    </div>
+                    <div class="row">
+                        <p class="footer-fonts-h2">artorganizer_</p>
                     </div>
                 </div>
             </div>

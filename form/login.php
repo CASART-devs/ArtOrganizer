@@ -1,17 +1,8 @@
 <?php
-    $hostname = "127.0.0.1";
-    $username = "root";
-    $password = 123456;
-    $database = "artorganizer";
+   include('conexao.php');
 
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-
-    $mysqli = mysqli_connect($hostname, $username, $password, $database);
-
-    if (mysqli_connect_errno()) {
-        die("Falha ao conectar ao banco de dados: " . mysqli_connect_error());
-    }
 
     $mysql_query = "SELECT id_usuario, us_email, us_senha FROM usuarios WHERE us_email = '$email' LIMIT 1";
 $result = mysqli_query($mysqli, $mysql_query);

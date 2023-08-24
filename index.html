@@ -77,43 +77,23 @@
                     <form class="col-10" action="form/login.php" method="post">
 
                         <div class="mb-3">
-                            <label for="InputNome" class="form-label">Nome </label>
-                            <input type="text" class="form-control" name="nome_cad">
-                        </div>
-
-                        <div class="mb-3">
                             <label for="InputEmail1" class="form-label">Email </label>
-                            <input type="email" class="form-control" name="email_cad" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" name="email_log" aria-describedby="emailHelp">
 
                             <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
                         </div>
 
                         <div class="mb-3">
                             <label for="InputSenha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" name="senha_cad">
+                            <input type="password" class="form-control" name="senha_log">
                         </div>
-
-                        <div class="mb-3">
-                            <label for="InputNasc" class="form-label">Data de Nacimento</label>
-                            <input type="date" id="InputNasc" name="nasc_cad" value="2023-08-" max="2008-08-16" />
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="InputNome" class="form-label">Telefone </label>
-                            <input type="number" class="form-control" name="fone_cad">
-                        </div>
-
-                        <!-- check
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            -->
+                                           
                         <div class="row">
                             <div class="col-2"></div>
                             <button type="submit" class="col-8 btn button btn-primary">Login</button>
                             <div class="col-2"></div>
                         </div>
+                        
                     </form>
 
                     <div class="col-1"></div>
@@ -148,37 +128,30 @@
 
                         <div class="mb-3">
                             <label for="InputNome" class="form-label">Nome </label>
-                            <input type="text" class="form-control" name="nome_cad">
+                            <input type="text" class="form-control" name="nome_cad" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="InputEmail1" class="form-label">Email </label>
-                            <input type="email" class="form-control" name="email_cad" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" name="email_cad" aria-describedby="emailHelp" required>
 
                             <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
                         </div>
 
                         <div class="mb-3">
                             <label for="InputSenha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" name="senha_cad">
+                            <input type="password" class="form-control" name="senha_cad" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="InputNasc" class="form-label">Data de Nacimento</label>
-                            <input type="date" id="InputNasc" name="nasc_cad" value="2023-08-" max="2008-08-16" />
+                            <input type="date" id="InputNasc" name="nasc_cad" value="2023-08-" max="2008-08-16" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="InputNome" class="form-label">Telefone </label>
-                            <input type="number" class="form-control" name="fone_cad">
+                            <input type="number" class="form-control" name="fone_cad" required>
                         </div>
-
-                        <!-- check
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            -->
 
                         <div class="row">
                             <div class="col-2"></div>

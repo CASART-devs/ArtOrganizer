@@ -1,0 +1,19 @@
+{
+    "autoload": {
+        "psr-4": {
+            "core\\":"core/",
+            "control\\":"control/",
+            "view\\":"view/"
+        }
+    },
+    "authors": [
+        {
+            "name": "turmaXXX",
+            "email": "turmaXXX2@gmail.com"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "5.3.2",
+        "laravel/installer": "^5.1"
+    }
+}

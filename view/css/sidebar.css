@@ -1,0 +1,79 @@
+.esconder {
+    display: none;
+   
+}
+.sidebar_tamanho{
+    height: 20rem;
+    width: auto;
+    transition: 500ms;
+}
+
+
+#head_sidebar{
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+#head_sidebar h1{
+    margin: 0;
+}
+#btn_amigos {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#botao-esconder-menu{
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+ul a{
+    color: #3D3D3D;
+}
+
+ul a:hover{
+    color: #051446;
+}
+
+.perfil-img {
+    width: 3rem;
+    height: 3rem;
+}
+
+
+
+.barra-menu{
+    position: relative;
+    max-width: 15rem;
+    transition: 300ms;
+
+}
+
+.barra-menu.fechado{
+    position: relative;
+    max-width: 4rem;
+    
+
+}
+
+.barra-menu.fechado .texto{
+    display: none;
+}
+
+.barra-amigos{
+    position: relative;
+    width: 15rem;
+    transition: 300ms;
+
+}
+
+.barra-amigos.fechado{
+    position: relative;
+    width: 4rem;
+    
+
+}
+
+.barra-amigos.fechado .texto{
+    display: none;
+}

@@ -1,0 +1,56 @@
+#toggle-opcoes{
+    color: #FFF ;
+}
+.btn-alternar {
+    display: flex;
+    cursor: pointer;
+    justify-content: start;
+}
+.icone-alternar{
+    margin-top: 3px;
+}
+
+.card {
+    width: 18rem;
+    padding: 0;
+}
+.card-img {
+    object-fit: cover;
+    height: 10rem;
+    object-position: top;
+}
+
+.card-body {
+    background-color: #343a40;
+    color: #FFF;
+}
+
+#btn-esconder-artigos{
+    cursor: pointer;
+}
+
+#head-right{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+
+
+ul a{
+    color: #000;
+}
+
+ul a:hover{
+    color: #051446;
+}
+
+.txt-esconder-pasta{
+    
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#h2_menu{
+    margin: 0;
+}

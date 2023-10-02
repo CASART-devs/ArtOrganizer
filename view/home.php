@@ -75,23 +75,31 @@ session_start();
 
                     <div class="row">
 
-                        <div class="amigo row my-2 mt-4">
+                        <div class="amigo row my-2">
                             <div class="col-4">
-                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="">
+                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
                             </div>
                             <div class="col">
-                                <span class="h5">Nome_amigo</span>
-                                <small>comentario_amigo</small>
+                                <div class="row">
+                                    <span class="h5">Nome_amigo</span>
+                                </div>
+                                <div class="row">
+                                    <small>comentario_amigo</small>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="amigo row my-2 mt-4">
+                        <div class="amigo row my-2">
                             <div class="col-4">
-                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="">
+                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
                             </div>
                             <div class="col">
-                                <span class="h5">Nome_amigo</span>
-                                <small>comentario_amigo</small>
+                                <div class="row">
+                                    <span class="h5">Nome_amigo</span>
+                                </div>
+                                <div class="row">
+                                    <small>comentario_amigo</small>
+                                </div>
                             </div>
                         </div>
 
@@ -104,23 +112,31 @@ session_start();
 
                     <div class="row">
 
-                        <div class="amigo row my-2 mt-4">
+                        <div class="amigo row my-2">
                             <div class="col-4">
-                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="">
+                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
                             </div>
                             <div class="col">
-                                <span class="h5">Nome_amigo</span>
-                                <small>comentario_amigo</small>
+                                <div class="row">
+                                    <span class="h5">Nome_amigo</span>
+                                </div>
+                                <div class="row">
+                                    <small>comentario_amigo</small>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="amigo row my-2 mt-4">
+                        <div class="amigo row my-2">
                             <div class="col-4">
-                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="">
+                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
                             </div>
                             <div class="col">
-                                <span class="h5">Nome_amigo</span>
-                                <small>comentario_amigo</small>
+                                <div class="row">
+                                    <span class="h5">Nome_amigo</span>
+                                </div>
+                                <div class="row">
+                                    <small>comentario_amigo</small>
+                                </div>
                             </div>
                         </div>
 
@@ -161,23 +177,17 @@ session_start();
                     <!-- Início do conteúdo dos amigos 
                     aqui terá código php-->
 
-                    <div class="amigo row my-2 mt-4">
-                        <div class="col-4">
-                            <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="">
-                        </div>
-                        <div class="col">
-                            <span class="h5">Nome_amigo</span>
-                            <small>comentario_amigo</small>
-                        </div>
-                    </div>
-
                     <div class="amigo row my-2">
                         <div class="col-4">
-                            <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="">
+                            <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
                         </div>
                         <div class="col">
-                            <span class="h5">Nome_amigo</span>
-                            <small>comentario_amigo</small>
+                            <div class="row">
+                                <span class="h5">Nome_amigo</span>
+                            </div>
+                            <div class="row">
+                                <small>comentario_amigo</small>
+                            </div>
                         </div>
                     </div>
 
@@ -186,8 +196,26 @@ session_start();
                             <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
                         </div>
                         <div class="col">
-                            <span class="h5">Nome_amigo</span>
-                            <small>comentario_amigo</small>
+                            <div class="row">
+                                <span class="h5">Nome_amigo</span>
+                            </div>
+                            <div class="row">
+                                <small>comentario_amigo</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="amigo row my-2">
+                        <div class="col-4">
+                            <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <span class="h5">Nome_amigo</span>
+                            </div>
+                            <div class="row">
+                                <small>comentario_amigo</small>
+                            </div>
                         </div>
                     </div>
                     <!-- Fim do conteúdo dos amigos -->
@@ -321,10 +349,10 @@ session_start();
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-10">
-                                                <h1 class="h5 card-titulo ">Nome</h5>
+                                            <h1 class="h5 card-titulo ">Nome</h5>
                                                 <h2 class="h6 card-subtitulo-2 ">Autor</h2>
                                         </div>
-                                        
+
                                         <div class="col d-flex align-items-center">
                                             <div class="dropdown">
                                                 <a class="" id="toggle-opcoes" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -339,21 +367,21 @@ session_start();
                                                 </ul>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <!--cartao-->
                             <div class="card m-2">
                                 <img src="img/capa_artigos/img_livro_exmp.png" class="card-img" alt="capa_artigo">
                                 <div class="card-body">
-                                <div class="row">
+                                    <div class="row">
                                         <div class="col-10">
-                                                <h1 class="h5 card-titulo ">Nome</h5>
+                                            <h1 class="h5 card-titulo ">Nome</h5>
                                                 <h2 class="h6 card-subtitulo-2 ">Autor</h2>
                                         </div>
-                                        
+
                                         <div class="col d-flex align-items-center">
                                             <div class="dropdown">
                                                 <a class="" id="toggle-opcoes" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -368,7 +396,7 @@ session_start();
                                                 </ul>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>

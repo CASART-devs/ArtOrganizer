@@ -10,5 +10,5 @@
      if (mysqli_connect_errno()) {
          die("Falha ao conectar ao banco de dados: " . mysqli_connect_error());
      }
-     echo "conectado";
+     
 ?>

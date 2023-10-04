@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+require_once "../model/validar.php";
 
 ?>
 
@@ -45,7 +46,19 @@ session_start();
             </form>
             <div class="ml-2 col-md-2  menu-icons">
                 <img class="m-1" src="img/navbar_home/notificação.svg" alt="Notificação" height="30rem">
-                <img class="m-1" src="img/navbar_home/perfil.svg" alt="perfil" height="50rem">
+
+                <div class="dropstart">
+                    <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="m-1" src="img/navbar_home/perfil.svg" alt="perfil" height="50rem">
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><span class="m-2"><?php echo "@" . $_SESSION['Nick']; ?></span></li>
+                        <li><a class="dropdown-item" href="../model/logout.php">Sair</a></li>
+
+                    </ul>
+                </div>
+
                 <a href="../view/pages/configuracao/configuracao.php"><img class="m-1" src="img/navbar_home/config.svg" alt="Configurações" height="30rem"></a>
             </div>
         </div>
@@ -232,7 +245,9 @@ session_start();
                 <div class="row my-4" id="head">
                     <div class="col">
                         <div class="row">
-                            <span class="h1 m-2">Biblioteca</span>
+                            <span class="h1 m-2">Biblioteca
+                                <?php print " do " . $_SESSION['Nick']; ?>
+                            </span>
                             <!-- aqui terá php, para identifica o pasta atual do usuario -->
                             <div class="row">
                             </div>
@@ -284,7 +299,6 @@ session_start();
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Adicionar artigo</a></li>
                                 <li><a class="dropdown-item" href="#">Adicionar pasta</a></li>
-                                <li><a class="dropdown-item" href="#">criar pasta</a></li>
                             </ul>
 
 

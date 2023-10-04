@@ -38,8 +38,7 @@
 
             <div class="collapse navbar-collapse justify-content-center" id="navbar_links">
                 <div class="navbar-nav" id="navbar">
-                    <a class="nav-item nav-link" id='artOrganizer-menu' href="#banner1">ArtOrganizer <span
-                            class="sr-only">(Página atual)</span></a>
+                    <a class="nav-item nav-link" id='artOrganizer-menu' href="#banner1">ArtOrganizer</a>
                     <a class="nav-item nav-link" id='adicionar-menu' href="#banner2">Adicionar</a>
                     <a class="nav-item nav-link" id='organizar-menu' href="#banner3">Organizar</a>
                     <a class="nav-item nav-link" id='compartilhar-menu' href="#banner4">Compartilhar</a>
@@ -67,8 +66,8 @@
     </div>
 
     <dialog class="container" id="popupLogin">
-
         <div class="justify-content-end row">
+        
             <div class="col-10"></div>
             <button class="btn button col-1" id="fechar" onclick="fcPopupFechar()">Fechar</button>
             <div class="col-1"></div>
@@ -87,19 +86,19 @@
 
                         <div class="mb-3">
                             <label for="InputEmail1" class="form-label">Email </label>
-                            <input type="email" class="form-control" name="email_log" aria-describedby="emailHelp">
+                            <input id="email_log" type="email" class="form-control" name="email_log" aria-describedby="emailHelp">
 
                             <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
                         </div>
 
                         <div class="mb-3">
                             <label for="InputSenha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" name="senha_log">
+                            <input id="senha_log" type="password" class="form-control" name="senha_log">
                         </div>
                                            
                         <div class="row">
                             <div class="col-2"></div>
-                                <button type="submit" class="col-8 btn button btn-primary">Login</button>
+                                <button type="submit" id="enviar_log" class="col-8 btn button btn-primary">Login</button>
                             <div class="col-2"></div>
                         </div>
                         
@@ -137,36 +136,36 @@
                         
                         <div class="mb-3">
                             <label for="InputNome" class="form-label">Nome </label>
-                            <input type="text" class="form-control" name="nome_cad" required>
+                            <input id="nome_cad" type="text" class="form-control" name="nome_cad" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="InputNome" class="form-label">Nickname </label>
-                            <input type="text" class="form-control" name="user_cad" required>
+                            <input id="user_cad" type="text" class="form-control" name="user_cad" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="InputEmail1" class="form-label">Email </label>
-                            <input type="email" class="form-control" name="email_cad" aria-describedby="emailHelp" required>
+                            <input id="email_cad" type="email" class="form-control" name="email_cad" aria-describedby="emailHelp" required>
 
                             <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
                         </div>
 
                         <div class="mb-3">
                             <label for="InputSenha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" name="senha_cad" required>
+                            <input id="senha_cad" type="password" class="form-control" name="senha_cad" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="InputNasc" class="form-label">Data de Nacimento</label>
-                            <input type="date" id="InputNasc" name="nasc_cad" value="2023-08-" max="2008-08-16" required>
+                            <input id="nasc_cad" type="date" id="InputNasc" name="nasc_cad" value="2023-08-" max="2008-08-16" required>
                         </div>
 
                         
 
                         <div class="row">
                             <div class="col-2"></div>
-                            <button type="submit" class="col-8 btn button btn-primary">Cadastrar</button>
+                            <button type="submit" id="enviar_cad" class="col-8 btn button btn-primary">Cadastrar</button>
                             <div class="col-2"></div>
                         </div>
                     </form>
@@ -282,5 +281,5 @@
     <script type="text/javascript" src="view/js/index.js"></script>
     
 </body>
-
+<script src="view/js/limpar.js"></script>
 </html> 

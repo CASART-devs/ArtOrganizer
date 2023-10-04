@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+require_once "../model/validar.php";
 
 ?>
 
@@ -45,11 +46,81 @@ session_start();
             </form>
             <div class="ml-2 col-md-2  menu-icons">
                 <img class="m-1" src="img/navbar_home/notificação.svg" alt="Notificação" height="30rem">
-                <img class="m-1" src="img/navbar_home/perfil.svg" alt="perfil" height="50rem">
+
+                <div class="dropstart">
+                    <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="m-1" src="img/navbar_home/perfil.svg" alt="perfil" height="50rem">
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><span class="m-2"><?php echo "@" . $_SESSION['Nick']; ?></span></li>
+                        <li><a class="dropdown-item" href="../model/logout.php">Sair</a></li>
+
+                    </ul>
+                </div>
+
                 <a href="../view/pages/configuracao/configuracao.php"><img class="m-1" src="img/navbar_home/config.svg" alt="Configurações" height="30rem"></a>
             </div>
         </div>
     </nav>
+
+
+    <!--
+        Modal
+    -->
+    <div class="modal fade" id="adicionar-artigo" tabindex="-1" aria-labelledby="adicionarArtigolLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="adicionar-pasta" tabindex="-1" aria-labelledby="adicionarPastaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nova pasta</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="#" method="post">
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="nome-artigo" class="form-label">Nome do artigo</label>
+                            <input type="text" class="form-control" name="nome-artigo" id="nome-artigo" aria-describedby="helpId" placeholder="">
+                            <small id="helpId" class="form-text text-muted">Insira o nome da pasta</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nome-autor" class="form-label">Nome do autor</label>
+                            <input type="text" class="form-control" name="nome-autor" id="nome-autor" aria-describedby="helpId" placeholder="">
+                            <small id="helpId" class="form-text text-muted">Insira o nome do autor</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="desc-pasta" class="form-label">Descrição da pasta</label>
+                            <textarea class="form-control" name="desc-pasta" id="desc-pasta" rows="3"></textarea>
+                            <small class="helpId">Inisira uma descrição</small>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn button">Adicionar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!--offcanvas amigos-->
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -232,7 +303,9 @@ session_start();
                 <div class="row my-4" id="head">
                     <div class="col">
                         <div class="row">
-                            <span class="h1 m-2">Biblioteca</span>
+                            <span class="h1 m-2">Biblioteca
+                                <?php print " do " . $_SESSION['Nick']; ?>
+                            </span>
                             <!-- aqui terá php, para identifica o pasta atual do usuario -->
                             <div class="row">
                             </div>
@@ -282,9 +355,8 @@ session_start();
                             </button>
 
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Adicionar artigo</a></li>
-                                <li><a class="dropdown-item" href="#">Adicionar pasta</a></li>
-                                <li><a class="dropdown-item" href="#">criar pasta</a></li>
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#adicionar-artigo">Adicionar artigo</a></li>
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#adicionar-pasta">Adicionar pasta</a></li>
                             </ul>
 
 

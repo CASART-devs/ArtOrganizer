@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+require_once "/xampp/htdocs/artorganizer-original/model/validar.php"
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +47,18 @@ session_start();
                 </form>
                 <div class="ml-2 col-md-2  menu-icons">
                     <img class="m-1" src="../../img/navbar_home/notificação.svg" alt="Notificação" height="30rem">
-                    <img class="m-1" src="../../img/navbar_home/perfil.svg" alt="perfil" height="50rem">
+                    <div class="dropstart">
+                        <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="m-1" src="../../img/navbar_home/perfil.svg" alt="perfil" height="50rem">
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><span class="m-2"><?php echo "@" . $_SESSION['Nick']; ?></span></li>
+                            <li><a class="dropdown-item" href="../../../model/logout.php">Sair</a></li>
+
+                        </ul>
+                    </div>
+                    
                     <a href="#"><img class="m-1" src="../../img/navbar_home/config.svg" alt="Configurações" height="30rem"></a>
                 </div>
             </div>
@@ -65,11 +78,11 @@ session_start();
                                     <h1>Configurações</h1>
                                     <div class="row">
                                         <img src="#" alt="">
-                                        <h2>Nome_user</h2>
+                                        <h2><?php echo $_SESSION['Nome']; ?></h2>
                                     </div>
                                 </div>
 
-                                
+
                                 <div class="row">
                                     <div class="container">
                                         <div class="list-group list-group-flush">
@@ -89,7 +102,7 @@ session_start();
                                 <div class="row">
                                     <h1>Minha conta</h1>
                                 </div>
-                                <form action="" method="post">
+                                <form action="../../../model/atualizacao.php" method="post">
                                     <div class="row">
 
                                         <div class="col">
@@ -97,14 +110,14 @@ session_start();
 
                                                 <div class="col mb-3 mr-3">
                                                     <label for="" class="form-label">Name</label>
-                                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                                                    <input type="text" class="form-control" name="nome" id="" aria-describedby="helpId" placeholder="<?php echo $_SESSION['Nome'];?>">
                                                     <small id="helpId" class="form-text text-muted">Digite seu nome</small>
                                                 </div>
 
                                                 <div class="col  mb-3 mr-3">
-                                                    <label for="" class="form-label">Sobrenome</label>
-                                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                                                    <small id="helpId" class="form-text text-muted">Digite seu sobrenome</small>
+                                                    <label for="" class="form-label">Nickname</label>
+                                                    <input type="text" class="form-control" name="nick" id="" aria-describedby="helpId" placeholder="<?php echo $_SESSION['Nick'];?>">
+                                                    <small id="helpId" class="form-text text-muted">Digite seu nickname</small>
                                                 </div>
 
                                             </div>
@@ -113,34 +126,40 @@ session_start();
 
                                                 <div class="col  mb-3 mr-3">
                                                     <label for="" class="form-label">Telefone</label>
-                                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                                                    <input type="text" class="form-control" name="telefone" id="" aria-describedby="helpId" placeholder="<?php if(isset( $_SESSION['Fone'])){echo $_SESSION['Fone'];};?>">
                                                     <small id="helpId" class="form-text text-muted">(DDD) - (seu numero)</small>
                                                 </div>
 
                                                 <div class="col mb-3 mr-3">
                                                     <label for="" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="abc@mail.com">
+                                                    <input type="email" class="form-control" name="email" id="" aria-describedby="emailHelpId" placeholder="<?php  echo $_SESSION['Email'];?>">
                                                     <small id="emailHelpId" class="form-text text-muted">Digite seu email</small>
                                                 </div>
                                             </div>
 
                                             <div class="row d-flex justify-content-start">
-                                                <div class="col mb-3 mr-3">
+                                            
+                                                <!--<div class="col mb-3 mr-3">
                                                     <label for="" class="form-label">Senha</label>
                                                     <input type="password" class="form-control" name="" id="" placeholder="">
                                                     <small id="passwordHelpId" class="form-text text-muted">Digite sua senha.</small>
-                                                </div>
+                                                </div>-->
 
-                                                <div class="col mb-3 mr-3">
+                                                <div class="row mb-3 mr-3">
                                                     <label for="" class="form-label">Data de nascimento</label>
-                                                    <input type="date" class="form-control" name="" id="" style="width: 220px;">
+                                                    <input type="date" class="form-control" name="nasc" id="" style="width: 220px;">
                                                     <small id="birthdayHelpId" class="form-text text-muted">Digite sua data de nascimento.</small>
+                                                </div>
+                                                <div class="row mb-3 mr-3">
+                                                    <a href="../recuperarSenha/recuperar.php">
+                                                        esqueceu a senha?
+                                                    </a>
                                                 </div>
 
 
                                             </div>
                                             <div class="row d-flex justify-content-start">
-                                                
+
                                                 <div class="col d-grid gap-2 m-2">
                                                     <button type="submit" name="" id="" class="button btn">Atualizar</button>
                                                 </div>
@@ -195,7 +214,8 @@ session_start();
 
     </div>
 
-    <script src="../../bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
+    <script src="../../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="../../js/sidebar.js"></script>
 
 </body>

@@ -2,6 +2,7 @@
 session_start();
 
 require_once "../model/validar.php";
+
 require_once "../model/conexao.php";
 
 $pastas_query = $conexao->prepare("SELECT * FROM pastas WHERE id_user = ?;");
@@ -10,6 +11,7 @@ $pastas_query->execute();
 $result = $pastas_query->get_result();
 
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+
 
 ?>
 
@@ -359,8 +361,10 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                             </button>
 
                             <ul class="dropdown-menu">
+
                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#adicionar-artigo">Adicionar artigo</a></li>
                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#adicionar-pasta">Adicionar pasta</a></li>
+
                             </ul>
 
 

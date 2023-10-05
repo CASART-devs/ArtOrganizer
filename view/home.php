@@ -2,6 +2,14 @@
 session_start();
 
 require_once "../model/validar.php";
+require_once "../model/conexao.php";
+
+$pastas_query = $conexao->prepare("SELECT * FROM pastas WHERE id_user = ?;");
+$pastas_query->bind_param("s", $_SESSION['ID']);
+$pastas_query->execute();
+$result = $pastas_query->get_result();
+
+$rows = $result->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
@@ -93,19 +101,15 @@ require_once "../model/validar.php";
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Nova pasta</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="#" method="post">
+                <form action="adicionar-pastas.php" method="post">
                     <div class="modal-body">
 
                         <div class="mb-3">
-                            <label for="nome-artigo" class="form-label">Nome do artigo</label>
-                            <input type="text" class="form-control" name="nome-artigo" id="nome-artigo" aria-describedby="helpId" placeholder="">
+                            <label for="nome-artigo" class="form-label">Nome da pasta</label>
+                            <input type="text" class="form-control" name="nome-pasta" id="nome-artigo" aria-describedby="helpId" placeholder="">
                             <small id="helpId" class="form-text text-muted">Insira o nome da pasta</small>
                         </div>
-                        <div class="mb-3">
-                            <label for="nome-autor" class="form-label">Nome do autor</label>
-                            <input type="text" class="form-control" name="nome-autor" id="nome-autor" aria-describedby="helpId" placeholder="">
-                            <small id="helpId" class="form-text text-muted">Insira o nome do autor</small>
-                        </div>
+
                         <div class="mb-3">
                             <label for="desc-pasta" class="form-label">Descrição da pasta</label>
                             <textarea class="form-control" name="desc-pasta" id="desc-pasta" rows="3"></textarea>
@@ -387,10 +391,9 @@ require_once "../model/validar.php";
                         <div class="row" id="pastas">
                             <!-- aqui terá php, para mostrar as pastas q o 
                             usuario possui no banco, e acessa-las -->
-                            <input class="button btn col m-2" type="button" value="Pasta 01">
-                            <input class="button btn col m-2" type="button" value="Pasta 01">
-                            <input class="button btn col m-2" type="button" value="Pasta 01">
-                            <input class="button btn col m-2" type="button" value="Pasta 01">
+                            <?php foreach ($rows as $pasta) { ?>
+                                <input class="button btn col m-2" type="button" value="<?php echo $pasta['nome_pasta']; ?>">
+                            <?php } ?>
 
                         </div>
                     </div>

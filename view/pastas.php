@@ -5,29 +5,14 @@ require_once "../model/validar.php";
 
 require_once "../model/conexao.php";
 
-if(isset($_SESSION['id_pasta'])){
-    $id_pasta = $_SESSION['id_pasta'];
-}else{
-    $id_pasta = 0;
-}
-
-$pastas_query = $conexao->prepare("SELECT pastas.* FROM pastas INNER JOIN pasta_user ON pastas.id = pasta_user.id_pasta WHERE pasta_user.id_user = ?;");
+$pastas_query = $conexao->prepare("SELECT * FROM pastas WHERE id_user = ?;");
 $pastas_query->bind_param("s", $_SESSION['ID']);
 $pastas_query->execute();
-$resultPasta = $pastas_query->get_result();
-$artigo_query = $conexao->prepare("
-    SELECT * FROM artigos
-    INNER JOIN artigo_pasta ON artigos.ID = artigo_pasta.id_artigo
-    INNER JOIN pastas ON pastas.id = artigo_pasta.id_pasta
-    INNER join pasta_user ON pastas.id = pasta_user.id_pasta
-    WHERE artigo_pasta.id_pasta = ? AND pasta_user.id_user = ?; 
-");
-$artigo_query->bind_param("ss", $id_pasta, $_SESSION['ID']);
-$artigo_query->execute();
-$resultArtigo = $artigo_query->get_result();
+$result = $pastas_query->get_result();
 
-$rowsPasta = $resultPasta->fetch_all(MYSQLI_ASSOC);
-$rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+
+
 
 ?>
 
@@ -75,10 +60,7 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
 
                 <div class="dropstart">
                     <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="m-1" src="<?php if (isset($_SESSION['img-perfil'])) { ?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];
-                                                                                                            } else {
-                                                                                                                echo "img/navbar_home/perfil.svg";
-                                                                                                            } ?>" alt="perfil" height="50rem">
+                        <img class="m-1" src="img/navbar_home/perfil.svg" alt="perfil" height="50rem">
                     </a>
 
                     <ul class="dropdown-menu">
@@ -101,44 +83,16 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Novo artigo</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form enctype="multipart/form-data" action="adicionar-artigos.php" method="post">
-                    <div class="modal-body">
-
-                        <div class="mb-3">
-                          <label for="" class="form-label">Titulo</label>
-                          <input type="text"
-                            class="form-control" name="titulo-artigo" id="titulo-artigo" aria-describedby="helpId" placeholder="">
-                          <small id="helpId" class="form-text text-muted">insira o nome do artigo</small>
-                        </div>
-
-                        <div class="mb-3">
-                          <label for="" class="form-label">Autor</label>
-                          <input type="text"
-                            class="form-control" name="autor-artigo" id="autor-artigo" aria-describedby="helpId" placeholder="">
-                          <small id="helpId" class="form-text text-muted">insira o nome do autor do artigo</small>
-                        </div>
-
-                        <div class="mb-3">
-                          <label for="" class="form-label">Capa do artigo</label>
-                          <input type="file" class="form-control" name="img-previw" id="img-previw" placeholder="" aria-describedby="fileHelpId">
-                          <div id="fileHelpId" class="form-text">Insira uma capa para o artigo</div>
-                        </div>
-
-                        <div class="mb-3">
-                          <label for="" class="form-label">Artigo</label>
-                          <input type="file" class="form-control" name="artigo" id="artigo" placeholder="" aria-describedby="fileHelpId">
-                          <div id="fileHelpId" class="form-text">Insira o artigo .pdf</div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn button">Adicionar</button>
-                    </div>
-                </form>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
@@ -356,8 +310,8 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                 <div class="row my-4" id="head">
                     <div class="col">
                         <div class="row">
-                            <span class="h1 m-2">Biblioteca
-                                <?php print " do(a) " . $_SESSION['Nick']; ?>
+                            <span class="h1 m-2">Biblioteca/
+                                <?php print ($nome_pasta['nome_pasta']); ?>
                             </span>
                             <!-- aqui terá php, para identifica o pasta atual do usuario -->
                             <div class="row">
@@ -442,8 +396,8 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                         <div class="row" id="pastas">
                             <!-- aqui terá php, para mostrar as pastas q o 
                             usuario possui no banco, e acessa-las -->
-                            <?php foreach ($rowsPasta as $pasta) { ?>
-                                <a name="" id="><?php echo $pasta['nome_pasta']; ?>" class="btn button col m-2" type="button" href="pastas.php" role="button"><?php echo $pasta['nome_pasta']; ?></a>
+                            <?php foreach ($rows as $pasta) { ?>
+                                <a name="" id="" class="btn button col m-2" type="button" href="pastas.php" role="button"><?php echo $pasta['nome_pasta']; ?></a>
                             <?php } ?>
 
                         </div>
@@ -470,14 +424,13 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                             usuario possui no banco, e acessa-las -->
 
                             <!--cartao-->
-                            <?php foreach($rowsArtigo as $artigo){ ?>
                             <div class="card m-2">
-                                <img src="../upload/artigo/img/<?php printf($artigo['img-previw']);?>" class="card-img" alt="capa_artigo">
+                                <img src="img/capa_artigos/img_livro_exmp.png" class="card-img" alt="capa_artigo">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-10">
-                                            <h1 class="h5 card-titulo "><?php printf($artigo['Titulo'])?></h5>
-                                                <h2 class="h6 card-subtitulo-2 "><?php printf($artigo['Autor'])?></h2>
+                                            <h1 class="h5 card-titulo ">Nome</h5>
+                                                <h2 class="h6 card-subtitulo-2 ">Autor</h2>
                                         </div>
 
                                         <div class="col d-flex align-items-center">
@@ -499,9 +452,34 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
 
                                 </div>
                             </div>
-                            <?php } ?>
+                            <!--cartao-->
+                            <div class="card m-2">
+                                <img src="img/capa_artigos/img_livro_exmp.png" class="card-img" alt="capa_artigo">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h1 class="h5 card-titulo ">Nome</h5>
+                                                <h2 class="h6 card-subtitulo-2 ">Autor</h2>
+                                        </div>
 
-                            
+                                        <div class="col d-flex align-items-center">
+                                            <div class="dropdown">
+                                                <a class="" id="toggle-opcoes" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="bi bi-three-dots-vertical"></i>
+                                                </a>
+
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Fazer download</a></li>
+                                                    <li><a class="dropdown-item" href="#">Renomear</a></li>
+                                                    <li><a class="dropdown-item" href="#">Informações do arquivo</a></li>
+                                                    <li><a class="dropdown-item" href="#">Excluir</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

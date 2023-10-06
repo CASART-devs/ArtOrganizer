@@ -25,7 +25,9 @@
                 $_SESSION['Email'] = $dados['Email'];
                 $_SESSION['Nome'] = $dados['Nome_Completo'];
                 $_SESSION['Nick'] = $dados['Nome_Usuario'];
-                $_SESSION['Nasc'] = $dados['Data_Nasc'];
+                $_SESSION['Nasc'] = $dados['Data_Nasc'];    
+                $_SESSION['fone'] = $dados['telefone'];
+                $_SESSION['img-perfil'] =$dados['img-perfil'];
 
                 
                 header('location:../view/home.php');

@@ -175,7 +175,7 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
         </div>
     </div>
 
-    <!--offcanvas amigos-->
+    <!--offcanvas amigos
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Amigos</h5>
@@ -271,12 +271,12 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
     </div>
-
-    <!--Sidebar amigos -->
+    -->                                                                                                      
+    
 
     <div class="container-fluid pt-3">
         <div class="row">
-
+            <!--Sidebar amigos 
             <nav class="mx-3 barra-amigos" style="max-width: 15rem;">
 
                 <div class="row" id="head_sidebar">
@@ -284,8 +284,8 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                         <div>
                             <a name="amigos" id="btn_amigos" data-bs-toggle="offcanvas" href="#offcanvasScrolling" role="button" aria-controls="offcanvasScrolling">
                                 <span class="h2">Amigos</span>
-                                <!-- número do círculo deve ser atualizado conforme a quantidade de amigos 
-                                aqui terá código php-->
+                                 número do círculo deve ser atualizado conforme a quantidade de amigos 
+                                aqui terá código php
                                 <i class="bi bi-7-circle-fill mx-2"></i>
                             </a>
                         </div>
@@ -298,8 +298,8 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                 </div>
 
                 <div class="texto" id="amigos">
-                    <!-- Início do conteúdo dos amigos 
-                    aqui terá código php-->
+                     Início do conteúdo dos amigos 
+                    aqui terá código php
 
                     <div class="amigo row my-2">
                         <div class="col-4">
@@ -342,17 +342,17 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                             </div>
                         </div>
                     </div>
-                    <!-- Fim do conteúdo dos amigos -->
+                     Fim do conteúdo dos amigos 
                 </div>
 
             </nav>
 
-
+        -->                                                                                                 
 
             <!-- conteudo principal-->
 
 
-            <div class="col" id="content">
+            <div class="col  mx-5" id="content">
                 <div class="row my-4" id="head">
                     <div class="col">
                         <div class="row">
@@ -472,6 +472,7 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                             <!--cartao-->
                             <?php foreach($rowsArtigo as $artigo){ ?>
                             <div class="card m-2">
+                                
                                 <img src="../upload/artigo/img/<?php printf($artigo['img-previw']);?>" class="card-img" alt="capa_artigo">
                                 <div class="card-body">
                                     <div class="row">
@@ -490,7 +491,7 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                                                     <li><a class="dropdown-item" href="#">Fazer download</a></li>
                                                     <li><a class="dropdown-item" href="#">Renomear</a></li>
                                                     <li><a class="dropdown-item" href="#">Informações do arquivo</a></li>
-                                                    <li><a class="dropdown-item" href="#">Excluir</a></li>
+                                                    <li><a class="dropdown-item" href="excluir-artigo.php?id_artigo=<?=$artigo['ID']?>">Excluir</a></li>
                                                 </ul>
                                             </div>
                                         </div>

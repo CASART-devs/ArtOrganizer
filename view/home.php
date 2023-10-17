@@ -1,33 +1,46 @@
 <?php
-session_start();
+    session_start();
 
-require_once "../model/validar.php";
+    require_once "../model/validar.php";
+    require_once "../model/conexao.php";
 
-require_once "../model/conexao.php";
+ 
+    //pesquisa de pastas
+    $pastas_query = $conexao->prepare("SELECT pastas.* FROM pastas INNER JOIN pasta_user ON pastas.id = pasta_user.id_pasta WHERE pasta_user.id_user = ?;");
+    $pastas_query->bind_param("s", $_SESSION['ID']);
+    $pastas_query->execute();
+    $resultPasta = $pastas_query->get_result();
+    $rowsPasta = $resultPasta->fetch_all(MYSQLI_ASSOC);
 
-if(isset($_SESSION['id_pasta'])){
-    $id_pasta = $_SESSION['id_pasta'];
-}else{
-    $id_pasta = 0;
-}
-
-$pastas_query = $conexao->prepare("SELECT pastas.* FROM pastas INNER JOIN pasta_user ON pastas.id = pasta_user.id_pasta WHERE pasta_user.id_user = ?;");
-$pastas_query->bind_param("s", $_SESSION['ID']);
-$pastas_query->execute();
-$resultPasta = $pastas_query->get_result();
-$artigo_query = $conexao->prepare("
-    SELECT * FROM artigos
-    INNER JOIN artigo_pasta ON artigos.ID = artigo_pasta.id_artigo
-    INNER JOIN pastas ON pastas.id = artigo_pasta.id_pasta
-    INNER join pasta_user ON pastas.id = pasta_user.id_pasta
-    WHERE artigo_pasta.id_pasta = ? AND pasta_user.id_user = ?; 
-");
-$artigo_query->bind_param("ss", $id_pasta, $_SESSION['ID']);
-$artigo_query->execute();
-$resultArtigo = $artigo_query->get_result();
-
-$rowsPasta = $resultPasta->fetch_all(MYSQLI_ASSOC);
-$rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
+    //pesquisa de artigos
+    if(isset( $_SESSION['id_pasta'])){
+        $id_pasta = $_SESSION['id_pasta'];
+        $artigo_query = $conexao->prepare("
+            SELECT * FROM artigos
+            INNER JOIN artigo_pasta ON artigos.ID = artigo_pasta.id_artigo
+            INNER JOIN pastas ON pastas.id = artigo_pasta.id_pasta
+            INNER join pasta_user ON pastas.id = pasta_user.id_pasta
+            WHERE artigo_pasta.id_pasta = ? AND pasta_user.id_user = ?; 
+        ");
+        $artigo_query->bind_param("ss", $id_pasta, $_SESSION['ID']);
+        $artigo_query->execute();
+        $resultArtigo = $artigo_query->get_result();
+        $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
+    }else{
+        $artigo_query = $conexao->prepare("
+            SELECT * FROM artigos
+            INNER JOIN artigo_pasta ON artigos.ID = artigo_pasta.id_artigo
+            INNER JOIN pasta_user ON artigo_pasta.id_pasta = pasta_user.id_pasta
+            INNER JOIN pastas ON artigo_pasta.id_pasta = pastas.id
+            WHERE pastas.nome_pasta = 'root' AND pasta_user.id_user = ?
+        ");
+        $artigo_query->bind_param("s", $_SESSION['ID']);
+        $artigo_query->execute();
+        $resultArtigo = $artigo_query->get_result();
+        $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
+    }
+   
+    
 
 ?>
 
@@ -75,10 +88,8 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
 
                 <div class="dropstart">
                     <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="m-1" src="<?php if (isset($_SESSION['img-perfil'])) { ?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];
-                                                                                                            } else {
-                                                                                                                echo "img/navbar_home/perfil.svg";
-                                                                                                            } ?>" alt="perfil" height="50rem">
+                        <img class="m-1" src="<?php if (isset($_SESSION['img-perfil'])) { ?>../upload/img-perfil/<?php echo $_SESSION['img-perfil']; } else {
+                        echo "img/navbar_home/perfil.svg"; } ?>" alt="perfil" height="50rem">
                     </a>
 
                     <ul class="dropdown-menu">
@@ -94,9 +105,7 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
     </nav>
 
 
-    <!--
-        Modal
-    -->
+    <!-- Modal -->
     <div class="modal fade" id="adicionar-artigo" tabindex="-1" aria-labelledby="adicionarArtigolLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -108,29 +117,27 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                     <div class="modal-body">
 
                         <div class="mb-3">
-                          <label for="" class="form-label">Titulo</label>
-                          <input type="text"
-                            class="form-control" name="titulo-artigo" id="titulo-artigo" aria-describedby="helpId" placeholder="">
-                          <small id="helpId" class="form-text text-muted">insira o nome do artigo</small>
+                            <label for="" class="form-label">Titulo</label>
+                            <input type="text" class="form-control" name="titulo-artigo" id="titulo-artigo" aria-describedby="helpId" placeholder="">
+                            <small id="helpId" class="form-text text-muted">insira o nome do artigo</small>
                         </div>
 
                         <div class="mb-3">
-                          <label for="" class="form-label">Autor</label>
-                          <input type="text"
-                            class="form-control" name="autor-artigo" id="autor-artigo" aria-describedby="helpId" placeholder="">
-                          <small id="helpId" class="form-text text-muted">insira o nome do autor do artigo</small>
+                            <label for="" class="form-label">Autor</label>
+                            <input type="text" class="form-control" name="autor-artigo" id="autor-artigo" aria-describedby="helpId" placeholder="">
+                            <small id="helpId" class="form-text text-muted">insira o nome do autor do artigo</small>
                         </div>
 
                         <div class="mb-3">
-                          <label for="" class="form-label">Capa do artigo</label>
-                          <input type="file" class="form-control" name="img-previw" id="img-previw" placeholder="" aria-describedby="fileHelpId">
-                          <div id="fileHelpId" class="form-text">Insira uma capa para o artigo</div>
+                            <label for="" class="form-label">Capa do artigo</label>
+                            <input type="file" class="form-control" name="img-previw" id="img-previw" placeholder="" aria-describedby="fileHelpId">
+                            <div id="fileHelpId" class="form-text">Insira uma capa para o artigo</div>
                         </div>
 
                         <div class="mb-3">
-                          <label for="" class="form-label">Artigo</label>
-                          <input type="file" class="form-control" name="artigo" id="artigo" placeholder="" aria-describedby="fileHelpId">
-                          <div id="fileHelpId" class="form-text">Insira o artigo .pdf</div>
+                            <label for="" class="form-label">Artigo</label>
+                            <input type="file" class="form-control" name="artigo" id="artigo" placeholder="" aria-describedby="fileHelpId">
+                            <div id="fileHelpId" class="form-text">Insira o artigo .pdf</div>
                         </div>
 
                     </div>
@@ -271,8 +278,8 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
     </div>
-    -->                                                                                                      
-    
+    -->
+
 
     <div class="container-fluid pt-3">
         <div class="row">
@@ -347,7 +354,7 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
 
             </nav>
 
-        -->                                                                                                 
+        -->
 
             <!-- conteudo principal-->
 
@@ -359,13 +366,13 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                             <span class="h1 m-2">Biblioteca
                                 <?php print " do(a) " . $_SESSION['Nick']; ?>
                             </span>
-                            <!-- aqui terá php, para identifica o pasta atual do usuario -->
                             <div class="row">
                             </div>
 
-                            <div class="row">
+                            <!-- tags
+                                <div class="row">
                                 <!-- aqui terá php, para pegar as tags, e amigos do banco de dados 
-                                e fazer a pesquisa pelos seletores -->
+                                e fazer a pesquisa pelos seletores 
 
                                 <div class="col">
                                     <select class="filtro form-select form-select-lg m-2" name="" id="">
@@ -395,7 +402,7 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                                     </select>
                                 </div>
 
-                            </div>
+                            </div>-->
 
                         </div>
                     </div>
@@ -440,11 +447,14 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                             </div>
                         </div>
                         <div class="row" id="pastas">
-                            <!-- aqui terá php, para mostrar as pastas q o 
-                            usuario possui no banco, e acessa-las -->
-                            <?php foreach ($rowsPasta as $pasta) { ?>
-                                <a name="" id="><?php echo $pasta['nome_pasta']; ?>" class="btn button col m-2" type="button" href="pastas.php" role="button"><?php echo $pasta['nome_pasta']; ?></a>
-                            <?php } ?>
+
+                            <!-- mostra as pastas que do  usuario -->
+                            <?php foreach ($rowsPasta as $pasta) {
+                                if ($pasta['nome_pasta'] != 'root') { ?>
+
+                                    <a name="" id="><?php echo $pasta['nome_pasta']; ?>" class="btn button col m-2" type="button" href="#" role="button"><?php echo $pasta['nome_pasta']; ?></a>
+                            <?php }
+                            } ?>
 
                         </div>
                     </div>
@@ -466,43 +476,41 @@ $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
                             </div>
                         </div>
                         <div class="row" id="artigos">
-                            <!-- aqui terá php, para mostrar os artígod q o 
-                            usuario possui no banco, e acessa-las -->
+                            <!--Mostra os artigos do usuario-->
 
-                            <!--cartao-->
-                            <?php foreach($rowsArtigo as $artigo){ ?>
-                            <div class="card m-2">
-                                
-                                <img src="../upload/artigo/img/<?php printf($artigo['img-previw']);?>" class="card-img" alt="capa_artigo">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-10">
-                                            <h1 class="h5 card-titulo "><?php printf($artigo['Titulo'])?></h5>
-                                                <h2 class="h6 card-subtitulo-2 "><?php printf($artigo['Autor'])?></h2>
-                                        </div>
+                            <?php foreach ($rowsArtigo as $artigo) { ?>
+                                <div class="card m-2">
 
-                                        <div class="col d-flex align-items-center">
-                                            <div class="dropdown">
-                                                <a class="" id="toggle-opcoes" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="bi bi-three-dots-vertical"></i>
-                                                </a>
-
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Fazer download</a></li>
-                                                    <li><a class="dropdown-item" href="#">Renomear</a></li>
-                                                    <li><a class="dropdown-item" href="#">Informações do arquivo</a></li>
-                                                    <li><a class="dropdown-item" href="excluir-artigo.php?id_artigo=<?=$artigo['ID']?>">Excluir</a></li>
-                                                </ul>
+                                    <img src="../upload/artigo/img/<?php printf($artigo['img-previw']); ?>" class="card-img" alt="capa_artigo">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <h1 class="h5 card-titulo "><?php printf($artigo['Titulo']) ?></h5>
+                                                    <h2 class="h6 card-subtitulo-2 "><?php printf($artigo['Autor']) ?></h2>
                                             </div>
+
+                                            <div class="col d-flex align-items-center">
+                                                <div class="dropdown">
+                                                    <a class="" id="toggle-opcoes" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="bi bi-three-dots-vertical"></i>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#">Fazer download</a></li>
+                                                        <li><a class="dropdown-item" href="#">Renomear</a></li>
+                                                        <li><a class="dropdown-item" href="#">Informações do arquivo</a></li>
+                                                        <li><a class="dropdown-item" href="excluir-artigo.php?id_artigo=<?= $artigo['ID'] ?>">Excluir</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                     </div>
-
                                 </div>
-                            </div>
                             <?php } ?>
 
-                            
+
                         </div>
                     </div>
                 </div>

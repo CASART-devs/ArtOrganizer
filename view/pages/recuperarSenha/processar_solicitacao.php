@@ -62,7 +62,7 @@ try {
 
     // Envio
     $mail->send();
-    header("location:../../../model/logout.php");
+    header("location:../../../view/home.php");
 } catch (Exception $error) {
     echo "Erro ao enviar e-mail!<br>";
     echo "Erro: " . $error->getMessage();

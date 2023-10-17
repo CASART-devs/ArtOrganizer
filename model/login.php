@@ -29,6 +29,19 @@
                 $_SESSION['fone'] = $dados['telefone'];
                 $_SESSION['img-perfil'] =$dados['img-perfil'];
 
+                $query = $conexao->prepare("
+                SELECT * FROM pastas
+                INNER JOIN pasta_user ON pastas.id = pasta_user.id_pasta
+                WHERE pasta_user.id_user = ? AND pastas.nome_pasta = 'root'
+                ");
+                $query->bind_param("s", $_SESSION['ID'] );
+
+                $query->execute();
+                $resultado = $query->get_result();
+                $dados = $resultado -> fetch_array(MYSQLI_ASSOC);
+
+                $_SESSION['pasta_nome'] = $dados['nome_pasta'];
+
                 
                 header('location:../view/home.php');
             } else{

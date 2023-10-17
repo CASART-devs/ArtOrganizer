@@ -47,7 +47,7 @@
         $_SESSION['Fone'] = $telefone;
         $_SESSION['img-perfil'] = $arquivo;
 
-        header("Location:../view/pages/configuracao/configuracao.php");
+        header("Location:../view/pages/configuracao/configuarcao.php");
         }
     }catch(Exception $error){
 

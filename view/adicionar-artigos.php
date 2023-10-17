@@ -12,7 +12,21 @@ $id_user = $_SESSION['ID'];
 if(isset($_SESSION['id_pasta'])){
     $id_pasta = $_SESSION['id_pasta'];
 }else{
-    $id_pasta = 0;
+
+    $query = $conexao->prepare("
+    SELECT  * FROM pasta_user 
+    INNER join pastas ON pasta_user.id_pasta = pastas.id
+    WHERE pasta_user.id_user = ? AND pastas.nome_pasta = 'root'
+
+    ");
+    $query->bind_param("s", $id_user);
+    $query->execute();
+    $resultado = $query->get_result();
+    $dados = $resultado -> fetch_array(MYSQLI_ASSOC);
+    var_dump($dados);
+   $id_pasta = $dados['id_pasta'];
+
+    
 }
 
 try {

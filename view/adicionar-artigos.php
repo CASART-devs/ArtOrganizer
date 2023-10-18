@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "/xampp/htdocs/artorganizer-original/model/conexao.php";
+require_once "../model/conexao.php";
 
 $titulo = $_POST['titulo-artigo'];
 $autor = $_POST['autor-artigo'];

@@ -1,46 +1,46 @@
 <?php
-    session_start();
+session_start();
 
-    require_once "../model/validar.php";
-    require_once "../model/conexao.php";
+require_once "../model/validar.php";
+require_once "../model/conexao.php";
 
- 
-    //pesquisa de pastas
-    $pastas_query = $conexao->prepare("SELECT pastas.* FROM pastas INNER JOIN pasta_user ON pastas.id = pasta_user.id_pasta WHERE pasta_user.id_user = ?;");
-    $pastas_query->bind_param("s", $_SESSION['ID']);
-    $pastas_query->execute();
-    $resultPasta = $pastas_query->get_result();
-    $rowsPasta = $resultPasta->fetch_all(MYSQLI_ASSOC);
 
-    //pesquisa de artigos
-    if(isset( $_SESSION['id_pasta'])){
-        $id_pasta = $_SESSION['id_pasta'];
-        $artigo_query = $conexao->prepare("
+//pesquisa de pastas
+$pastas_query = $conexao->prepare("SELECT pastas.* FROM pastas INNER JOIN pasta_user ON pastas.id = pasta_user.id_pasta WHERE pasta_user.id_user = ?;");
+$pastas_query->bind_param("s", $_SESSION['ID']);
+$pastas_query->execute();
+$resultPasta = $pastas_query->get_result();
+$rowsPasta = $resultPasta->fetch_all(MYSQLI_ASSOC);
+
+//pesquisa de artigos
+if (isset($_SESSION['id_pasta'])) {
+    $id_pasta = $_SESSION['id_pasta'];
+    $artigo_query = $conexao->prepare("
             SELECT * FROM artigos
             INNER JOIN artigo_pasta ON artigos.ID = artigo_pasta.id_artigo
             INNER JOIN pastas ON pastas.id = artigo_pasta.id_pasta
             INNER join pasta_user ON pastas.id = pasta_user.id_pasta
             WHERE artigo_pasta.id_pasta = ? AND pasta_user.id_user = ?; 
         ");
-        $artigo_query->bind_param("ss", $id_pasta, $_SESSION['ID']);
-        $artigo_query->execute();
-        $resultArtigo = $artigo_query->get_result();
-        $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
-    }else{
-        $artigo_query = $conexao->prepare("
+    $artigo_query->bind_param("ss", $id_pasta, $_SESSION['ID']);
+    $artigo_query->execute();
+    $resultArtigo = $artigo_query->get_result();
+    $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
+} else {
+    $artigo_query = $conexao->prepare("
             SELECT * FROM artigos
             INNER JOIN artigo_pasta ON artigos.ID = artigo_pasta.id_artigo
             INNER JOIN pasta_user ON artigo_pasta.id_pasta = pasta_user.id_pasta
             INNER JOIN pastas ON artigo_pasta.id_pasta = pastas.id
             WHERE pastas.nome_pasta = 'root' AND pasta_user.id_user = ?
         ");
-        $artigo_query->bind_param("s", $_SESSION['ID']);
-        $artigo_query->execute();
-        $resultArtigo = $artigo_query->get_result();
-        $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
-    }
-   
-    
+    $artigo_query->bind_param("s", $_SESSION['ID']);
+    $artigo_query->execute();
+    $resultArtigo = $artigo_query->get_result();
+    $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
+}
+
+
 
 ?>
 
@@ -84,12 +84,14 @@
                 <!-- aqui terá php, para enviar uma pesquisa para a tabela artigos e retornara os artigos na aba de pesquisa -->
             </form>
             <div class="ml-2 col-md-2  menu-icons">
-                <img class="m-1" src="img/navbar_home/notificação.svg" alt="Notificação" height="30rem">
+                <!--<img class="m-1" src="img/navbar_home/notificação.svg" alt="Notificação" height="30rem">-->
 
                 <div class="dropstart">
                     <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="m-1" src="<?php if (isset($_SESSION['img-perfil'])) { ?>../upload/img-perfil/<?php echo $_SESSION['img-perfil']; } else {
-                        echo "img/navbar_home/perfil.svg"; } ?>" alt="perfil" height="50rem">
+                        <img class="m-1" src="<?php if (isset($_SESSION['img-perfil'])) { ?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];
+                                                                                                                } else {
+                                                                                                                    echo "img/navbar_home/perfil.svg";
+                                                                                                                } ?>" alt="perfil" height="50rem">
                     </a>
 
                     <ul class="dropdown-menu">
@@ -178,6 +180,28 @@
                         <button type="submit" class="btn button">Adicionar</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="infoArtigos" tabindex="-1" aria-labelledby="infoArtigosModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="infoArtigosModalLabel">Informaçãoes do Artigo</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col">
+                        <label for="nomeArtigoInfo">Titulo: </label>
+                        
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                </div>
             </div>
         </div>
     </div>
@@ -498,7 +522,10 @@
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="#">Fazer download</a></li>
                                                         <li><a class="dropdown-item" href="#">Renomear</a></li>
-                                                        <li><a class="dropdown-item" href="#">Informações do arquivo</a></li>
+                                                        <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#infoArtigos">
+                                                                Infromações do Artigo
+                                                            </button>
+                                                        </li>
                                                         <li><a class="dropdown-item" href="excluir-artigo.php?id_artigo=<?= $artigo['ID'] ?>">Excluir</a></li>
                                                     </ul>
                                                 </div>

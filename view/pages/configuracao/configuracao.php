@@ -49,7 +49,7 @@ require_once "/xampp/htdocs/artorganizer-original/model/validar.php"
                     <img class="m-1" src="../../img/navbar_home/notificação.svg" alt="Notificação" height="30rem">
                     <div class="dropstart">
                         <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="m-1" src="../../img/navbar_home/perfil.svg" alt="perfil" height="50rem">
+                            <img class="m-1" src="<?php if(isset( $_SESSION['img-perfil'])) {?>../../../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "../../img/navbar_home/perfil.svg";}?>" alt="perfil" height="50rem">
                         </a>
 
                         <ul class="dropdown-menu">
@@ -102,7 +102,7 @@ require_once "/xampp/htdocs/artorganizer-original/model/validar.php"
                                 <div class="row">
                                     <h1>Minha conta</h1>
                                 </div>
-                                <form action="../../../model/atualizacao.php" method="post">
+                                <form enctype="multipart/form-data" action="../../../model/atualizacao.php" method="post">
                                     <div class="row">
 
                                         <div class="col">
@@ -124,17 +124,13 @@ require_once "/xampp/htdocs/artorganizer-original/model/validar.php"
 
                                             <div class="row d-flex justify-content-start">
 
-                                                <div class="col  mb-3 mr-3">
-                                                    <label for="" class="form-label">Telefone</label>
-                                                    <input type="text" class="form-control" name="telefone" id="" aria-describedby="helpId" placeholder="<?php if(isset( $_SESSION['Fone'])){echo $_SESSION['Fone'];};?>">
-                                                    <small id="helpId" class="form-text text-muted">(DDD) - (seu numero)</small>
-                                                </div>
-
+                                                
                                                 <div class="col mb-3 mr-3">
                                                     <label for="" class="form-label">Email</label>
                                                     <input type="email" class="form-control" name="email" id="" aria-describedby="emailHelpId" placeholder="<?php  echo $_SESSION['Email'];?>">
                                                     <small id="emailHelpId" class="form-text text-muted">Digite seu email</small>
                                                 </div>
+                                                
                                             </div>
 
                                             <div class="row d-flex justify-content-start">
@@ -144,20 +140,36 @@ require_once "/xampp/htdocs/artorganizer-original/model/validar.php"
                                                     <input type="password" class="form-control" name="" id="" placeholder="">
                                                     <small id="passwordHelpId" class="form-text text-muted">Digite sua senha.</small>
                                                 </div>-->
-
-                                                <div class="row mb-3 mr-3">
+                                                <div class="row">
+                                                <div class="col mb-3 mr-3">
                                                     <label for="" class="form-label">Data de nascimento</label>
                                                     <input type="date" class="form-control" name="nasc" id="" style="width: 220px;">
                                                     <small id="birthdayHelpId" class="form-text text-muted">Digite sua data de nascimento.</small>
                                                 </div>
-                                                <div class="row mb-3 mr-3">
-                                                    <a href="../recuperarSenha/recuperar.php">
-                                                        esqueceu a senha?
-                                                    </a>
+                                                <div class="col  mb-3 mr-3">
+                                                    <label for="" class="form-label">Telefone</label>
+                                                    <input type="text" class="form-control" name="telefone" id="" aria-describedby="helpId" placeholder="<?php if(isset( $_SESSION['Fone'])){echo $_SESSION['Fone'];}?>">
+                                                    <small id="helpId" class="form-text text-muted">(DDD) - (seu numero)</small>
+                                                </div>
+                                            </div>
+                                                
+                                                <div class="col mb-3">
+                                                  <label for="" class="form-label">Imagem de perfil</label>
+                                                  <div class="row m-2">
+                                                    <img src="<?php if(isset( $_SESSION['img-perfil'])) {?>../../../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "../../img/navbar_home/perfil.svg";}?>" class="img-fluid rounded" alt="" style="height:10rem; width:10rem;">
+                                                    </div>
+                                                  
+                                                  <input type="file" class="form-control" name="img-perfil" id="" placeholder="" aria-describedby="fileHelpId">
+                                                  
                                                 </div>
 
 
                                             </div>
+                                            <div class="row mb-3 mr-3">
+                                                    <a href="../recuperarSenha/recuperar.php">
+                                                        esqueceu a senha?
+                                                    </a>
+                                                </div>
                                             <div class="row d-flex justify-content-start">
 
                                                 <div class="col d-grid gap-2 m-2">

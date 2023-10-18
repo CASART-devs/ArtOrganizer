@@ -46,7 +46,7 @@ require_once "../../../model/validar.php"
                     <!-- aqui terá php, para enviar uma pesquisa para a tabela artigos e retornara os artigos na aba de pesquisa -->
                 </form>
                 <div class="ml-2 col-md-2  menu-icons">
-                    <img class="m-1" src="../../img/navbar_home/notificação.svg" alt="Notificação" height="30rem">
+                    <!--<img class="m-1" src="../../img/navbar_home/notificação.svg" alt="Notificação" height="30rem">-->
                     <div class="dropstart">
                         <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img class="m-1" src="<?php if(isset( $_SESSION['img-perfil'])) {?>../../../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "../../img/navbar_home/perfil.svg";}?>" alt="perfil" height="50rem">

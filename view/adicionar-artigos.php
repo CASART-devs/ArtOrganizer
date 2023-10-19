@@ -3,11 +3,11 @@ session_start();
 require_once "../model/conexao.php";
 require_once "../src/Artigo.php";
 require_once "../src/Arquivo.php";
-require_once "../src/RelUserPasta.php";
+require_once "../src/RelArtigoPasta.php";
 
 use src\Artigo\Artigo;
 use src\Arquivo\Arquivo;
-use src\RelaUserPasta\RelUserPasta;
+use src\RelArtigoPasta\RelArtigoPasta;
 
 //definição de variaveis
     $titulo = $_POST['titulo-artigo'];
@@ -46,13 +46,13 @@ try {
     $arqArtigo = new Arquivo("../upload/artigo/artigo/", $artigo);
     $arqImg->moverImg($img);
     $arqArtigo->moverArtigo($artigo);
-    
+
     //adiciona pasta no banco
     $artigo = new Artigo($titulo, $autor, $arqImg->gerarNome(), $arqArtigo->gerarNome());
     $artigo->inserirArtigo($conexao);
 
     //adiciona relacionamento user-pasta no banco
-    $relacionamento = new RelUserPasta($id_pasta, $artigo->getId()); 
+    $relacionamento = new RelArtigoPasta($id_pasta, $artigo->getId()); 
     $relacionamento->inserirRelacionameto($conexao);
 
     header("Location: home.php");

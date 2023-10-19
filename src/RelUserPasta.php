@@ -1,8 +1,8 @@
 <?php
 
-namespace src\RelaUserPasta;
+namespace src\RelArtigoPasta;
 
-    class RelUserPasta{
+    class RelArtigoPasta{
         private int $id;
         private int $id_artigo;
         private int $id_pasta;

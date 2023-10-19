@@ -1,6 +1,9 @@
 <?php
     session_start();
     require_once "../model/conexao.php";
+    require_once "../vendor/autoload.php";
+    require_once "../src/Pasta.php";
+    use src\Pasta\Pasta;
 
     $nome = $_POST['nome-pasta'];
     $desc = $_POST['desc-pasta'];
@@ -8,16 +11,11 @@
 
     try {
         //adiciona pasta no banco
-        $query = $conexao->prepare("
-            INSERT INTO `pastas`
-            (nome_pasta, descricao) 
-            VALUES 
-            (?, ?);
-        ");
+        $pasta = new Pasta($nome, $desc);
+        $pasta->inserirPasta($conexao);
 
-        $query->bind_param("ss", $nome, $desc);
-        $query->execute();
-        $id_pasta = $conexao->insert_id;
+        $id_pasta = $pasta->getId();
+
         //adiciona relacionamento user-pasta no banco
         $query = $conexao->prepare("INSERT INTO `pasta_user` (`id_user`, `id_pasta`) VALUES (?, ?);");
         $query->bind_param("ss", $id_user, $id_pasta );

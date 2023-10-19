@@ -28,6 +28,10 @@ class ComposerStaticInit21867b3d71887c4ef09bd4b3bbb57ce3
             'voku\\' => 5,
             'view\\' => 5,
         ),
+        's' => 
+        array (
+            'src\\' => 4,
+        ),
         'c' => 
         array (
             'core\\' => 5,
@@ -93,6 +97,10 @@ class ComposerStaticInit21867b3d71887c4ef09bd4b3bbb57ce3
         'view\\' => 
         array (
             0 => __DIR__ . '/../..' . '/view',
+        ),
+        'src\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'core\\' => 
         array (

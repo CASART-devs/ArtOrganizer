@@ -48,7 +48,8 @@ try {
     $arqArtigo->moverArtigo($artigo);
 
     //adiciona pasta no banco
-    $artigo = new Artigo($titulo, $autor, $arqImg->gerarNome(), $arqArtigo->gerarNome());
+    $artigo = new Artigo();
+    $artigo->criarArtigo($titulo, $autor, $arqImg->gerarNome(), $arqArtigo->gerarNome());
     $artigo->inserirArtigo($conexao);
 
     //adiciona relacionamento user-pasta no banco

@@ -6,11 +6,11 @@ require_once "../model/conexao.php";
 
 
 //pesquisa de pastas
-$pastas_query = $conexao->prepare("SELECT pastas.* FROM pastas INNER JOIN pasta_user ON pastas.id = pasta_user.id_pasta WHERE pasta_user.id_user = ?;");
-$pastas_query->bind_param("s", $_SESSION['ID']);
-$pastas_query->execute();
-$resultPasta = $pastas_query->get_result();
-$rowsPasta = $resultPasta->fetch_all(MYSQLI_ASSOC);
+    $pastas_query = $conexao->prepare("SELECT pastas.* FROM pastas INNER JOIN pasta_user ON pastas.id = pasta_user.id_pasta WHERE pasta_user.id_user = ?;");
+    $pastas_query->bind_param("s", $_SESSION['ID']);
+    $pastas_query->execute();
+    $resultPasta = $pastas_query->get_result();
+    $rowsPasta = $resultPasta->fetch_all(MYSQLI_ASSOC);
 
 //pesquisa de artigos
 if (isset($_SESSION['id_pasta'])) {
@@ -138,14 +138,14 @@ if (isset($_SESSION['id_pasta'])) {
 
                         <div class="mb-3">
                             <label for="" class="form-label">Artigo</label>
-                            <input type="file" class="form-control" name="artigo" id="artigo" placeholder="" aria-describedby="fileHelpId">
+                            <input type="file" class="form-control" name="artigo" id="artigo" placeholder="" aria-describedby="fileHelpId" ">
                             <div id="fileHelpId" class="form-text">Insira o artigo .pdf</div>
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn button">Adicionar</button>
+                        <button type="submit" class="btn button" >Adicionar</button>
                     </div>
                 </form>
             </div>
@@ -387,8 +387,12 @@ if (isset($_SESSION['id_pasta'])) {
                 <div class="row my-4" id="head">
                     <div class="col">
                         <div class="row">
+                            <?php if(isset($_SESSION['id_pasta'])){ ?>
+                                <a type="button" id="btnVoltar" href="voltar.php"> voltar </a>
+                            <?php } ?>                                                                                        
                             <span class="h1 m-2">Biblioteca
                                 <?php print " do(a) " . $_SESSION['Nick']; ?>
+                                
                             </span>
                             <div class="row">
                             </div>
@@ -471,14 +475,18 @@ if (isset($_SESSION['id_pasta'])) {
                             </div>
                         </div>
                         <div class="row" id="pastas">
-
+                            
                             <!-- mostra as pastas que do  usuario -->
+                            <?php if(!(isset($_SESSION['id_pasta']))){?>
                             <?php foreach ($rowsPasta as $pasta) {
                                 if ($pasta['nome_pasta'] != 'root') { ?>
-
-                                    <a name="" id="><?php echo $pasta['nome_pasta']; ?>" class="btn button col m-2" type="button" href="#" role="button"><?php echo $pasta['nome_pasta']; ?></a>
+                                    
+                                    <form method="post" action="pegarSessao.php" class="col m-2">
+                                    <button type="submit" name="id_pasta" value="<?php echo $pasta['id']; ?>" class="btn button container btnPasta"><?php echo $pasta['nome_pasta'];?></button>
+                                    </form>
                             <?php }
-                            } ?>
+                            }} ?>
+                          
 
                         </div>
                     </div>
@@ -580,6 +588,7 @@ if (isset($_SESSION['id_pasta'])) {
 
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/sidebar.js"></script> <!--Navegação Menu -->
+    <script src="js/index.js"></script>
 </body>
 
 

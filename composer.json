@@ -14,9 +14,9 @@
         }
     ],
     "require": {
-        "twbs/bootstrap": "5.3.2",
-        "laravel/installer": "^5.1",
-        "phpmailer/phpmailer": "^6.8",
-        "league/oauth2-client": "^2.7"
+       
+        
+        "phpmailer/phpmailer": "^6.8"
+      
     }
 }

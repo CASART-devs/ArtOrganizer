@@ -3,7 +3,7 @@ session_start();
 require_once "../model/conexao.php";
 require_once "../src/Artigo.php";
 require_once "../src/Arquivo.php";
-require_once "../src/RelArtigoPasta.php";
+require_once "../src/RelUserPasta.php";
 
 use src\Artigo\Artigo;
 use src\Arquivo\Arquivo;
@@ -20,6 +20,18 @@ use src\RelArtigoPasta\RelArtigoPasta;
 
     if (isset($_SESSION['id_pasta'])) {
         $id_pasta = $_SESSION['id_pasta'];
+
+        $query = $conexao->prepare("
+        SELECT  * FROM pasta_user 
+        INNER join pastas ON pasta_user.id_pasta = pastas.id
+        WHERE pasta_user.id_user = ? AND pastas.id = ?
+
+        ");
+        $query->bind_param("ss", $id_user, $id_pasta);
+        $query->execute();
+        $resultado = $query->get_result();
+        $dados = $resultado->fetch_array(MYSQLI_ASSOC);
+        $id_pasta = $dados['id_pasta'];
     } else {
 
         $query = $conexao->prepare("

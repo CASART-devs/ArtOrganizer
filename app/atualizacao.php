@@ -47,12 +47,12 @@
         $_SESSION['Fone'] = $telefone;
         $_SESSION['img-perfil'] = $arquivo;
 
-        header("Location:../view/pages/configuracao/configuracao.php");
+        header("Location:configuracao.php");
         }
     }catch(Exception $error){
 
         echo "Erro ao atualizar!  ($error) <br>";
-        echo "Clique <a href='../view/pages/configuracao/configuracao.php'>aqui</a> para voltar";
+        echo "Clique <a href='configuracao.php'>aqui</a> para voltar";
         
     }
 

@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once "../model/validar.php";
-require_once "../model/conexao.php";
+require_once "validar.php";
+require_once "conexao.php";
 
 
 //pesquisa de pastas
@@ -96,12 +96,12 @@ if (isset($_SESSION['id_pasta'])) {
 
                     <ul class="dropdown-menu">
                         <li><span class="m-2"><?php echo "@" . $_SESSION['Nick']; ?></span></li>
-                        <li><a class="dropdown-item" href="../model/logout.php">Sair</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Sair</a></li>
 
                     </ul>
                 </div>
 
-                <a href="../view/pages/configuracao/configuracao.php"><img class="m-1" src="img/navbar_home/config.svg" alt="Configurações" height="30rem"></a>
+                <a href="configuracao.php"><img class="m-1" src="img/navbar_home/config.svg" alt="Configurações" height="30rem"></a>
             </div>
         </div>
     </nav>
@@ -207,179 +207,11 @@ if (isset($_SESSION['id_pasta'])) {
         </div>
     </div>
 
-    <!--offcanvas amigos
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Amigos</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="col m-2">
-                <div class="row">
-
-                    <div class="row">
-
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Pesquisa" aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="row">
-                    <span>Online</span>
-
-                    <div class="row">
-
-                        <div class="amigo row my-2">
-                            <div class="col-4">
-                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
-                            </div>
-                            <div class="col">
-                                <div class="row">
-                                    <span class="h5">Nome_amigo</span>
-                                </div>
-                                <div class="row">
-                                    <small>comentario_amigo</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="amigo row my-2">
-                            <div class="col-4">
-                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
-                            </div>
-                            <div class="col">
-                                <div class="row">
-                                    <span class="h5">Nome_amigo</span>
-                                </div>
-                                <div class="row">
-                                    <small>comentario_amigo</small>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <span>offline</span>
-
-                    <div class="row">
-
-                        <div class="amigo row my-2">
-                            <div class="col-4">
-                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
-                            </div>
-                            <div class="col">
-                                <div class="row">
-                                    <span class="h5">Nome_amigo</span>
-                                </div>
-                                <div class="row">
-                                    <small>comentario_amigo</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="amigo row my-2">
-                            <div class="col-4">
-                                <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
-                            </div>
-                            <div class="col">
-                                <div class="row">
-                                    <span class="h5">Nome_amigo</span>
-                                </div>
-                                <div class="row">
-                                    <small>comentario_amigo</small>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-    -->
-
+   
 
     <div class="container-fluid pt-3">
         <div class="row">
-            <!--Sidebar amigos 
-            <nav class="mx-3 barra-amigos" style="max-width: 15rem;">
-
-                <div class="row" id="head_sidebar">
-                    <div class="col texto" id="h2_amigos">
-                        <div>
-                            <a name="amigos" id="btn_amigos" data-bs-toggle="offcanvas" href="#offcanvasScrolling" role="button" aria-controls="offcanvasScrolling">
-                                <span class="h2">Amigos</span>
-                                 número do círculo deve ser atualizado conforme a quantidade de amigos 
-                                aqui terá código php
-                                <i class="bi bi-7-circle-fill mx-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <svg class="mx-2" id="botao-esconder-amigos" xmlns="http://www.w3.org/2000/svg" width=2rem height="2rem" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
-                            <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="texto" id="amigos">
-                     Início do conteúdo dos amigos 
-                    aqui terá código php
-
-                    <div class="amigo row my-2">
-                        <div class="col-4">
-                            <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <span class="h5">Nome_amigo</span>
-                            </div>
-                            <div class="row">
-                                <small>comentario_amigo</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="amigo row my-2">
-                        <div class="col-4">
-                            <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <span class="h5">Nome_amigo</span>
-                            </div>
-                            <div class="row">
-                                <small>comentario_amigo</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="amigo row my-2">
-                        <div class="col-4">
-                            <img class="perfil-img" src="img/navbar_home/perfil.svg" alt="imagem de pre">
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <span class="h5">Nome_amigo</span>
-                            </div>
-                            <div class="row">
-                                <small>comentario_amigo</small>
-                            </div>
-                        </div>
-                    </div>
-                     Fim do conteúdo dos amigos 
-                </div>
-
-            </nav>
-
-        -->
+           
 
             <!-- conteudo principal-->
 

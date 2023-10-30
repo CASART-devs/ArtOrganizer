@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once "../../../model/conexao.php";
+require_once "conexao.php";
 
-require_once "../../../model/validar.php";
+require_once "validar.php";
 
 
 $token = $_GET['token'];
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Exiba uma mensagem de sucesso
     echo "Senha redefinida com sucesso!";
-    header('Location:../../../model/logout.php');
+    header('Location:logout.php');
 } else {
     // Exiba o formulário para redefinir a senha
     echo "<form method='post'>

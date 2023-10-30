@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "/xampp/htdocs/artorganizer-original/model/validar.php";
+    require_once "validar.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

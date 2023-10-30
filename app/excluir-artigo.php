@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../model/conexao.php";
+require_once "conexao.php";
 require_once "../src/Artigo.php";
 
 use src\Artigo\Artigo;

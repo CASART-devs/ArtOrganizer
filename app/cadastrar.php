@@ -1,5 +1,5 @@
 <?php
-include('conexao.php');
+require_once('conexao.php');
 
 $nome = $conexao->real_escape_string($_POST['nome_cad']);
 $email = $conexao->real_escape_string($_POST['email_cad']);

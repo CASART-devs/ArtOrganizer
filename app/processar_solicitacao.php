@@ -3,8 +3,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require "../../../vendor/autoload.php";
-require_once "/xampp/htdocs/artorganizer-original/model/conexao.php";
+require "../vendor/autoload.php";
+require_once "conexao.php";
 session_start();
 
 $token = bin2hex(random_bytes(2));
@@ -32,7 +32,7 @@ $query->execute();
 
 // Envio de e-mail
 $assunto = "REDEFINIÇÃO DE SENHA";  
-$mensagem = "Para redefinir sua senha, clique no link a seguir http://localhost/artorganizer-original/view/pages/recuperarSenha/redefinir_senha.php?token=$token";
+$mensagem = "Para redefinir sua senha, clique no link a seguir http://localhost/artorganizer-original/app/redefinir_senha.php?token=$token";
 
 $mail = new PHPMailer(true);
 try {
@@ -62,10 +62,10 @@ try {
 
     // Envio
     $mail->send();
-    header("location:../../../view/home.php");
+    header("location:home.php");
 } catch (Exception $error) {
     echo "Erro ao enviar e-mail!<br>";
     echo "Erro: " . $error->getMessage();
-    echo "<br>Clique <a href='../configuracao/configuracao.php'>aqui</a> para voltar";
+    echo "<br>Clique <a href='configuracao.php'>aqui</a> para voltar";
 }
 ?>

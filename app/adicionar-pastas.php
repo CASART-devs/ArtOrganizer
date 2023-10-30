@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "../model/conexao.php";
+    require_once "conexao.php";
     require_once "../vendor/autoload.php";
     require_once "../src/Pasta.php";
     use src\Pasta\Pasta;

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "../../../model/validar.php"
+require_once "validar.php"
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ require_once "../../../model/validar.php"
     <title>ArtOrganizer</title>
 
     <!-- bootstrap5 -->
-    <link rel="stylesheet" href="../../bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <!-- bootstrap-icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- fonte-->
@@ -23,9 +23,9 @@ require_once "../../../model/validar.php"
 
 
     <!--css-->
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/home.css">
-    <link rel="stylesheet" href="../../css/sidebar.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/sidebar.css">
 </head>
 
 <body>
@@ -49,17 +49,17 @@ require_once "../../../model/validar.php"
                     <!--<img class="m-1" src="../../img/navbar_home/notificação.svg" alt="Notificação" height="30rem">-->
                     <div class="dropstart">
                         <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="m-1" src="<?php if(isset( $_SESSION['img-perfil'])) {?>../../../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "../../img/navbar_home/perfil.svg";}?>" alt="perfil" height="50rem">
+                            <img class="m-1" src="<?php if(isset( $_SESSION['img-perfil'])) {?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "img/navbar_home/perfil.svg";}?>" alt="perfil" height="50rem">
                         </a>
 
                         <ul class="dropdown-menu">
                             <li><span class="m-2"><?php echo "@" . $_SESSION['Nick']; ?></span></li>
-                            <li><a class="dropdown-item" href="../../../model/logout.php">Sair</a></li>
+                            <li><a class="dropdown-item" href="logout.php">Sair</a></li>
 
                         </ul>
                     </div>
                     
-                    <a href="#"><img class="m-1" src="../../img/navbar_home/config.svg" alt="Configurações" height="30rem"></a>
+                    <a href="#"><img class="m-1" src="img/navbar_home/config.svg" alt="Configurações" height="30rem"></a>
                 </div>
             </div>
         </nav>
@@ -102,7 +102,7 @@ require_once "../../../model/validar.php"
                                 <div class="row">
                                     <h1>Minha conta</h1>
                                 </div>
-                                <form enctype="multipart/form-data" action="../../../model/atualizacao.php" method="post">
+                                <form enctype="multipart/form-data" action="atualizacao.php" method="post">
                                     <div class="row">
 
                                         <div class="col">
@@ -156,7 +156,7 @@ require_once "../../../model/validar.php"
                                                 <div class="col mb-3">
                                                   <label for="" class="form-label">Imagem de perfil</label>
                                                   <div class="row m-2">
-                                                    <img src="<?php if(isset( $_SESSION['img-perfil'])) {?>../../../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "../../img/navbar_home/perfil.svg";}?>" class="img-fluid rounded" alt="" style="height:10rem; width:10rem;">
+                                                    <img src="<?php if(isset( $_SESSION['img-perfil'])) {?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "../../img/navbar_home/perfil.svg";}?>" class="img-fluid rounded" alt="" style="height:10rem; width:10rem;">
                                                     </div>
                                                   
                                                   <input type="file" class="form-control" name="img-perfil" id="" placeholder="" aria-describedby="fileHelpId">
@@ -166,7 +166,7 @@ require_once "../../../model/validar.php"
 
                                             </div>
                                             <div class="row mb-3 mr-3">
-                                                    <a href="../recuperarSenha/recuperar.php">
+                                                    <a href="recuperar.php">
                                                         esqueceu a senha?
                                                     </a>
                                                 </div>
@@ -212,7 +212,7 @@ require_once "../../../model/validar.php"
 
                     <div id="menu">
                         <ul id="links_menu" class="menu-list nav flex-column">
-                            <li><a class="h5 texto nav-link link-dark" href="../../home.php">Minha Biblioteca</a></li>
+                            <li><a class="h5 texto nav-link link-dark" href="home.php">Minha Biblioteca</a></li>
                             <!--<li><a class="h5 texto nav-link link-dark" href="#">Explorar</a></li>-->
                         </ul>
                     </div>
@@ -226,9 +226,9 @@ require_once "../../../model/validar.php"
 
     </div>
 
-    <script src="../../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../../js/sidebar.js"></script>
+    <script src="js/sidebar.js"></script>
 
 </body>
 

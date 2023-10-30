@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArtOrgnizer</title>
-    
+
     <!-- bootstrap5 -->
-    <link rel="stylesheet" href="view/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <!-- bootstrap-icons -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- fonte-->
-        <link rel="preconnect" href="https://fonts.googleapis.com"> 
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
 
 
     <!--css-->
-        <link rel="stylesheet" href="view/css/style.css">
+    <link rel="stylesheet" href="app/css/style.css">
 
-        
+
 
 </head>
 
@@ -27,12 +27,12 @@
 <body>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <a class="navbar-brand" href="#" >
+            <a class="navbar-brand" href="#">
                 <picture>
-                    <source srcset="img/LOGOS/logo_retangular1.png" media="(max-width: 600px)" width="150px" />
-                    <img src="img/LOGOS/logo_retangular1.png" alt="Logo" width="250px" class="d-inline-block align-text-top">
-                  </picture>
-                
+                    <source srcset="app/img/LOGOS/logo_retangular1.png" media="(max-width: 600px)" width="150px" />
+                    <img src="app/img/LOGOS/logo_retangular1.png" alt="Logo" width="250px" class="d-inline-block align-text-top">
+                </picture>
+
             </a>
 
 
@@ -53,13 +53,12 @@
                     <button class="button btn" id="btnEntrar" onclick="fcPopupLogin()">Entrar</button>
                 </div>
 
-                <div class="col">
+                <div class="col mx-4">
                     <button class="button btn" id="btnCadastrar" onclick="fcPopupCadastrar()">Cadastrar</button>
                 </div>
             </div>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_links"
-                aria-controls="navbar_links" aria-expanded="false" aria-label="togler navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_links" aria-controls="navbar_links" aria-expanded="false" aria-label="togler navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </nav>
@@ -67,7 +66,7 @@
 
     <dialog class="container" id="popupLogin">
         <div class="justify-content-end row">
-        
+
             <div class="col-10"></div>
             <button class="btn button col-1" id="fechar" onclick="fcPopupFechar()">Fechar</button>
             <div class="col-1"></div>
@@ -82,7 +81,7 @@
                 <div class="row">
 
                     <div class="col-1"></div>
-                    <form class="col-10" action="model/login.php" method="post">
+                    <form class="col-10" action="app/login.php" method="post">
 
                         <div class="mb-3">
                             <label for="InputEmail1" class="form-label">Email </label>
@@ -95,13 +94,13 @@
                             <label for="InputSenha" class="form-label">Senha</label>
                             <input id="senha_log" type="password" class="form-control" name="senha_log">
                         </div>
-                                           
+
                         <div class="row">
                             <div class="col-2"></div>
-                                <button type="submit" id="enviar_log" class="col-8 btn button btn-primary">Login</button>
+                            <button type="submit" id="enviar_log" class="col-8 btn button btn-primary">Login</button>
                             <div class="col-2"></div>
                         </div>
-                        
+
                     </form>
 
                     <div class="col-1"></div>
@@ -132,8 +131,8 @@
                 <div class="row">
 
                     <div class="col-1"></div>
-                    <form class="col-10" action="model/cadastrar.php" method="post">
-                        
+                    <form class="col-10" action="app/cadastrar.php" method="post">
+
                         <div class="mb-3">
                             <label for="InputNome" class="form-label">Nome </label>
                             <input id="nome_cad" type="text" class="form-control" name="nome_cad" required>
@@ -161,7 +160,7 @@
                             <input id="nasc_cad" type="date" id="InputNasc" name="nasc_cad" value="2023-08-" max="2008-08-16" required>
                         </div>
 
-                        
+
 
                         <div class="row">
                             <div class="col-2"></div>
@@ -277,9 +276,12 @@
         </div>
     </section>
 
-    <script src="view/bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="view/js/index.js"></script>
-    
+
+
 </body>
-<script src="view/js/limpar.js"></script>
-</html> 
+
+<script src="app/bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="app/js/index.js"></script>
+<script src="app/js/limpar.js"></script>
+
+</html>

@@ -315,8 +315,23 @@ if (isset($_SESSION['id_pasta'])) {
                                 <?php foreach ($rowsPasta as $pasta) {
                                     if ($pasta['nome_pasta'] != 'root') { ?>
 
-                                        <form method="post" action="pegarSessao.php" class="col m-2">
-                                            <button type="submit" name="id_pasta" value="<?php echo $pasta['id']; ?>" class="btn button container btnPasta"><?php echo $pasta['nome_pasta']; ?></button>
+                                        <form method="post" action="pegarSessao.php" class="col m-2 ">
+                                            <button type="submit" name="id_pasta" value="<?php echo $pasta['id']; ?>" class="btn button container btnPasta d-flex justify-content-between">
+                                            <span><?php echo $pasta['nome_pasta']; ?></span>
+
+                                            <div class="dropdown">
+                                                    <a class="" id="toggle-opcoes" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="bi bi-three-dots-vertical"></i>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#">Informaçãoes</a></li>
+                                                        <li><a class="dropdown-item" href="#">Excluir</a></li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                        </button>
+                                        
                                         </form>
                             <?php }
                                 }

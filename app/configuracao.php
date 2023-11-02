@@ -36,8 +36,8 @@ require_once "validar.php"
             <div class="container-fluid">
                 <div class="col-md-2">
                     <a class="navbar-brand " href="#">
-                        <img src="" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                        <span>ArtOrganizer</span>
+                        <img src="img/LOGOS/logo.png" alt="Logo" width="200rem" height="70rem" class="mx-3 d-inline-block align-text-top">
+                        
                     </a>
                 </div>
                 <form class=" d-flex col-md-6">
@@ -49,7 +49,7 @@ require_once "validar.php"
                     <!--<img class="m-1" src="../../img/navbar_home/notificação.svg" alt="Notificação" height="30rem">-->
                     <div class="dropstart">
                         <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="m-1" src="<?php if(isset( $_SESSION['img-perfil'])) {?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "img/navbar_home/perfil.svg";}?>" alt="perfil" height="50rem">
+                            <img class="m-1 mx-4 img-perfil" src="<?php if(isset( $_SESSION['img-perfil'])) {?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "img/navbar_home/perfil.svg";}?>" alt="perfil" height="50rem">
                         </a>
 
                         <ul class="dropdown-menu">
@@ -76,10 +76,7 @@ require_once "validar.php"
                             <div class="col-4">
                                 <div class="row">
                                     <h1>Configurações</h1>
-                                    <div class="row">
-                                        <img src="#" alt="">
-                                        <h2><?php echo $_SESSION['Nome']; ?></h2>
-                                    </div>
+                                    
                                 </div>
 
 
@@ -153,10 +150,10 @@ require_once "validar.php"
                                                 </div>
                                             </div>
                                                 
-                                                <div class="col mb-3">
+                                                <div class="col mb-3 ">
                                                   <label for="" class="form-label">Imagem de perfil</label>
-                                                  <div class="row m-2">
-                                                    <img src="<?php if(isset( $_SESSION['img-perfil'])) {?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "../../img/navbar_home/perfil.svg";}?>" class="img-fluid rounded" alt="" style="height:10rem; width:10rem;">
+                                                  <div class="row m-2 perfil">
+                                                    <img src="<?php if(isset( $_SESSION['img-perfil'])) {?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "../../img/navbar_home/perfil.svg";}?>" class="img-fluid" alt="" >
                                                     </div>
                                                   
                                                   <input type="file" class="form-control" name="img-perfil" id="" placeholder="" aria-describedby="fileHelpId">

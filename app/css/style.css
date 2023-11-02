@@ -68,8 +68,8 @@ a:hover {
     color: #fff;
 }
 .button:hover{
-    background-color: #a28e83;
-    color: #000;
+    background-color: #131E53;
+    color: #fff;
     transition: background 500ms;
 }
 

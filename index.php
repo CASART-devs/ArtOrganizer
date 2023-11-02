@@ -30,7 +30,7 @@
             <a class="navbar-brand" href="#">
                 <picture>
                     <source srcset="app/img/LOGOS/logo_retangular1.png" media="(max-width: 600px)" width="150px" />
-                    <img src="app/img/LOGOS/logo_retangular1.png" alt="Logo" width="250px" class="d-inline-block align-text-top">
+                    <img src="app/img/LOGOS/logo.png" alt="Logo" width="200rem" class="mx-3 d-inline-block align-text-top">
                 </picture>
 
             </a>

@@ -1,3 +1,25 @@
+.img-perfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 10rem;
+    
+}
+
+.perfil img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 20rem;
+    padding: 0;
+}
+
 #toggle-opcoes{
     color: #FFF ;
 }

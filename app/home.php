@@ -74,8 +74,8 @@ if (isset($_SESSION['id_pasta'])) {
         <div class="container-fluid">
             <div class="col-md-2">
                 <a class="navbar-brand " href="#">
-                    <img src="img/LOGOS/" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                    <span>ArtOrganizer</span>
+                    <img src="img/LOGOS/logo.png" alt="Logo" width="200rem" height="70rem" class="mx-3 d-inline-block align-text-top">
+                    
                 </a>
             </div>
             <form class=" d-flex col-md-6">
@@ -88,7 +88,7 @@ if (isset($_SESSION['id_pasta'])) {
 
                 <div class="dropstart">
                     <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="m-1" src="<?php if (isset($_SESSION['img-perfil'])) { ?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];
+                        <img class="m-1 mx-4 img-perfil" src="<?php if (isset($_SESSION['img-perfil'])) { ?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];
                                                                                                                 } else {
                                                                                                                     echo "img/navbar_home/perfil.svg";
                                                                                                                 } ?>" alt="perfil" height="50rem">

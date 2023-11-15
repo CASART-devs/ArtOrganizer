@@ -6,15 +6,15 @@ require_once "validar.php";
 
 
 try {
-    if(isset($_GET['id_artigo'])){
-        $id= $_GET['id_artigo'];
-        $_SESSION['id_artigo'] = $id;
+    if(isset($_GET['id_pasta'])){
+        $id= $_GET['id_pasta'];
+        $_SESSION['id_pasta'] = $id;
     }else{
-        $id = $_SESSION['id_artigo'];
-        unset($_SESSION['id_artigo']);
+        $id = $_SESSION['id_pasta'];
+        unset($_SESSION['id_pasta']);
     }
 
-    $query = $conexao->prepare("SELECT * FROM artigos WHERE ID = ?");
+    $query = $conexao->prepare("SELECT * FROM pastas WHERE id = ?");
     $query->bind_param("i", $id);
     $query->execute();
 
@@ -95,49 +95,36 @@ try {
     <div class="container-fluid pt-3">
         <div class="row">
             <div class="col d-flex justify-content-center align-itens-center m-5" id="content">
-                <form enctype="multipart/form-data" action="attArtigo.php" method="post">                                                                                                              
+                <form action="attPasta.php" method="post">                                                                                                              
                 <div class="container " id="informacoesArtigo">
                     <div class="row">
-                        <h1>Informações do Artigo</h1>
+                        <h1>Informações da pasta</h1>
                     </div>
                     <div class="row">
                         <div class="row">
                             <div class="mb-3">
-                              <label for="nomeArtigo" class="form-label">Nome</label>
+                              <label for="nomePasta" class="form-label">Nome</label>
                               <input type="text"
-                                class="form-control" name="nomeArtigo" id="nomeArtigo" aria-describedby="helpId" placeholder="<?= $dados[0]['Titulo']; ?>">
-                              <small id="helpId" class="form-text text-muted">Renomeie o Artigo</small>
+                                class="form-control" name="nomePasta" id="nomePasta" aria-describedby="helpId" placeholder="<?= $dados[0]['nome_pasta']; ?>">
+                              <small id="helpId" class="form-text text-muted">Renomeie a pasta</small>
                             </div>
                         </div> 
+                        
                         <div class="row">
                             <div class="mb-3">
-                              <label for="artigo" class="form-label">Artigo</label>
-                              <input type="file" class="form-control" name="artigo" id="artigo" placeholder="artigo" aria-describedby="fileHelpId">
-                              <div id="fileHelpId" class="form-text">Selecione outro artigo</div>
-                            </div>
-                        </div> 
-                        <div class="row">
-                            <div class="mb-3">
-                              <label for="autor" class="form-label">Autor</label>
+                              <label for="autor" class="form-label">Descrição</label>
                               <input type="text"
-                                class="form-control" name="autor" id="autor" aria-describedby="helpId" placeholder="<?= $dados[0]['Autor']; ?>">
-                              <small id="helpId" class="form-text text-muted">Renomeie o autor</small>
+                                class="form-control" name="desc" id="desc" aria-describedby="helpId" placeholder="<?= $dados[0]['descricao']; ?>">
+                              <small id="helpId" class="form-text text-muted">Mude a descrição</small>
                             </div>
                         </div> 
-                        <div class="row">
-                            <div class="mb-3">
-                              <label for="imgArtigo" class="form-label">Capa do artigo</label>
-                              <img src="../upload/artigo/img/<?= $dados[0]['img-previw']; ?>" class="img-fluid m-2" alt="">
-                              <input type="file" class="form-control" name="imgArtigo" id="imgArtigo" placeholder="imgArtigo" aria-describedby="fileHelpId">
-                              <div id="fileHelpId" class="form-text">Selecione outro capa</div>
-                            </div>
-                        </div>                                                                                                        
+                                                                                                                              
                     </div>
                     <div class="row">
                         <div class="col d-flex justify-content-end align-itens-center">
                             <a name="voltar" id="btn_voltar" class="btn button m-2" href="home.php" role="button">voltar</a>
                             <button type="submit" class="btn button m-2">Atualizar</button>
-                            <a name="download" id="btn_download" class="btn button m-2" href="../upload/artigo/artigo/<?= $dados[0]['artigo-caminho']; ?>" target="_blank" >Download</a>
+                            
                         </div>
                     </div>
                 </div>

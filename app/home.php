@@ -78,11 +78,7 @@ if (isset($_SESSION['id_pasta'])) {
 
                 </a>
             </div>
-            <form class=" d-flex col-md-6">
-                <input class="form-control me-2 mx-3" id="pesquisa" type="search" placeholder="Pesquisa" aria-label="Search">
-                <button class="btn button-nav my-2 my-sm-0 col-2" type="submit">Pesquisa</button>
-                <!-- aqui terá php, para enviar uma pesquisa para a tabela artigos e retornara os artigos na aba de pesquisa -->
-            </form>
+            
             <div class="ml-2 col-md-2  menu-icons">
                 <!--<img class="m-1" src="img/navbar_home/notificação.svg" alt="Notificação" height="30rem">-->
 
@@ -307,7 +303,7 @@ if (isset($_SESSION['id_pasta'])) {
                                                     </a>
 
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item"   href="#">Informaçãoes</a></li>
+                                                        <li><a class="dropdown-item"   href="infoPasta.php?id_pasta=<?= $pasta['id'] ?>">Informaçãoes</a></li>
                                                         <li><a class="dropdown-item" href="excluir-pasta.php?id_pasta=<?= $pasta['id'];?>">Excluir</a></li>
 
                                                     </ul>

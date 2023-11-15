@@ -40,11 +40,7 @@ require_once "validar.php"
                         
                     </a>
                 </div>
-                <form class=" d-flex col-md-6" >
-                    <input class="form-control me-2 mx-3" id="pesquisa" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn button-nav my-2 my-sm-0 col-2" type="submit">Pesquisa</button>
-                    <!-- aqui terá php, para enviar uma pesquisa para a tabela artigos e retornara os artigos na aba de pesquisa -->
-                </form>
+               
                 <div class="ml-2 col-md-2  menu-icons">
                     <!--<img class="m-1" src="../../img/navbar_home/notificação.svg" alt="Notificação" height="30rem">-->
                     <div class="dropstart">
@@ -153,7 +149,7 @@ require_once "validar.php"
                                                 <div class="col mb-3 ">
                                                   <label for="" class="form-label">Imagem de perfil</label>
                                                   <div class="row m-2 perfil">
-                                                    <img src="<?php if(isset( $_SESSION['img-perfil'])) {?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "../../img/navbar_home/perfil.svg";}?>" class="img-fluid" alt="" >
+                                                    <img src="<?php if(isset( $_SESSION['img-perfil'])) {?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "img/navbar_home/perfil.svg";}?>" class="img-fluid" alt="" >
                                                     </div>
                                                   
                                                   <input type="file" class="form-control" name="img-perfil" id="" placeholder="" aria-describedby="fileHelpId">

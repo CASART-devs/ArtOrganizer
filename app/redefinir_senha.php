@@ -28,7 +28,7 @@ function armazenarSenhaComSeguranca($usuarioId, $novaSenha) {
     $senhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
 
     // Conecte-se ao banco de dados (substitua com suas configurações)
-    $conexao = new mysqli('localhost', 'root', '1212', 'artorganizer');
+    $conexao = new mysqli('localhost', 'root', '', 'artorganizer');
 
     // Verifique a conexão
     if ($conexao->connect_error) {

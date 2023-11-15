@@ -11,7 +11,7 @@ $user = $conexao->real_escape_string($_POST['user_cad']);
 
 
 try {
-    $mysqli_insert = $conexao->prepare("INSERT INTO `Usuarios`(`nome_Usuario`, `Senha`, `Nome_Completo`, `Email`, `Data_nasc`) VALUES (?, ?, ?, ?, ?);");
+    $mysqli_insert = $conexao->prepare("INSERT INTO `usuarios`(`nome_Usuario`, `Senha`, `Nome_Completo`, `Email`, `Data_nasc`) VALUES (?, ?, ?, ?, ?);");
     $mysqli_insert->bind_param("sssss", $user, $senha_segura, $nome, $email, $nasc);
     if($mysqli_insert->execute()){
         $user_id = $conexao->insert_id;

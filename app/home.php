@@ -70,17 +70,17 @@ if (isset($_SESSION['id_pasta'])) {
 
 <body>
     <!--NavBar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg color-nav">
         <div class="container-fluid">
             <div class="col-md-2">
                 <a class="navbar-brand " href="#">
                     <img src="img/LOGOS/logo.png" alt="Logo" width="200rem" height="70rem" class="mx-3 d-inline-block align-text-top">
-                    
+
                 </a>
             </div>
             <form class=" d-flex col-md-6">
-                <input class="form-control me-2 mx-3" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0 col-2" type="submit">Pesquisa</button>
+                <input class="form-control me-2 mx-3" id="pesquisa" type="search" placeholder="Pesquisa" aria-label="Search">
+                <button class="btn button-nav my-2 my-sm-0 col-2" type="submit">Pesquisa</button>
                 <!-- aqui terá php, para enviar uma pesquisa para a tabela artigos e retornara os artigos na aba de pesquisa -->
             </form>
             <div class="ml-2 col-md-2  menu-icons">
@@ -89,9 +89,9 @@ if (isset($_SESSION['id_pasta'])) {
                 <div class="dropstart">
                     <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img class="m-1 mx-4 img-perfil" src="<?php if (isset($_SESSION['img-perfil'])) { ?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];
-                                                                                                                } else {
-                                                                                                                    echo "img/navbar_home/perfil.svg";
-                                                                                                                } ?>" alt="perfil" height="50rem">
+                                                                                                                                } else {
+                                                                                                                                    echo "img/navbar_home/perfil.svg";
+                                                                                                                                } ?>" alt="perfil" height="50rem">
                     </a>
 
                     <ul class="dropdown-menu">
@@ -185,33 +185,12 @@ if (isset($_SESSION['id_pasta'])) {
         </div>
     </div>
 
-    <div class="modal fade" id="infoArtigos" tabindex="-1" aria-labelledby="infoArtigosModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="infoArtigosModalLabel">Informaçãoes do Artigo</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col">
-                        <label for="nomeArtigoInfo">Titulo: </label>
+    
 
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-                </div>
-            </div>
-        </div>
-    </div>
-
-   
 
     <div class="container-fluid pt-3">
         <div class="row">
-           
+
 
             <!-- conteudo principal-->
 
@@ -220,13 +199,13 @@ if (isset($_SESSION['id_pasta'])) {
                 <div class="row my-4" id="head">
                     <div class="col">
                         <div class="row">
-                            
+
                             <span class="h1 m-2">Biblioteca
                                 <?php print " do(a) " . $_SESSION['Nick']; ?>
 
                             </span>
                             <?php if (isset($_SESSION['id_pasta'])) { ?>
-                                <a type="button" id="btnVoltar"  class="btn button col-2 mx-3" href="voltar.php"> voltar </a>
+                                <a type="button" id="btnVoltar" class="btn button col-2 mx-3" href="voltar.php"> voltar </a>
                             <?php } ?>
                             <div class="row">
                             </div>
@@ -293,6 +272,7 @@ if (isset($_SESSION['id_pasta'])) {
                 <!-- Pastas -->
                 <div class="row">
                     <div class="col">
+                        <?php if (!isset($_SESSION['id_pasta'])){ ?>
                         <div class="row">
                             <div class="grupo-conteudo my-2">
 
@@ -308,30 +288,32 @@ if (isset($_SESSION['id_pasta'])) {
 
                             </div>
                         </div>
-                        <div class="row" id="pastas">
+                        <?php } ?>
+                        <div class="d-flex flex-row " id="pastas">
 
                             <!-- mostra as pastas que do  usuario -->
                             <?php if (!(isset($_SESSION['id_pasta']))) { ?>
                                 <?php foreach ($rowsPasta as $pasta) {
                                     if ($pasta['nome_pasta'] != 'root') { ?>
 
-                                        <form method="post" action="pegarSessao.php" class="col m-2 ">
-                                            <button type="submit" name="id_pasta" value="<?php echo $pasta['id']; ?>" class="btn button container btnPasta d-flex justify-content-between">
-                                            <span><?php echo $pasta['nome_pasta']; ?></span>
+                                        <form method="post" action="pegarSessao.php" class="m-2 ">
 
-                                            <div class="dropdown">
+                                            <button type="submit" name="id_pasta" value="<?php echo $pasta['id']; ?>" class="btn button  btnPasta d-flex justify-content-between align-items-center">
+                                                <span><?php echo $pasta['nome_pasta']; ?></span>
+
+                                                <div class="dropdown">
                                                     <a class="" id="toggle-opcoes" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                         <i class="bi bi-three-dots-vertical"></i>
                                                     </a>
 
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#">Informaçãoes</a></li>
-                                                        <li><a class="dropdown-item" href="#">Excluir</a></li>
-                                                        
+                                                        <li><a class="dropdown-item"   href="#">Informaçãoes</a></li>
+                                                        <li><a class="dropdown-item" href="excluir-pasta.php?id_pasta=<?= $pasta['id'];?>">Excluir</a></li>
+
                                                     </ul>
                                                 </div>
-                                        </button>
-                                        
+                                            </button>
+
                                         </form>
                             <?php }
                                 }
@@ -379,11 +361,8 @@ if (isset($_SESSION['id_pasta'])) {
 
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="#">Fazer download</a></li>
-                                                        <li><a class="dropdown-item" href="#">Renomear</a></li>
-                                                        <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#infoArtigos">
-                                                                Infromações do Artigo
-                                                            </button>
-                                                        </li>
+                                                        
+                                                        <li><a class="dropdown-item" href="infoArtigo.php?id_artigo=<?= $artigo['ID'] ?>">informações</a></li>
                                                         <li><a class="dropdown-item" href="excluir-artigo.php?id_artigo=<?= $artigo['ID'] ?>">Excluir</a></li>
                                                     </ul>
                                                 </div>

@@ -9,7 +9,7 @@ $token = $_GET['token'];
 
 function verificarTokenValido($token)
 {
-    $conexao = new mysqli('localhost', 'root', '', 'artorganizer');
+    $conexao = new mysqli('localhost', 'root', '1212', 'artorganizer');
     $sql = "SELECT * FROM rec_senha WHERE token = ? AND data_expiracao > NOW()";
     $stmt = $conexao->prepare($sql);
     $stmt->bind_param('s', $token);
@@ -28,7 +28,7 @@ function armazenarSenhaComSeguranca($usuarioId, $novaSenha) {
     $senhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
 
     // Conecte-se ao banco de dados (substitua com suas configurações)
-    $conexao = new mysqli('localhost', 'root', '', 'artorganizer');
+    $conexao = new mysqli('localhost', 'root', '1212', 'artorganizer');
 
     // Verifique a conexão
     if ($conexao->connect_error) {

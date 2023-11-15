@@ -18,7 +18,7 @@
 
     <!--css-->
     <link rel="stylesheet" href="app/css/style.css">
-
+    <link rel="stylesheet" href="app/css/home.css">
 
 
 </head>
@@ -65,11 +65,21 @@
     </div>
 
     <dialog class="container" id="popupLogin">
-        <div class="justify-content-end row">
 
-            <div class="col-10"></div>
-            <button class="btn button col-1" id="fechar" onclick="fcPopupFechar()">Fechar</button>
-            <div class="col-1"></div>
+        <div class=" row">
+            <div class="col-10 justify-content-center d-flex  ">
+                <div class="d-flex justify-content-center aling-items-center">
+                    <h1>Login</h1>
+                </div>
+                
+            </div>
+            <div class="col">
+            <button class="btn button" id="fechar" onclick="fcPopupFechar()">Fechar</button>
+            </div>
+
+
+
+
         </div>
 
         <div class="row my-5">

@@ -1,4 +1,4 @@
-.img-perfil{
+.img-perfil {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,10 +6,34 @@
     height: 3.5rem;
     width: 3.5rem;
     border-radius: 10rem;
-    
+
 }
 
-.perfil img{
+body {
+    background-color: #fff;
+    color: #090D0B;
+}
+
+
+
+.btnPasta {
+    min-width: 10rem;
+    height: 4rem;
+
+    max-width: 15rem;
+}
+
+#informacoesArtigo img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    height: 15rem;
+    
+    
+    padding: 0;
+}
+.perfil img {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,15 +44,70 @@
     padding: 0;
 }
 
-#toggle-opcoes{
-    color: #FFF ;
+#informacoesArtigo{
+    max-width: 75rem;
 }
+
+.color-nav {
+    background-color: #090D0B;
+}
+
+.button-nav {
+    background-color: #40593F;
+    color: #D9D8D7;
+
+
+}
+
+#pesquisa {
+    color: #012619;
+    background-color: #D9D8D7;
+
+}
+
+::placeholder {
+    color: #7C8C7B;
+}
+
+.button-nav:hover {
+    background-color: #7C8C7B;
+    color: #012619;
+
+
+    transition: background 500ms;
+}
+
+.dropdown-menu {
+    background-color: #D9D8D7;
+}
+
+.dropdown-item:hover {
+    background-color: #40593F;
+    color: #D9D8D7;
+}
+
+.button {
+    background-color: #40593F;
+    color: #D9D8D7;
+}
+
+.button:hover {
+    background-color: #012619;
+    color: #D9D8D7;
+    transition: background 500ms;
+}
+
+#toggle-opcoes {
+    color: #F2F2F2;
+}
+
 .btn-alternar {
     display: flex;
     cursor: pointer;
     justify-content: start;
 }
-.icone-alternar{
+
+.icone-alternar {
     margin-top: 3px;
 }
 
@@ -36,6 +115,7 @@
     width: 18rem;
     padding: 0;
 }
+
 .card-img {
     object-fit: cover;
     height: 10rem;
@@ -43,15 +123,15 @@
 }
 
 .card-body {
-    background-color: #343a40;
-    color: #FFF;
+    background-color: #40593F;
+    color: #D9D8D7;
 }
 
-#btn-esconder-artigos{
+#btn-esconder-artigos {
     cursor: pointer;
 }
 
-#head-right{
+#head-right {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -59,20 +139,20 @@
 
 
 
-ul a{
+ul a {
     color: #000;
 }
 
-ul a:hover{
+ul a:hover {
     color: #051446;
 }
 
-.txt-esconder-pasta{
-    
+.txt-esconder-pasta {
+
     font-size: 1.5rem;
     font-weight: 600;
 }
 
-#h2_menu{
+#h2_menu {
     margin: 0;
 }

@@ -32,7 +32,7 @@ require_once "validar.php"
     <div>
 
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg color-nav">
             <div class="container-fluid">
                 <div class="col-md-2">
                     <a class="navbar-brand " href="#">
@@ -40,9 +40,9 @@ require_once "validar.php"
                         
                     </a>
                 </div>
-                <form class=" d-flex col-md-6">
-                    <input class="form-control me-2 mx-3" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0 col-2" type="submit">Pesquisa</button>
+                <form class=" d-flex col-md-6" >
+                    <input class="form-control me-2 mx-3" id="pesquisa" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn button-nav my-2 my-sm-0 col-2" type="submit">Pesquisa</button>
                     <!-- aqui terá php, para enviar uma pesquisa para a tabela artigos e retornara os artigos na aba de pesquisa -->
                 </form>
                 <div class="ml-2 col-md-2  menu-icons">

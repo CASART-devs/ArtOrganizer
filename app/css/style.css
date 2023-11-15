@@ -1,5 +1,10 @@
 /*fontes*/
-.h1,.h2,.h3,.h4,.h5,.h6{
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
     margin: 0;
 }
 
@@ -9,92 +14,91 @@
     justify-content: flex-end;
 }
 
-a{
+a {
     color: #000;
     text-decoration: none;
 }
 
 a:hover {
     color: #000;
-    text-decoration: none;  
+    text-decoration: none;
 }
 
-.b1-font-h1{
+.b1-font-h1 {
     font-size: max(54px, 5vw);
 }
-.b1-font-h2{
+
+.b1-font-h2 {
     font-size: max(28px, 2w);
 }
-.b2-font-h1{
+
+.b2-font-h1 {
     font-size: max(32px, 5vw);
 }
 
-.b2-font-h2{
+.b2-font-h2 {
     font-size: min(28px, 3.5vw);
 }
 
 
-.footer-fonts-h1{
+.footer-fonts-h1 {
     font-size: min(28px, 3.5vw);
 }
-.footer-fonts-h2{
+
+.footer-fonts-h2 {
     font-size: min(16px, 2vw);
 }
 
-.footer-fonts-h1{
+.footer-fonts-h1 {
     font-size: max(30, 2vw);
 }
-.footer-fonts-h2{
+
+.footer-fonts-h2 {
     font-size: max(25, 1.5vw);
 }
-.logo{
+
+.logo {
     justify-content: center;
 }
 
 /*Banners*/
 
-.banners{
+.banners {
     flex-direction: column;
-    
+
 }
-.cartao{
+
+.cartao {
     height: 90%;
 }
 
 
 
-.button{
-    background-color: #000;
-    color: #fff;
-}
-.button:hover{
-    background-color: #131E53;
-    color: #fff;
-    transition: background 500ms;
-}
 
-#navbar{
+
+#navbar {
     width: 100%;
     justify-content: center;
 }
 
 
 /*banner1*/
-#banner1{
+#banner1 {
     background-image: url(../img/banner1_b.jpg);
     align-items: center;
     height: 100vh;
 }
+
 /*banner2*/
-#banner2{
-    flex-wrap:wrap ;
+#banner2 {
+    flex-wrap: wrap;
     background-color: #000;
     color: #fff;
-    height: 650px; 
+    height: 650px;
 }
 
-#banner2_textos{
-    flex-wrap:wrap ;
+#banner2_textos {
+    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -102,63 +106,66 @@ a:hover {
 }
 
 /*banner3*/
-#banner3{
-    height: 600px; 
+#banner3 {
+    height: 600px;
     background-color: rgba(255, 255, 255, 0.997);
     margin: 50px 0;
 }
 
-#banner3_img{
+#banner3_img {
     height: 100%;
     background-image: url(../img/banner3.jpg);
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
 }
 
-#banner3_textos{
+#banner3_textos {
     margin: 0px 15px;
 }
 
 /*banner4*/
-#banner4{
-    height: 600px; 
+#banner4 {
+    height: 600px;
     background-color: rgba(255, 255, 255, 0.997);
     margin: 50px 0;
 }
 
-#banner4_img{
+#banner4_img {
     height: 100%;
     background-image: url(../img/banner4.jpg);
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
 }
-#banner4_textos{
+
+#banner4_textos {
     margin: 0px 20px;
 
 }
 
-#footer_contatos{
+#footer_contatos {
     width: 80%;
 }
 
-#banner5{
+#banner5 {
     height: 10%;
     color: #fff;
     background-color: #000;
 }
 
-#popupCadastrar{
+#popupCadastrar {
     border: 0;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 1);
 }
 
-#popup_content{
+#popup_content {
     width: 80%;
-    
+
 }
-#popupLogin{
+
+#popupLogin {
     border: 0;
     border-radius: 10px;
+    max-width: 50rem;
     box-shadow: rgba(0, 0, 0, 1);
 }

@@ -31,8 +31,8 @@ $query->bind_param("sss", $token, $id_user, $data);
 $query->execute();
 
 // Envio de e-mail
-$assunto = "REDEFINIÇÃO DE SENHA";  
-$mensagem = "Para redefinir sua senha, clique no link a seguir http://localhost/artorganizer-original/app/redefinir_senha.php?token=$token";
+$assunto = "REDEFINIR SENHA";  
+$mensagem = "Para redefinir sua senha, clique no link a seguir http://localhost:8000/app/redefinir_senha.php?token=$token";
 
 $mail = new PHPMailer(true);
 try {

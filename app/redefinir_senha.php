@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtOrganizer</title>
+    <!-- bootstrap5 -->
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <!-- fonte-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+
+
+    <!--css-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/recuperacao.css">
+</head>
+<body>
+    
+
+
 <?php
 session_start();
 require_once "conexao.php";
@@ -28,7 +51,7 @@ function armazenarSenhaComSeguranca($usuarioId, $novaSenha) {
     $senhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
 
     // Conecte-se ao banco de dados (substitua com suas configurações)
-    $conexao = new mysqli('localhost', 'root', '', 'artorganizer');
+    $conexao = new mysqli('localhost', 'root', '1212', 'artorganizer');
 
     // Verifique a conexão
     if ($conexao->connect_error) {
@@ -71,9 +94,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location:logout.php');
 } else {
     // Exiba o formulário para redefinir a senha
-    echo "<form method='post'>
-        <label for='nova_senha'>Nova Senha:</label>
-        <input type='password' id='nova_senha' name='nova_senha' required>
-        <input type='submit' value='Redefinir Senha'>
-    </form>";
+    echo "<div class='d-flex justify-content-center align-items-center' id='base'>
+
+    
+    <div  id='recu'>
+        <form  method='post' >
+            
+
+                <div class='m-3 row' >
+                    <h1>Recuperação de senha</h1>
+                </div>
+                <div class='m-3 row'>
+                    <label for='nova_senha' class='row col-form-label'>Nova Senha:</label>
+                    <div class='row'>
+                        <input type='text' class='form-control' name='nova_senha' id='nova_senha' placeholder='senha' required>
+                    </div>
+                </div>
+                
+                <div class='mt-5 m-3 row'>
+                    <div class='offset-sm-4 col-sm-8 d-flex justify-content-end'>
+                        
+                        <button type='submit' class='btn button m-2'>redefinição de senha</button>
+                    </div>
+                </div>
+            
+        </form>
+    </div>
+
+</div>
+";
 }
+?>
+</body>
+</html>

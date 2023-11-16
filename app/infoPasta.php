@@ -105,7 +105,7 @@ try {
                             <div class="mb-3">
                               <label for="nomePasta" class="form-label">Nome</label>
                               <input type="text"
-                                class="form-control" name="nomePasta" id="nomePasta" aria-describedby="helpId" placeholder="<?= $dados[0]['nome_pasta']; ?>">
+                                class="form-control" name="nomePasta" id="nomePasta" aria-describedby="helpId" placeholder="<?= $dados[0]['nome_pasta']; ?>" required>
                               <small id="helpId" class="form-text text-muted">Renomeie a pasta</small>
                             </div>
                         </div> 
@@ -114,7 +114,7 @@ try {
                             <div class="mb-3">
                               <label for="autor" class="form-label">Descrição</label>
                               <input type="text"
-                                class="form-control" name="desc" id="desc" aria-describedby="helpId" placeholder="<?= $dados[0]['descricao']; ?>">
+                                class="form-control" name="desc" id="desc" aria-describedby="helpId" placeholder="<?= $dados[0]['descricao']; ?>" required>
                               <small id="helpId" class="form-text text-muted">Mude a descrição</small>
                             </div>
                         </div> 

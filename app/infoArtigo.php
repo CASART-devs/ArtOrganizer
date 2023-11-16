@@ -105,14 +105,14 @@ try {
                             <div class="mb-3">
                               <label for="nomeArtigo" class="form-label">Nome</label>
                               <input type="text"
-                                class="form-control" name="nomeArtigo" id="nomeArtigo" aria-describedby="helpId" placeholder="<?= $dados[0]['Titulo']; ?>">
+                                class="form-control" name="nomeArtigo" id="nomeArtigo" aria-describedby="helpId" placeholder="<?= $dados[0]['Titulo']; ?>" required>
                               <small id="helpId" class="form-text text-muted">Renomeie o Artigo</small>
                             </div>
                         </div> 
                         <div class="row">
                             <div class="mb-3">
                               <label for="artigo" class="form-label">Artigo</label>
-                              <input type="file" class="form-control" name="artigo" id="artigo" placeholder="artigo" aria-describedby="fileHelpId">
+                              <input type="file" class="form-control" name="artigo" id="artigo" placeholder="artigo" aria-describedby="fileHelpId" required>
                               <div id="fileHelpId" class="form-text">Selecione outro artigo</div>
                             </div>
                         </div> 
@@ -120,7 +120,7 @@ try {
                             <div class="mb-3">
                               <label for="autor" class="form-label">Autor</label>
                               <input type="text"
-                                class="form-control" name="autor" id="autor" aria-describedby="helpId" placeholder="<?= $dados[0]['Autor']; ?>">
+                                class="form-control" name="autor" id="autor" aria-describedby="helpId" placeholder="<?= $dados[0]['Autor']; ?>" required>
                               <small id="helpId" class="form-text text-muted">Renomeie o autor</small>
                             </div>
                         </div> 
@@ -128,7 +128,7 @@ try {
                             <div class="mb-3">
                               <label for="imgArtigo" class="form-label">Capa do artigo</label>
                               <img src="../upload/artigo/img/<?= $dados[0]['img-previw']; ?>" class="img-fluid m-2" alt="">
-                              <input type="file" class="form-control" name="imgArtigo" id="imgArtigo" placeholder="imgArtigo" aria-describedby="fileHelpId">
+                              <input type="file" class="form-control" name="imgArtigo" id="imgArtigo" placeholder="imgArtigo" aria-describedby="fileHelpId" required>
                               <div id="fileHelpId" class="form-text">Selecione outro capa</div>
                             </div>
                         </div>                                                                                                        

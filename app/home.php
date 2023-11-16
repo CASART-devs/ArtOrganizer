@@ -116,25 +116,25 @@ if (isset($_SESSION['id_pasta'])) {
 
                         <div class="mb-3">
                             <label for="" class="form-label">Titulo</label>
-                            <input type="text" class="form-control" name="titulo-artigo" id="titulo-artigo" aria-describedby="helpId" placeholder="">
+                            <input type="text" class="form-control" name="titulo-artigo" id="titulo-artigo" aria-describedby="helpId" placeholder="" required>
                             <small id="helpId" class="form-text text-muted">insira o nome do artigo</small>
                         </div>
 
                         <div class="mb-3">
                             <label for="" class="form-label">Autor</label>
-                            <input type="text" class="form-control" name="autor-artigo" id="autor-artigo" aria-describedby="helpId" placeholder="">
+                            <input type="text" class="form-control" name="autor-artigo" id="autor-artigo" aria-describedby="helpId" placeholder="" required>
                             <small id="helpId" class="form-text text-muted">insira o nome do autor do artigo</small>
                         </div>
 
                         <div class="mb-3">
                             <label for="" class="form-label">Capa do artigo</label>
-                            <input type="file" class="form-control" name="img-previw" id="img-previw" placeholder="" aria-describedby="fileHelpId">
+                            <input type="file" class="form-control" name="img-previw" id="img-previw" placeholder="" aria-describedby="fileHelpId" required>
                             <div id="fileHelpId" class="form-text">Insira uma capa para o artigo</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="" class="form-label">Artigo</label>
-                            <input type="file" class="form-control" name="artigo" id="artigo" placeholder="" aria-describedby="fileHelpId" ">
+                            <input type="file" class="form-control" name="artigo" id="artigo" placeholder="" aria-describedby="fileHelpId" required>
                             <div id=" fileHelpId" class="form-text">Insira o artigo .pdf
                         </div>
                     </div>
@@ -161,13 +161,13 @@ if (isset($_SESSION['id_pasta'])) {
 
                         <div class="mb-3">
                             <label for="nome-artigo" class="form-label">Nome da pasta</label>
-                            <input type="text" class="form-control" name="nome-pasta" id="nome-artigo" aria-describedby="helpId" placeholder="">
+                            <input type="text" class="form-control" name="nome-pasta" id="nome-artigo" aria-describedby="helpId" placeholder="" required>
                             <small id="helpId" class="form-text text-muted">Insira o nome da pasta</small>
                         </div>
 
                         <div class="mb-3">
                             <label for="desc-pasta" class="form-label">Descrição da pasta</label>
-                            <textarea class="form-control" name="desc-pasta" id="desc-pasta" rows="3"></textarea>
+                            <textarea class="form-control" name="desc-pasta" id="desc-pasta" rows="3" required></textarea>
                             <small class="helpId">Inisira uma descrição</small>
                         </div>
 

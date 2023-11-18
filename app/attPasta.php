@@ -1,16 +1,6 @@
-<?php
-    session_start();
-    require_once "conexao.php";
-    require_once "../src/Artigo.php";
-    require_once "../src/Arquivo.php";
-    require_once "../src/RelUserPasta.php";
-    
-    use src\Artigo\Artigo;
-    use src\Arquivo\Arquivo;
-    use src\RelArtigoPasta\RelArtigoPasta;
-    
-    
-    $id = $_SESSION['id_pasta'];
+<?php  
+  
+    $id = $_SESSION['id_infopasta'];
 
     $nome = $_POST['nomePasta'];
     $desc = $_POST['desc'];
@@ -40,7 +30,7 @@
 
         
         }
-        header("Location:infoPasta.php");
+        header("Location:/informacaoPasta");
 
     }catch(Exception $error){
 

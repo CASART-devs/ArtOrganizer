@@ -1,7 +1,6 @@
 <?php
-session_start();
-require_once "conexao.php";
-require_once "../src/Artigo.php";
+
+require_once "src/Artigo.php";
 
 use src\Artigo\Artigo;
 
@@ -36,7 +35,7 @@ try {
     $artigo->carregarArtigo($conexao, $id_artigo, $id_pasta);
     $artigo->excluirArtigo($conexao);
 
-    header("Location: home.php");
+    header("Location:/home");
 
 } catch (Exception $error) {
     echo "Erro ao excluir <br>" . $error;

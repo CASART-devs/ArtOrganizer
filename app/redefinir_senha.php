@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArtOrganizer</title>
-    <!-- bootstrap5 -->
-    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
-    <!-- fonte-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
-
-
-    <!--css-->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/recuperacao.css">
-</head>
-<body>
-    
-
-
 <?php
-session_start();
-require_once "conexao.php";
-
-require_once "validar.php";
-
 
 $token = $_GET['token'];
 
@@ -91,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Exiba uma mensagem de sucesso
     echo "Senha redefinida com sucesso!";
-    header('Location:logout.php');
+    header('Location:/logout');
 } else {
     // Exiba o formulário para redefinir a senha
     echo "<div class='d-flex justify-content-center align-items-center' id='base'>
@@ -126,4 +98,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 </body>
-</html>

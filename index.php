@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArtOrgnizer</title>
+    <title>ArtOrganizer</title>
 
     <!-- bootstrap5 -->
     <link rel="stylesheet" href="app/bootstrap-5.3.2-dist/css/bootstrap.min.css">
@@ -19,279 +19,115 @@
     <!--css-->
     <link rel="stylesheet" href="app/css/style.css">
     <link rel="stylesheet" href="app/css/home.css">
-
-
+    <link rel="stylesheet" href="app/css/sidebar.css">
 </head>
 
+<?php
 
-<body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <a class="navbar-brand" href="#">
-                <picture>
-                    <source srcset="app/img/LOGOS/logo_retangular1.png" media="(max-width: 600px)" width="150px" />
-                    <img src="app/img/LOGOS/logo.png" alt="Logo" width="200rem" class="mx-3 d-inline-block align-text-top">
-                </picture>
+//Front-controller
 
-            </a>
+session_start();
+require_once "app/conexao.php";
 
+if (!array_key_exists('PATH_INFO', $_SERVER) || ($_SERVER['PATH_INFO'] === '/')) {
 
-            <div class="collapse navbar-collapse justify-content-center" id="navbar_links">
-                <div class="navbar-nav" id="navbar">
-                    <a class="nav-item nav-link" id='artOrganizer-menu' href="#banner1">ArtOrganizer</a>
-                    <a class="nav-item nav-link" id='adicionar-menu' href="#banner2">Adicionar</a>
-                    <a class="nav-item nav-link" id='organizar-menu' href="#banner3">Organizar</a>
-                    <a class="nav-item nav-link" id='compartilhar-menu' href="#banner4">Compartilhar</a>
-                    <a class="nav-item nav-link" id="contatos-menu" href="#banner5">Contatos</a>
+    require_once "landingpage.php";
 
-                </div>
+} elseif (($_SERVER['PATH_INFO'] === '/login')) {
 
-            </div>
+    require_once "app/login.php";
 
-            <div class="row">
-                <div class="col">
-                    <button class="button btn" id="btnEntrar" onclick="fcPopupLogin()">Entrar</button>
-                </div>
+} elseif (($_SERVER['PATH_INFO'] === '/cadastrar')) {
 
-                <div class="col mx-4">
-                    <button class="button btn" id="btnCadastrar" onclick="fcPopupCadastrar()">Cadastrar</button>
-                </div>
-            </div>
+    require_once "app/cadastrar.php";
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_links" aria-controls="navbar_links" aria-expanded="false" aria-label="togler navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </nav>
-    </div>
+} elseif (($_SERVER['PATH_INFO'] === '/redefinir_senha')) {
 
-    <dialog class="container" id="popupLogin">
+    require_once "app/redefinir_senha.php";
 
-        <div class=" row">
-            <div class="col-10 justify-content-center d-flex  ">
-                <div class="d-flex justify-content-center aling-items-center">
-                    <h1>Login</h1>
-                </div>
-                
-            </div>
-            <div class="col">
-            <button class="btn button" id="fechar" onclick="fcPopupFechar()">Fechar</button>
-            </div>
+}else {
 
+    require_once "app/validar.php";
 
+    if (($_SERVER['PATH_INFO'] === '/home')) {
 
+        require_once "app/navbar.php";
+        require_once "app/home.php";
 
-        </div>
+    } elseif ($_SERVER['PATH_INFO'] === '/logout') {
 
-        <div class="row my-5">
+        require_once "app/logout.php";
 
-            <div class="col-1"></div>
+    } elseif ($_SERVER['PATH_INFO'] === '/configuracao') {
 
-            <div class="container col-10" id="popup_content">
+        require_once "app/navbar.php";
+        require_once "app/configuracao.php";
 
-                <div class="row">
+    } elseif ($_SERVER['PATH_INFO'] === '/atualizacao') {
 
-                    <div class="col-1"></div>
-                    <form class="col-10" action="app/login.php" method="post">
+        require_once "app/atualizacao.php";
 
-                        <div class="mb-3">
-                            <label for="InputEmail1" class="form-label">Email </label>
-                            <input id="email_log" type="email" class="form-control" name="email_log" aria-describedby="emailHelp">
+    } elseif ($_SERVER['PATH_INFO'] === '/adicionarArtigo'){
+        
+        require_once "app/adicionar-artigos.php";
 
-                            <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
-                        </div>
+    } elseif ($_SERVER['PATH_INFO'] === '/informacaoArtigo'){
+        
+        require_once "app/navbar.php";
+        require_once "app/infoArtigo.php";
 
-                        <div class="mb-3">
-                            <label for="InputSenha" class="form-label">Senha</label>
-                            <input id="senha_log" type="password" class="form-control" name="senha_log">
-                        </div>
+    } elseif ($_SERVER['PATH_INFO'] === '/atualizarArtigo'){
+        
+        require_once "app/attArtigo.php";
 
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <button type="submit" id="enviar_log" class="col-8 btn button btn-primary">Login</button>
-                            <div class="col-2"></div>
-                        </div>
+    } elseif ($_SERVER['PATH_INFO'] === '/excluirArtigo'){
+        
+        require_once "app/excluir-artigo.php";
 
-                    </form>
+    } elseif ($_SERVER['PATH_INFO'] === '/adicionarPasta'){
+        
+        require_once "app/adicionar-pastas.php";
 
-                    <div class="col-1"></div>
+    } elseif ($_SERVER['PATH_INFO'] === '/informacaoPasta'){
+        
+        require_once "app/navbar.php";
+        require_once "app/infoPasta.php";
 
-                </div>
+    } elseif ($_SERVER['PATH_INFO'] === '/excluirPasta'){
+        
+        require_once "app/navbar.php";
+        require_once "app/excluir-pasta.php";
 
-            </div>
-            <div class="col-1"></div>
+    } elseif ($_SERVER['PATH_INFO'] === '/atualizarPasta'){
+        
+        require_once "app/attPasta.php";
 
-        </div>
+    } elseif ($_SERVER['PATH_INFO'] === '/voltar'){
 
-    </dialog>
+        require_once "app/voltar.php";
 
-    <dialog class="container" id="popupCadastrar">
+    } elseif ($_SERVER['PATH_INFO'] === '/pegarSessao'){
 
-        <div class="justify-content-end row">
-            <div class="col-10"></div>
-            <button class="btn button col-1" id="fechar" onclick="fcPopupFechar()">Fechar</button>
-            <div class="col-1"></div>
-        </div>
+        require_once "app/pegarSessao.php";
 
-        <div class="row my-5">
+    } elseif ($_SERVER['PATH_INFO'] === '/recuperar') {
 
-            <div class="col-1"></div>
+        require_once "app/recuperar.php";
 
-            <div class="container col-10" id="popup_content">
+    } elseif ($_SERVER['PATH_INFO'] === '/processar_solicitacao') {
 
-                <div class="row">
+        require_once "app/processar_solicitacao.php";
 
-                    <div class="col-1"></div>
-                    <form class="col-10" action="app/cadastrar.php" method="post">
+    }else{
+        require_once "app/logout.php";
+    }  
+}
 
-                        <div class="mb-3">
-                            <label for="InputNome" class="form-label">Nome </label>
-                            <input id="nome_cad" type="text" class="form-control" name="nome_cad" required>
-                        </div>
+?>
 
-                        <div class="mb-3">
-                            <label for="InputNome" class="form-label">Nickname </label>
-                            <input id="user_cad" type="text" class="form-control" name="user_cad" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="InputEmail1" class="form-label">Email </label>
-                            <input id="email_cad" type="email" class="form-control" name="email_cad" aria-describedby="emailHelp" required>
-
-                            <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="InputSenha" class="form-label">Senha</label>
-                            <input id="senha_cad" type="password" class="form-control" name="senha_cad" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="InputNasc" class="form-label">Data de Nacimento</label>
-                            <input id="nasc_cad" type="date" id="InputNasc" name="nasc_cad" value="2023-08-" max="2008-08-16" required>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div class="col-2"></div>
-                            <button type="submit" id="enviar_cad" class="col-8 btn button btn-primary">Cadastrar</button>
-                            <div class="col-2"></div>
-                        </div>
-                    </form>
-
-                    <div class="col-1"></div>
-
-                </div>
-
-            </div>
-
-            <div class="col-1"></div>
-        </div>
-
-    </dialog>
-
-    <!-- Banners -->
-    <section class="banners container-fluid d-flex justify-content-center fs-sm-64" id="banner1">
-        <h1 class="h1 row b1-font-h1" id="banner1_titulo">ArtOrganizer</h1>
-        <h2 class="lead row b1-font-h2" id="banner1_subtitulo">Sua nova biblioteca digital</h2>
-    </section>
-
-    <section class="container-fluid d-flex" id="banner2">
-        <div class="container d-flex" id="banner2_textos">
-            <h1 class="row h1 b2-font-h1 text-start">Adicione Artigos com facilidade</h1>
-
-            <p class="row lead b2-font-h2 text-justify">Com ArtOrganizer, os usuários podem facilmente compartilhar seus
-                conhecimentos e perspectivas com a comunidade de entusiastas de artigos. Adicionar um novo artigo é
-                simples: basta inserir um título, conteúdo e tags relacionadas. Compartilhe seu conhecimento hoje mesmo!
-            </p>
-        </div>
-    </section>
-
-    <section class="banners container-fluid d-flex justify-content-center" id="banner3">
-        <div class="container d-flex cartao">
-            <div class="container-fluid col-md-8" id="banner3_textos">
-                <h1 class="b2-font-h1 text-center mb-5">Organização de Artigos</h1>
-
-                <p class="b2-font-h2 text-justify mt-5">Com o ArtOrganizer, os usuários podem criar pastas
-                    personalizadas para organizar seus artigos de acordo com temas, projetos ou preferências
-                    individuais. Isso ajuda a manter seus artigos organizados e fáceis de encontrar, para que possam ser
-                    acessados rapidamente quando necessário.</p>
-            </div>
-            <div id="banner3_img" class="container-fluid col-md-4"></div>
-        </div>
-    </section>
-
-
-
-
-    <section class="banners container-fluid d-flex justify-content-center" id="banner4">
-        <div class="container d-flex  cartao justify-content-center">
-            <div class="container-fluid col-md-4" id="banner4_img"></div>
-            <div class="container-fluid col-md-8" id="banner4_textos">
-
-                <h1 class="row justify-content-center b2-font-h1 text-center mb-5" id="banner4_titulo">Compartilhamento
-                    de Artigos</h1>
-                <p class="row justify-content-center b2-font-h2 text-justify mt-5" id="banner4_text">Os usuários do
-                    ArtOrganizer podem compartilhar facilmente seus artigos com outros usuários da plataforma ou através
-                    de plataformas de mídia social. Isso permite que os usuários alcancem um público mais amplo e
-                    compartilhem seus conhecimentos com outras pessoas interessadas no mesmo assunto.</p>
-
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Rodapé-->
-
-    <section class="container-fluid border " id="banner5">
-        <div class="container p-5" id="footer_contatos">
-            <div class="row">
-                <h1 class="col footer-fonts-h1">Contatos</h1>
-            </div>
-            <div class="row">
-                <p class="col footer-fonts-h2">Entre em contato conosco para dúvidas, sugestões ou reclamações. Sua
-                    opinião é
-                    importante para nós.</p>
-            </div>
-            <div class="row">
-                <div class="col m-3">
-                    <div class="row">
-                        <h1 class="footer-fonts-h1">Telefone</h1>
-                    </div>
-                    <div class="row">
-                        <p class="footer-fonts-h2">(48) 99140-7636</p>
-                    </div>
-                    <div class="row">
-                        <p class="footer-fonts-h2">(48) 9977-4587</p>
-                    </div>
-                </div>
-                <div class="col m-3">
-                    <div class="row">
-                        <h1 class="footer-fonts-h1">Email</h1>
-                    </div>
-                    <div class="row">
-                        <p class="footer-fonts-h2">Art.Organizer01@gmail.com</p>
-                    </div>
-                </div>
-                <div class="col m-3">
-                    <div class="row">
-                        <h1 class="footer-fonts-h1">Instagram</h1>
-                    </div>
-                    <div class="row">
-                        <p class="footer-fonts-h2">artorganizer_</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-</body>
-
-<script src="app/bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="app/js/index.js"></script>
+<script src="app/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+<script src="app/js/sidebar.js"></script>
+<script src="app/js/index.js"></script>
 <script src="app/js/limpar.js"></script>
 
 </html>

@@ -1,11 +1,10 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require "../vendor/autoload.php";
-require_once "conexao.php";
-session_start();
+require "vendor/autoload.php";
 
 $token = bin2hex(random_bytes(2));
 $id_user = $_SESSION['ID'];
@@ -32,7 +31,7 @@ $query->execute();
 
 // Envio de e-mail
 $assunto = "REDEFINIR SENHA";  
-$mensagem = "Para redefinir sua senha, clique no link a seguir http://localhost:8000/app/redefinir_senha.php?token=$token";
+$mensagem = "Para redefinir sua senha, clique no link a seguir http://localhost:8000/redefinir_senha?token=$token";
 
 $mail = new PHPMailer(true);
 try {
@@ -62,7 +61,7 @@ try {
 
     // Envio
     $mail->send();
-    header("location:home.php");
+    header("location:/home");
 } catch (Exception $error) {
     echo "Erro ao enviar e-mail!<br>";
     echo "Erro: " . $error->getMessage();

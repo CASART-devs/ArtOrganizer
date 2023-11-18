@@ -1,7 +1,4 @@
 <?php
-session_start();
-require_once "conexao.php";
-
 
 try {
     
@@ -23,7 +20,7 @@ try {
     $query->bind_param('i', $id_pasta);
     $query->execute();
 
-    header("Location: home.php");
+    header("Location:/home");
 
 } catch (Exception $error) {
     echo "Erro ao excluir <br>" . $error;

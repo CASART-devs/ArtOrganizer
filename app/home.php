@@ -1,8 +1,5 @@
 <?php
-session_start();
 
-require_once "validar.php";
-require_once "conexao.php";
 
 
 //pesquisa de pastas
@@ -44,65 +41,7 @@ if (isset($_SESSION['id_pasta'])) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArtOrganizer</title>
-
-    <!-- bootstrap5 -->
-    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
-    <!-- bootstrap-icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <!-- fonte-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
-
-
-    <!--css-->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/sidebar.css">
-</head>
-
 <body>
-    <!--NavBar-->
-    <nav class="navbar navbar-expand-lg color-nav">
-        <div class="container-fluid">
-            <div class="col-md-2">
-                <a class="navbar-brand " href="#">
-                    <img src="img/LOGOS/logo.png" alt="Logo" width="200rem" height="70rem" class="mx-3 d-inline-block align-text-top">
-
-                </a>
-            </div>
-            
-            <div class="ml-2 col-md-2  menu-icons">
-                <!--<img class="m-1" src="img/navbar_home/notificação.svg" alt="Notificação" height="30rem">-->
-
-                <div class="dropstart">
-                    <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="m-1 mx-4 img-perfil" src="<?php if (isset($_SESSION['img-perfil'])) { ?>../upload/img-perfil/<?php echo $_SESSION['img-perfil'];
-                                                                                                                                } else {
-                                                                                                                                    echo "img/navbar_home/perfil.svg";
-                                                                                                                                } ?>" alt="perfil" height="50rem">
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li><span class="m-2"><?php echo "@" . $_SESSION['Nick']; ?></span></li>
-                        <li><a class="dropdown-item" href="logout.php">Sair</a></li>
-
-                    </ul>
-                </div>
-
-                <a href="configuracao.php"><img class="m-1" src="img/navbar_home/config.svg" alt="Configurações" height="30rem"></a>
-            </div>
-        </div>
-    </nav>
-
-
     <!-- Modal -->
     <div class="modal fade" id="adicionar-artigo" tabindex="-1" aria-labelledby="adicionarArtigolLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -111,7 +50,7 @@ if (isset($_SESSION['id_pasta'])) {
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Novo artigo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form enctype="multipart/form-data" action="adicionar-artigos.php" method="post">
+                <form enctype="multipart/form-data" action="/adicionarArtigo" method="post">
                     <div class="modal-body">
 
                         <div class="mb-3">
@@ -156,7 +95,7 @@ if (isset($_SESSION['id_pasta'])) {
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Nova pasta</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="adicionar-pastas.php" method="post">
+                <form action="/adicionarPasta" method="post">
                     <div class="modal-body">
 
                         <div class="mb-3">
@@ -196,13 +135,12 @@ if (isset($_SESSION['id_pasta'])) {
                     <div class="col">
                         <div class="row">
 
-                            <span class="h1 m-2">Biblioteca
-                                <?php print " do(a) " . $_SESSION['Nick']; ?>
+                            <span class="h1 m-2">Biblioteca <?= "do(a) " . $_SESSION['Nick'];?></span>
 
-                            </span>
                             <?php if (isset($_SESSION['id_pasta'])) { ?>
-                                <a type="button" id="btnVoltar" class="btn button col-2 mx-3" href="voltar.php"> voltar </a>
+                                <a type="button" id="btnVoltar" class="btn button col-2 mx-3" href="/voltar"> voltar </a>
                             <?php } ?>
+
                             <div class="row">
                             </div>
 
@@ -246,7 +184,7 @@ if (isset($_SESSION['id_pasta'])) {
 
                     <div class="col" id="head-right">
 
-                        <div class="dropdown"> <!-- aqui tera php, para adicionar artigos e pastas -->
+                        <div class="dropdown">
                             <button class="btn button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Adicionar Artigos
                             </button>
@@ -257,12 +195,9 @@ if (isset($_SESSION['id_pasta'])) {
                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#adicionar-pasta">Adicionar pasta</a></li>
 
                             </ul>
-
-
                         </div>
-
-
                     </div>
+
                 </div>
 
                 <!-- Pastas -->
@@ -287,15 +222,14 @@ if (isset($_SESSION['id_pasta'])) {
                         <?php } ?>
                         <div class="d-flex flex-row " id="pastas">
 
-                            <!-- mostra as pastas que do  usuario -->
                             <?php if (!(isset($_SESSION['id_pasta']))) { ?>
                                 <?php foreach ($rowsPasta as $pasta) {
                                     if ($pasta['nome_pasta'] != 'root') { ?>
 
-                                        <form method="post" action="pegarSessao.php" class="m-2 ">
+                                        <form method="post" action="/pegarSessao" class="m-2 ">
 
-                                            <button type="submit" name="id_pasta" value="<?php echo $pasta['id']; ?>" class="btn button  btnPasta d-flex justify-content-between align-items-center">
-                                                <span><?php echo $pasta['nome_pasta']; ?></span>
+                                            <button type="submit" name="id_pasta" value="<?= $pasta['id']; ?>" class="btn button  btnPasta d-flex justify-content-between align-items-center">
+                                                <span><?= $pasta['nome_pasta']; ?></span>
 
                                                 <div class="dropdown">
                                                     <a class="" id="toggle-opcoes" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -303,17 +237,15 @@ if (isset($_SESSION['id_pasta'])) {
                                                     </a>
 
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item"   href="infoPasta.php?id_pasta=<?= $pasta['id'] ?>">Informaçãoes</a></li>
-                                                        <li><a class="dropdown-item" href="excluir-pasta.php?id_pasta=<?= $pasta['id'];?>">Excluir</a></li>
+                                                        <li><a class="dropdown-item"   href="/informacaoPasta?id_pasta=<?= $pasta['id'] ?>">Informaçãoes</a></li>
+                                                        <li><a class="dropdown-item" href="/excluirPasta?id_pasta=<?= $pasta['id'];?>">Excluir</a></li>
 
                                                     </ul>
                                                 </div>
                                             </button>
 
                                         </form>
-                            <?php }
-                                }
-                            } ?>
+                            <?php }}} ?>
 
 
                         </div>
@@ -336,17 +268,16 @@ if (isset($_SESSION['id_pasta'])) {
                             </div>
                         </div>
                         <div class="row" id="artigos">
-                            <!--Mostra os artigos do usuario-->
 
                             <?php foreach ($rowsArtigo as $artigo) { ?>
                                 <div class="card m-2">
 
-                                    <img src="../upload/artigo/img/<?php printf($artigo['img-previw']); ?>" class="card-img" alt="capa_artigo">
+                                    <img src="../upload/artigo/img/<?=($artigo['img-previw']); ?>" class="card-img" alt="capa_artigo">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-10">
-                                                <h1 class="h5 card-titulo "><?php printf($artigo['Titulo']) ?></h5>
-                                                    <h2 class="h6 card-subtitulo-2 "><?php printf($artigo['Autor']) ?></h2>
+                                                <h1 class="h5 card-titulo "><?=($artigo['Titulo']) ?></h5>
+                                                    <h2 class="h6 card-subtitulo-2 "><?=($artigo['Autor']) ?></h2>
                                             </div>
 
                                             <div class="col d-flex align-items-center">
@@ -355,11 +286,9 @@ if (isset($_SESSION['id_pasta'])) {
                                                         <i class="bi bi-three-dots-vertical"></i>
                                                     </a>
 
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#">Fazer download</a></li>
-                                                        
-                                                        <li><a class="dropdown-item" href="infoArtigo.php?id_artigo=<?= $artigo['ID'] ?>">informações</a></li>
-                                                        <li><a class="dropdown-item" href="excluir-artigo.php?id_artigo=<?= $artigo['ID'] ?>">Excluir</a></li>
+                                                    <ul class="dropdown-menu">                                                        
+                                                        <li><a class="dropdown-item" href="/informacaoArtigo?id_artigo=<?= $artigo['ID'] ?>">informações</a></li>
+                                                        <li><a class="dropdown-item" href="/excluirArtigo?id_artigo=<?= $artigo['ID'] ?>">Excluir</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -377,44 +306,12 @@ if (isset($_SESSION['id_pasta'])) {
             </div>
 
 
-            <!--sidebar Menu -->
-
-            <nav class="mx-3 barra-menu">
-                <div class="row" id="head_sidebar">
-
-                    <div class="col-4 d-flex align-items-center justify-content-center ">
-
-                        <i class="bi bi-list" id="botao-esconder-menu"></i>
-
-                    </div>
-
-
-                    <div class="col">
-
-                        <div id="h2_menu" class="col">
-                            <h1 class="texto">Menu</h1>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div id="menu">
-                    <ul id="links_menu" class="menu-list nav flex-column">
-                        <li><a class="h5 texto nav-link link-dark" href="home.php">Minha Biblioteca</a></li>
-                        <!--<li><a class="h5 texto nav-link link-dark" href="#">Explorar</a></li>-->
-                    </ul>
-                </div>
-            </nav>
+            <?php require_once "app/sidebar.php";?>
 
         </div>
 
     </div>
 
-    <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/sidebar.js"></script> <!--Navegação Menu -->
-    <script src="js/index.js"></script>
+    
 </body>
 
-
-</html>

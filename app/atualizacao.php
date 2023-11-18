@@ -1,6 +1,4 @@
 <?php
-    session_start();
-    require_once "conexao.php";
 
     $nome = $_POST['nome'];
     $nick = $_POST['nick'];
@@ -13,7 +11,7 @@
     try{
         if(isset( $_FILES['img-perfil'])){
                     
-            $pastaImg = "../upload/img-perfil/";
+            $pastaImg = "upload/img-perfil/";
             $nomeArquivo = $img['name'];
             $extensao ='.'.strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
 
@@ -47,7 +45,7 @@
         $_SESSION['Fone'] = $telefone;
         $_SESSION['img-perfil'] = $arquivo;
 
-        header("Location:configuracao.php");
+        header("Location:/configuracao");
         }
     }catch(Exception $error){
 

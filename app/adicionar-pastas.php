@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    require_once "conexao.php";
-    require_once "../vendor/autoload.php";
-    require_once "../src/Pasta.php";
+
+    require_once "vendor/autoload.php";
+    require_once "src/Pasta.php";
+
     use src\Pasta\Pasta;
 
     $nome = $_POST['nome-pasta'];
@@ -21,7 +21,7 @@
         $query->bind_param("ss", $id_user, $id_pasta );
         $query->execute();
 
-        header("Location: home.php");
+        header("Location:/home");
     } catch (Exception $error) {
         echo "Não foi possivel criar pasta $error";
     }

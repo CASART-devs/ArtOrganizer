@@ -43,13 +43,13 @@
                 $_SESSION['pasta_nome'] = $dados['nome_pasta'];
 
                 
-                header('location:home.php');
+                header('location:/home');
             } else{
-                header('location:../index.php');
+                header('location:/');
             }
             
         }else{
-            header('location:../index.php');
+            header('location:/');
         }
         
     } catch (Exception $error) {

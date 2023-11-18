@@ -1,5 +1,5 @@
 <?php
-require_once('conexao.php');
+
 
 $nome = $conexao->real_escape_string($_POST['nome_cad']);
 $email = $conexao->real_escape_string($_POST['email_cad']);
@@ -40,7 +40,7 @@ try {
             $query->bind_param("ss", $user_id, $pasta_id);
             $query->execute();
         }    
-        header("location:../index.php");
+        header("location:/");
     }
     
 } catch (Exception $e) {

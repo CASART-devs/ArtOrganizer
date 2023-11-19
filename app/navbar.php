@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="col-md-2">
                 <a class="navbar-brand " href="#">
-                    <img src="app/img/LOGOS/logo.png" alt="Logo" width="200rem" height="70rem" class="mx-3 d-inline-block align-text-top">
+                    <img src="img/LOGOS/logo.png" alt="Logo" width="200rem" height="70rem" class="mx-3 d-inline-block align-text-top">
 
                 </a>
             </div>
@@ -26,7 +26,7 @@
                     </ul>
                 </div>
 
-                <a href="configuracao"><img class="m-1" src="app/img/navbar_home/config.svg" alt="Configurações" height="30rem"></a>
+                <a href="configuracao"><img class="m-1" src="img/navbar_home/config.svg" alt="Configurações" height="30rem"></a>
             </div>
         </div>
     </nav>

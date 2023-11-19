@@ -272,7 +272,7 @@ if (isset($_SESSION['id_pasta'])) {
                             <?php foreach ($rowsArtigo as $artigo) { ?>
                                 <div class="card m-2">
 
-                                    <img src="../upload/artigo/img/<?=($artigo['img-previw']); ?>" class="card-img" alt="capa_artigo">
+                                    <img src="upload/artigo/img/<?=($artigo['img-previw']); ?>" class="card-img" alt="capa_artigo">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-10">
@@ -306,7 +306,7 @@ if (isset($_SESSION['id_pasta'])) {
             </div>
 
 
-            <?php require_once "app/sidebar.php";?>
+            <?php require_once __DIR__ . "/../app/sidebar.php";?>
 
         </div>
 

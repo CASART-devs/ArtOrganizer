@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <!--Navegação Menu -->
-                <?php require_once "app/sidebar.php";?>
+                <?php require_once __DIR__ . "/../app/sidebar.php";?>
 
             </div>
 

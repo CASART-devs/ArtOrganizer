@@ -28,6 +28,7 @@
 
 session_start();
 require_once __DIR__ .  "/../app/conexao.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 
 if (!array_key_exists('PATH_INFO', $_SERVER) || ($_SERVER['PATH_INFO'] === '/')) {
 

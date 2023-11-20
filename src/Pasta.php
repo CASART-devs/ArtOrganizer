@@ -1,5 +1,5 @@
 <?php
-namespace artorganizer\Entity;
+namespace artorganizer\src;
 
     class Pasta{
         private int $id;
@@ -10,6 +10,23 @@ namespace artorganizer\Entity;
             
             $this->setNome($nomePasta);
             $this->setDescricao($descricaoPasta);
+
+        }
+
+        public function inserirPasta($bd){
+            $query = $bd->prepare("
+                INSERT INTO `pastas`
+                (nome_pasta, descricao) 
+                VALUES 
+                (?, ?);
+            ");
+
+        $query->bind_param("ss", $this->getNome(), $this->getDescricao());
+        $query->execute();
+
+        $this->setId($bd->insert_id);
+
+        return true;
 
         }
 

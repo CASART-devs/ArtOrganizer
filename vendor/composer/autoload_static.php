@@ -9,7 +9,8 @@ class ComposerStaticInit21867b3d71887c4ef09bd4b3bbb57ce3
     public static $prefixLengthsPsr4 = array (
         'a' => 
         array (
-            'artorganizer\\src\\' => 17,
+            'artorganizer\\Repository\\' => 24,
+            'artorganizer\\Entity\\' => 20,
         ),
         'P' => 
         array (
@@ -18,9 +19,13 @@ class ComposerStaticInit21867b3d71887c4ef09bd4b3bbb57ce3
     );
 
     public static $prefixDirsPsr4 = array (
-        'artorganizer\\src\\' => 
+        'artorganizer\\Repository\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/src/Repository',
+        ),
+        'artorganizer\\Entity\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Entity',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (

@@ -1,42 +1,31 @@
-<?php  
-  
-    $id = $_SESSION['id_infopasta'];
+<?php
 
-    $nome = $_POST['nomePasta'];
-    $desc = $_POST['desc'];
+use artorganizer\Entity\Pasta;
+use artorganizer\Repository\PastaRepository;
 
-    
+$id = $_SESSION['id_infopasta'];
 
-    try{
+$nome = $_POST['nomePasta'];
+$desc = $_POST['desc'];
 
-        
-    
-        
-        if (($nome == "") || ($desc == "")){
-            
-            die();
-        }else{
-            $query = $conexao->prepare("
-            UPDATE `pastas`
-            SET nome_pasta = ?, descricao = ? 
-            WHERE ID = ?
-        ");
-        
-        $query->bind_param("ssi", $nome, $desc, $id);
-        $query->execute();
-        
-       
-        
 
-        
-        }
-        header("Location:/informacaoPasta");
 
-    }catch(Exception $error){
+try {
 
-        echo "Erro ao atualizar!  ($error) <br>";
-        echo "Clique <a href='configuracao.php'>aqui</a> para voltar";
-        
+    if (($nome == "") || ($desc == "")) {
+
+        die();
+    } else {
+
+        $pastaRepository = new PastaRepository($conexao);
+        $pasta = new Pasta($nome, $desc);
+        $pasta->setId($id);
+        $pastaRepository->update($pasta);
     }
 
-    
+    header("Location:/informacaoPasta");
+} catch (Exception $error) {
+
+    echo "Erro ao atualizar!  ($error) <br>";
+    echo "Clique <a href='configuracao.php'>aqui</a> para voltar";
+}

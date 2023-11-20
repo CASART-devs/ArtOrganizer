@@ -1,8 +1,10 @@
 <?php
 
-    namespace artorganizer\src\Repository;
+    namespace artorganizer\Repository;
 
-    use artorganizer\src\Entity\Pasta;
+    use artorganizer\Entity\Pasta;
+    use artorganizer\Repository\PastaUserRepository;
+
 
     class PastaRepository
     {
@@ -11,8 +13,9 @@
         {
         }
 
-        public function add(pasta $pasta): bool
+        public function add(int $user, pasta $pasta): bool
         {
+
             $query = $this->bd->prepare("
                 INSERT INTO `pastas`
                 (`nome_pasta`, `descricao`) 
@@ -20,22 +23,27 @@
                 (?,?)
             ");
             $query->bind_param("ss", $pasta->getNome(), $pasta->getDescricao());
-            $result = $query->execute();
+            $inserir = $query->execute();
 
             $pasta->setId($this->bd->insert_id);
 
-            return $result;
+            $pastaUser = new PastaUserRepository($this->bd);
+            $relacionar = $pastaUser->add($user, $pasta->getId());
+
+            if($inserir == true && $relacionar == true){
+                return true;
+            }else{
+                return false;
+            }
         }
 
         public function excluir(int $id): bool
         {
+        
+            $pastaUser = new PastaUserRepository($this->bd);
+            $pastaUser->excluir($id);
 
-
-            $query = $this->bd->prepare("DELETE FROM pasta_user WHERE id_pasta = ?");
-            $query->bind_param("i", $id);
-            $query->execute();
-
-            $query = $this->bd->prepare("DELETE FROM pasta WHERE id = ?;");
+            $query = $this->bd->prepare("DELETE FROM pastas WHERE id = ?;");
             $query->bind_param("i", $id);
             $result = $query->execute();
 
@@ -44,6 +52,7 @@
 
         public function update(Pasta $pasta): bool
         {
+
             $query = $this->bd->prepare("
                         UPDATE `pastas`
                         SET nome_pasta = ?, descricao = ? 
@@ -56,11 +65,11 @@
             return $result;
         }
 
-        public function all(int $user, $pasta): array
+        public function all(int $id): array
         {
 
             $query = $this->bd->prepare("SELECT pastas.* FROM pastas INNER JOIN pasta_user ON pastas.id = pasta_user.id_pasta WHERE pasta_user.id_user = ?;");
-            $query->bind_param("s", $_SESSION['ID']);
+            $query->bind_param("i", $id);
 
 
             $query->execute();

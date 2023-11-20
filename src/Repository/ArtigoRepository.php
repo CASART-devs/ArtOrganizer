@@ -1,8 +1,8 @@
 <?php
 
-namespace artorganizer\src\Repository;
+namespace artorganizer\Repository;
 
-use artorganizer\src\Entity\Artigo;
+use artorganizer\Entity\Artigo;
 
 class ArtigoRepository
 {

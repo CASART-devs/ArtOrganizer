@@ -1,6 +1,6 @@
 <?php
 
-namespace artorganizer\src\Entity;
+namespace artorganizer\Entity;
 
 use DateTime;
 

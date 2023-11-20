@@ -1,9 +1,7 @@
-<?php
+<?php  
 
-    require_once "vendor/autoload.php";
-    require_once "src/Pasta.php";
-
-    use src\Pasta\Pasta;
+    use artorganizer\Entity\Pasta;
+    use artorganizer\Repository\PastaRepository;
 
     $nome = $_POST['nome-pasta'];
     $desc = $_POST['desc-pasta'];
@@ -11,18 +9,13 @@
 
     try {
         //adiciona pasta no banco
+        $pastaRepository = new PastaRepository($conexao);
         $pasta = new Pasta($nome, $desc);
-        $pasta->inserirPasta($conexao);
+        $pastaRepository->add($id_user, $pasta);
 
         $id_pasta = $pasta->getId();
-
-        //adiciona relacionamento user-pasta no banco
-        $query = $conexao->prepare("INSERT INTO `pasta_user` (`id_user`, `id_pasta`) VALUES (?, ?);");
-        $query->bind_param("ss", $id_user, $id_pasta );
-        $query->execute();
 
         header("Location:/home");
     } catch (Exception $error) {
         echo "Não foi possivel criar pasta $error";
     }
-    

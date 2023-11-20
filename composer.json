@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "artorganizer\\src\\":"src/"
+            "artorganizer\\Entity\\":"src/Entity",
+            "artorganizer\\Repository\\":"src/Repository"
         }
     },
     "authors": [

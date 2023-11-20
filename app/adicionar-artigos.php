@@ -6,6 +6,7 @@ use artorganizer\src\Entity\Artigo;
 use artorganizer\src\Entity\Pasta;
 use artorganizer\src\RelArtigoPasta;
 use artorganizer\src\Arquivo;
+use artorganizer\src\Repository\ArtigoRepository;
 
 //definição de variaveis
     $titulo = $_POST['titulo-artigo'];
@@ -15,6 +16,8 @@ use artorganizer\src\Arquivo;
     $artigo = $_FILES['artigo'];
 
     $id_user = $_SESSION['ID'];
+
+    $artigoRepository = new ArtigoRepository($conexao);
 
     if (isset($_SESSION['id_pasta'])) {
         $id_pasta = $_SESSION['id_pasta'];
@@ -58,9 +61,9 @@ try {
     $arqArtigo->moverArtigo($artigo);
 
     //adiciona pasta no banco
-    $artigo = new Artigo();
-    $artigo->criarArtigo($titulo, $autor, $arqImg->gerarNome(), $arqArtigo->gerarNome());
-    $artigo->inserirArtigo($conexao);
+    $artigo = new Artigo($titulo, $autor, $arqImg->gerarNome(), $arqArtigo->gerarNome());
+    $artigoRepository->add($artigo);
+    
 
     //adiciona relacionamento user-pasta no banco
     $relacionamento = new RelArtigoPasta($id_pasta, $artigo->getId()); 

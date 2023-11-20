@@ -1,7 +1,8 @@
 <?php
 
-require_once "src/Artigo.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 
+use artorganizer\src\Repository\ArtigoRepository;
 use src\Artigo\Artigo;
 
 try {
@@ -25,15 +26,15 @@ try {
 
         ");
         $query->bind_param("s", $id_user);
-        var_dump($query->execute());
-        var_dump($resultado = $query->get_result());
+        $query->execute();
+        $resultado = $query->get_result();
         $dados = $resultado->fetch_array(MYSQLI_ASSOC);
-        var_dump($id_pasta = $dados['id_pasta']);
+
+        $id_pasta = $dados['id_pasta'];
     }
 
-    $artigo = new Artigo();
-    $artigo->carregarArtigo($conexao, $id_artigo, $id_pasta);
-    $artigo->excluirArtigo($conexao);
+    $artigo = new ArtigoRepository($conexao);
+    $artigo->excluir($id_artigo);
 
     header("Location:/home");
 

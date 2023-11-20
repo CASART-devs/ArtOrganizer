@@ -2,6 +2,8 @@
 
 namespace artorganizer\src\Entity;
 
+use DateTime;
+
     class Artigo{
         private int $id;
         private string $titulo;
@@ -17,6 +19,8 @@ namespace artorganizer\src\Entity;
             $this->setAutor($autor);
             $this->setImg($img);
             $this->setArtigo($artigo);
+            date_default_timezone_set('America/Sao_Paulo');
+            $this->setDataPublicacao(date('Y-m-d H:i:s'));
         }
 
         

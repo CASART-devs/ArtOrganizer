@@ -8,11 +8,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 use artorganizer\src\Entity\Artigo;
 use artorganizer\src\Repository\ArtigoRepository;
 
-$pastas_query = $conexao->prepare("SELECT pastas.* FROM pastas INNER JOIN pasta_user ON pastas.id = pasta_user.id_pasta WHERE pasta_user.id_user = ?;");
-$pastas_query->bind_param("s", $_SESSION['ID']);
-$pastas_query->execute();
-$resultPasta = $pastas_query->get_result();
-$rowsPasta = $resultPasta->fetch_all(MYSQLI_ASSOC);
+
 
 //pesquisa de artigos
 $artigoRepository = new ArtigoRepository($conexao);

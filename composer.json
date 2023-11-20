@@ -1,10 +1,7 @@
 {
     "autoload": {
         "psr-4": {
-            "core\\":"core/",
-            "control\\":"control/",
-            "view\\":"view/",
-            "src\\":"src/"
+            "artorganizer\\src\\":"src/"
         }
     },
     "authors": [

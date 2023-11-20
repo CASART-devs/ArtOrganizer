@@ -1,6 +1,6 @@
 <?php
 
-namespace src\Arquivo;
+namespace artorganizer\src;
 
 
 class Arquivo{

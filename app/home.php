@@ -1,8 +1,13 @@
 <?php
 
+require_once __DIR__ . "/../vendor/autoload.php";
 
 
 //pesquisa de pastas
+
+use artorganizer\src\Entity\Artigo;
+use artorganizer\src\Repository\ArtigoRepository;
+
 $pastas_query = $conexao->prepare("SELECT pastas.* FROM pastas INNER JOIN pasta_user ON pastas.id = pasta_user.id_pasta WHERE pasta_user.id_user = ?;");
 $pastas_query->bind_param("s", $_SESSION['ID']);
 $pastas_query->execute();
@@ -10,38 +15,24 @@ $resultPasta = $pastas_query->get_result();
 $rowsPasta = $resultPasta->fetch_all(MYSQLI_ASSOC);
 
 //pesquisa de artigos
+$artigoRepository = new ArtigoRepository($conexao);
+
+$id_user = $_SESSION['ID'];
+
 if (isset($_SESSION['id_pasta'])) {
     $id_pasta = $_SESSION['id_pasta'];
-    $artigo_query = $conexao->prepare("
-            SELECT * FROM artigos
-            INNER JOIN artigo_pasta ON artigos.ID = artigo_pasta.id_artigo
-            INNER JOIN pastas ON pastas.id = artigo_pasta.id_pasta
-            INNER join pasta_user ON pastas.id = pasta_user.id_pasta
-            WHERE artigo_pasta.id_pasta = ? AND pasta_user.id_user = ?; 
-        ");
-    $artigo_query->bind_param("ss", $id_pasta, $_SESSION['ID']);
-    $artigo_query->execute();
-    $resultArtigo = $artigo_query->get_result();
-    $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
+    
 } else {
-    $artigo_query = $conexao->prepare("
-            SELECT * FROM artigos
-            INNER JOIN artigo_pasta ON artigos.ID = artigo_pasta.id_artigo
-            INNER JOIN pasta_user ON artigo_pasta.id_pasta = pasta_user.id_pasta
-            INNER JOIN pastas ON artigo_pasta.id_pasta = pastas.id
-            WHERE pastas.nome_pasta = 'root' AND pasta_user.id_user = ?
-        ");
-    $artigo_query->bind_param("s", $_SESSION['ID']);
-    $artigo_query->execute();
-    $resultArtigo = $artigo_query->get_result();
-    $rowsArtigo = $resultArtigo->fetch_all(MYSQLI_ASSOC);
+    $id_pasta = 'root';
+    
 }
+$ArtigoList= $artigoRepository->all($id_user, $id_pasta);
 
 
 
 ?>
 
-<body>
+
     <!-- Modal -->
     <div class="modal fade" id="adicionar-artigo" tabindex="-1" aria-labelledby="adicionarArtigolLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -225,7 +216,7 @@ if (isset($_SESSION['id_pasta'])) {
                             <?php if (!(isset($_SESSION['id_pasta']))) { ?>
                                 <?php foreach ($rowsPasta as $pasta) {
                                     if ($pasta['nome_pasta'] != 'root') { ?>
-
+                                        
                                         <form method="post" action="/pegarSessao" class="m-2 ">
 
                                             <button type="submit" name="id_pasta" value="<?= $pasta['id']; ?>" class="btn button  btnPasta d-flex justify-content-between align-items-center">
@@ -269,15 +260,15 @@ if (isset($_SESSION['id_pasta'])) {
                         </div>
                         <div class="row" id="artigos">
 
-                            <?php foreach ($rowsArtigo as $artigo) { ?>
+                            <?php foreach ($ArtigoList as $artigo) { ?>
                                 <div class="card m-2">
 
-                                    <img src="upload/artigo/img/<?=($artigo['img-previw']); ?>" class="card-img" alt="capa_artigo">
+                                    <img src="/upload/artigo/img/<?=($artigo->getImg()); ?>" class="card-img" alt="capa_artigo">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-10">
-                                                <h1 class="h5 card-titulo "><?=($artigo['Titulo']) ?></h5>
-                                                    <h2 class="h6 card-subtitulo-2 "><?=($artigo['Autor']) ?></h2>
+                                                <h1 class="h5 card-titulo "><?=($artigo->getTitulo()) ?></h5>
+                                                    <h2 class="h6 card-subtitulo-2 "><?=($artigo->getAutor()) ?></h2>
                                             </div>
 
                                             <div class="col d-flex align-items-center">
@@ -287,8 +278,8 @@ if (isset($_SESSION['id_pasta'])) {
                                                     </a>
 
                                                     <ul class="dropdown-menu">                                                        
-                                                        <li><a class="dropdown-item" href="/informacaoArtigo?id_artigo=<?= $artigo['ID'] ?>">informações</a></li>
-                                                        <li><a class="dropdown-item" href="/excluirArtigo?id_artigo=<?= $artigo['ID'] ?>">Excluir</a></li>
+                                                        <li><a class="dropdown-item" href="/informacaoArtigo?id_artigo=<?= $artigo->getId() ?>">informações</a></li>
+                                                        <li><a class="dropdown-item" href="/excluirArtigo?id_artigo=<?= $artigo->getId() ?>">Excluir</a></li>
                                                     </ul>
                                                 </div>
                                             </div>

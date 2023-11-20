@@ -1,11 +1,11 @@
 <?php
-require_once "src/Artigo.php";
-require_once "src/Arquivo.php";
-require_once "src/RelUserPasta.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 
-use src\Artigo\Artigo;
-use src\Arquivo\Arquivo;
-use src\RelArtigoPasta\RelArtigoPasta;
+
+use artorganizer\src\Entity\Artigo;
+use artorganizer\src\Entity\Pasta;
+use artorganizer\src\RelArtigoPasta;
+use artorganizer\src\Arquivo;
 
 //definição de variaveis
     $titulo = $_POST['titulo-artigo'];
@@ -52,8 +52,8 @@ try {
         die();   
     }
 
-    $arqImg = new arquivo("upload/artigo/img/", $img);
-    $arqArtigo = new Arquivo("upload/artigo/artigo/", $artigo);
+    $arqImg = new arquivo(__DIR__ ."/../public/upload/artigo/img/", $img);
+    $arqArtigo = new Arquivo(__DIR__ . "/../public/upload/artigo/artigo/", $artigo);
     $arqImg->moverImg($img);
     $arqArtigo->moverArtigo($artigo);
 

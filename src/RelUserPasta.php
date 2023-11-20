@@ -1,6 +1,6 @@
 <?php
 
-namespace src\RelArtigoPasta;
+namespace artorganizer\src;
 
     class RelArtigoPasta{
         private int $id;

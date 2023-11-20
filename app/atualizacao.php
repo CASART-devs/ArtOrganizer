@@ -11,7 +11,7 @@
     try{
         if(isset( $_FILES['img-perfil'])){
                     
-            $pastaImg = "upload/img-perfil/";
+            $pastaImg = __DIR__ . "/../public/upload/img-perfil/";
             $nomeArquivo = $img['name'];
             $extensao ='.'.strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
 

@@ -7,18 +7,9 @@ namespace Composer\Autoload;
 class ComposerStaticInit21867b3d71887c4ef09bd4b3bbb57ce3
 {
     public static $prefixLengthsPsr4 = array (
-        'v' => 
+        'a' => 
         array (
-            'view\\' => 5,
-        ),
-        's' => 
-        array (
-            'src\\' => 4,
-        ),
-        'c' => 
-        array (
-            'core\\' => 5,
-            'control\\' => 8,
+            'artorganizer\\src\\' => 17,
         ),
         'P' => 
         array (
@@ -27,21 +18,9 @@ class ComposerStaticInit21867b3d71887c4ef09bd4b3bbb57ce3
     );
 
     public static $prefixDirsPsr4 = array (
-        'view\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/view',
-        ),
-        'src\\' => 
+        'artorganizer\\src\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
-        ),
-        'core\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/core',
-        ),
-        'control\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/control',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (

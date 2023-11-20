@@ -65,7 +65,7 @@ try {
                         <div class="row">
                             <div class="mb-3">
                               <label for="imgArtigo" class="form-label">Capa do artigo</label>
-                              <img src="../upload/artigo/img/<?= $dados[0]['img-previw']; ?>" class="img-fluid m-2" alt="">
+                              <img src="/upload/artigo/img/<?= $dados[0]['img-previw']; ?>" class="img-fluid m-2" alt="">
                               <input type="file" class="form-control" name="imgArtigo" id="imgArtigo" placeholder="imgArtigo" aria-describedby="fileHelpId" required>
                               <div id="fileHelpId" class="form-text">Selecione outro capa</div>
                             </div>

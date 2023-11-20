@@ -1,12 +1,8 @@
 <?php
-require_once __DIR__ . "/../vendor/autoload.php";
 
-
-use artorganizer\src\Entity\Artigo;
-use artorganizer\src\Entity\Pasta;
-use artorganizer\src\RelArtigoPasta;
-use artorganizer\src\Arquivo;
-use artorganizer\src\Repository\ArtigoRepository;
+use artorganizer\Entity\Artigo;
+use artorganizer\Entity\Arquivo;
+use artorganizer\Repository\ArtigoRepository;
 
 //definição de variaveis
     $titulo = $_POST['titulo-artigo'];
@@ -62,12 +58,7 @@ try {
 
     //adiciona pasta no banco
     $artigo = new Artigo($titulo, $autor, $arqImg->gerarNome(), $arqArtigo->gerarNome());
-    $artigoRepository->add($artigo);
-    
-
-    //adiciona relacionamento user-pasta no banco
-    $relacionamento = new RelArtigoPasta($id_pasta, $artigo->getId()); 
-    $relacionamento->inserirRelacionameto($conexao);
+    $artigoRepository->add($id_pasta, $artigo);
 
     header("Location:/home");
 

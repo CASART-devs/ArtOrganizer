@@ -2,9 +2,9 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use artorganizer\src\Arquivo;
-use artorganizer\src\Entity\Artigo;
-use artorganizer\src\Repository\ArtigoRepository;
+use artorganizer\Entity\Arquivo;
+use artorganizer\Entity\Artigo;
+use artorganizer\Repository\ArtigoRepository;
 
 $id = $_SESSION['id_artigo'];
 

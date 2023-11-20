@@ -3,6 +3,7 @@
 namespace artorganizer\Repository;
 
 use artorganizer\Entity\Artigo;
+use artorganizer\Repository\ArtigoPastaRepository;
 
 class ArtigoRepository
 {
@@ -14,7 +15,7 @@ class ArtigoRepository
 
 
 
-        public function add(Artigo $artigo): bool
+        public function add(int $id_pasta, Artigo $artigo): bool
         {
                 $query = $this->bd->prepare("
                 INSERT INTO `artigos`
@@ -23,11 +24,19 @@ class ArtigoRepository
                 (?,?,?,?,?)
             ");
                 $query->bind_param("sssss", $artigo->getTitulo(), $artigo->getAutor(), $artigo->getDataPublicacao(), $artigo->getImg(), $artigo->getArtigo());
-                $result = $query->execute();
+                $inserir = $query->execute();
 
                 $artigo->setId($this->bd->insert_id);
 
-                return $result;
+                $RelArtigoPasta = new ArtigoPastaRepository($this->bd);
+
+                $relacionar = $RelArtigoPasta->add($id_pasta, $artigo->getId());
+
+                if($inserir == true && $relacionar == true){
+                        return true;
+                }else{
+                        return false;   
+                }
         }
 
         public function excluir(int $id): bool

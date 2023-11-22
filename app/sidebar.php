@@ -21,6 +21,7 @@
 <div id="menu">
     <ul id="links_menu" class="menu-list nav flex-column">
         <li><a class="h5 texto nav-link link-dark" href="/home">Minha Biblioteca</a></li>
+        <li><a class="h5 texto nav-link link-dark" href="/explorar">Explorar</a></li>
     </ul>
 </div>
 

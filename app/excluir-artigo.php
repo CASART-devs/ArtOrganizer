@@ -5,6 +5,8 @@ require_once __DIR__ . "/../vendor/autoload.php";
 use artorganizer\Repository\ArtigoRepository;
 use src\Artigo\Artigo;
 
+
+unset($_SESSION['id_excluirArtigo']);
 try {
     if (!isset($_GET['id_artigo']) || (!isset($_SESSION['user_id']))) {
        die();

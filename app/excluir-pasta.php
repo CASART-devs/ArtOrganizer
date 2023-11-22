@@ -3,7 +3,7 @@
 use artorganizer\Repository\PastaRepository;
 
 try {
-
+    unset($_SESSION['id_excluirPasta']);
     if (!isset($_GET['id_pasta'])) {
         die();
     } else {

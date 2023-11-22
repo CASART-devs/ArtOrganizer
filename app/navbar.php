@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="col-md-2">
                 <a class="navbar-brand " href="#">
-                    <img src="img/LOGOS/logo.png" alt="Logo" width="200rem" height="70rem" class="mx-3 d-inline-block align-text-top">
+                    <img src="img/LOGOS/logo.png" alt="Logo" width="180rem" height="70rem" class="mx-3 d-inline-block align-text-top">
 
                 </a>
             </div>

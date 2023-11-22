@@ -105,6 +105,47 @@
     </div>
 </div>
 
+<?php if (isset($_SESSION['id_excluirArtigo'])){ ?>
+    <div class="modal"id="exluir-pasta" tabindex="-1" style="display:block">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Excluir</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>Você tem certeza que deseja excluir o artigo?</p>
+            
+        </div>
+        <div class="modal-footer">
+            <a type="button" class="btn btn-secondary" href="/excluirSessao">Não</a>
+            <a class="btn button" href="/excluirArtigo?id_artigo=<?= $_SESSION['id_excluirArtigo'] ?>">Sim, excluir</a>
+        </div>
+        </div>
+    </div>
+    </div>
+<?php } ?>
+
+<?php if (isset($_SESSION['id_excluirPasta'])){ ?>
+    <div class="modal"id="exluir-pasta" tabindex="-1" style="display:block">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Excluir</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>Você tem certeza que deseja excluir o pasta?</p>
+            
+        </div>
+        <div class="modal-footer">
+            <a type="button" class="btn btn-secondary" href="/excluirSessao">Não</a>
+            <a class="btn button" href="/excluirPasta?id_pasta=<?= $_SESSION['id_excluirPasta'] ?>">Sim, excluir</a>
+        </div>
+        </div>
+    </div>
+    </div>
+<?php } ?>
 
 
 
@@ -223,7 +264,7 @@
 
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="/informacaoPasta?id_pasta=<?= $pasta->getId(); ?>">Informaçãoes</a></li>
-                                                    <li><a class="dropdown-item" href="/excluirPasta?id_pasta=<?= $pasta->getId(); ?>">Excluir</a></li>
+                                                    <li><a class="dropdown-item" href="/pegarIdExcluir?id_pasta=<?= $pasta->getId(); ?>" >Excluir</a></li>
 
                                                 </ul>
                                             </div>
@@ -275,7 +316,7 @@
 
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="/informacaoArtigo?id_artigo=<?= $artigo->getId() ?>">informações</a></li>
-                                                    <li><a class="dropdown-item" href="/excluirArtigo?id_artigo=<?= $artigo->getId() ?>">Excluir</a></li>
+                                                    <li><a class="dropdown-item" href="/pegarIdExcluir?id_artigo=<?= $artigo->getId(); ?>">Excluir</a></li>
                                                 </ul>
                                             </div>
                                         </div>

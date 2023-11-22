@@ -57,6 +57,11 @@ if (!array_key_exists('PATH_INFO', $_SERVER) || ($_SERVER['PATH_INFO'] === '/'))
         require_once __DIR__ .  "/../app/navbar.php";
         require_once __DIR__ .  "/../app/home.php";
 
+    } elseif ($_SERVER['PATH_INFO'] === '/explorar') {
+
+        require_once __DIR__ .  "/../app/navbar.php";
+        require_once __DIR__ .  "/../app/explorar.php";
+
     } elseif ($_SERVER['PATH_INFO'] === '/logout') {
 
         require_once __DIR__ .  "/../app/logout.php";
@@ -104,6 +109,14 @@ if (!array_key_exists('PATH_INFO', $_SERVER) || ($_SERVER['PATH_INFO'] === '/'))
     } elseif ($_SERVER['PATH_INFO'] === '/atualizarPasta'){
         
         require_once __DIR__ .  "/../app/attPasta.php";
+
+    } elseif ($_SERVER['PATH_INFO'] === '/pegarIdExcluir'){
+        
+        require_once __DIR__ .  "/../app/pegarIdExlcuir.php";
+
+    } elseif ($_SERVER['PATH_INFO'] === '/excluirSessao'){
+        
+        require_once __DIR__ .  "/../app/excluirSessao.php";
 
     } elseif ($_SERVER['PATH_INFO'] === '/voltar'){
 

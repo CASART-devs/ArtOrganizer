@@ -110,4 +110,24 @@ class ArtigoRepository
                         $artigoList
                 );
         }
+
+        public function explorar(): array
+        {
+                $query = $this->bd->prepare("SELECT * FROM artigos");
+
+                $query->execute();
+                $result = $query->get_result();
+                $artigoList = $result->fetch_all(MYSQLI_ASSOC);
+
+                return array_map(
+                        function ($dados) {
+                                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
+                                $artigo->setId($dados['ID']);
+
+                                return $artigo;
+                        },
+
+                        $artigoList
+                );
+        }
 }

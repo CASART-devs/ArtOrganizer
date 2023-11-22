@@ -2,15 +2,15 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use artorganizer\src\Repository\ArtigoRepository;
+use artorganizer\Repository\ArtigoRepository;
 use src\Artigo\Artigo;
 
 try {
-    if (!isset($_GET['id_artigo']) || (!isset($_SESSION['ID']))) {
+    if (!isset($_GET['id_artigo']) || (!isset($_SESSION['user_id']))) {
        die();
     }else{
        $id_artigo = $_GET['id_artigo'];
-       $id_user = $_SESSION['ID'];
+       $id_user = $_SESSION['user_id'];
     }
 
     

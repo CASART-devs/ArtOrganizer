@@ -11,7 +11,7 @@ use artorganizer\Repository\ArtigoRepository;
     $img = $_FILES['img-previw'];
     $artigo = $_FILES['artigo'];
 
-    $id_user = $_SESSION['ID'];
+    $id_user = $_SESSION['user_id'];
 
     $artigoRepository = new ArtigoRepository($conexao);
 

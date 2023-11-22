@@ -5,7 +5,7 @@
 
     $nome = $_POST['nome-pasta'];
     $desc = $_POST['desc-pasta'];
-    $id_user = $_SESSION['ID'];
+    $id_user = $_SESSION['user_id'];
 
     try {
         //adiciona pasta no banco

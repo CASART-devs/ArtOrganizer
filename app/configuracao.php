@@ -41,18 +41,14 @@
 
                                                 <div class="col mb-3 mr-3">
                                                     <label for="" class="form-label">Name</label>
-                                                    <input type="text" class="form-control" name="nome" id=""
-                                                        aria-describedby="helpId" placeholder="<?= $_SESSION['Nome'];?>"
-                                                        required>
+                                                    <input type="text" class="form-control" name="nome" id="" aria-describedby="helpId" placeholder="<?= $_SESSION['user_nome']; ?>" required>
                                                     <small id="helpId" class="form-text text-muted">Digite seu
                                                         nome</small>
                                                 </div>
 
                                                 <div class="col  mb-3 mr-3">
                                                     <label for="" class="form-label">Nickname</label>
-                                                    <input type="text" class="form-control" name="nick" id=""
-                                                        aria-describedby="helpId" placeholder="<?=$_SESSION['Nick'];?>"
-                                                        required>
+                                                    <input type="text" class="form-control" name="nick" id="" aria-describedby="helpId" placeholder="<?= $_SESSION['user_nick']; ?>" required>
                                                     <small id="helpId" class="form-text text-muted">Digite seu
                                                         nickname</small>
                                                 </div>
@@ -64,9 +60,7 @@
 
                                                 <div class="col mb-3 mr-3">
                                                     <label for="" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" name="email" id=""
-                                                        aria-describedby="emailHelpId"
-                                                        placeholder="<?= $_SESSION['Email'];?>" required>
+                                                    <input type="email" class="form-control" name="email" id="" aria-describedby="emailHelpId" placeholder="<?= $_SESSION['user_email']; ?>" required>
                                                     <small id="emailHelpId" class="form-text text-muted">Digite seu
                                                         email</small>
                                                 </div>
@@ -78,17 +72,18 @@
                                                 <div class="row">
                                                     <div class="col mb-3 mr-3">
                                                         <label for="" class="form-label">Data de nascimento</label>
-                                                        <input type="date" class="form-control" name="nasc" id=""
-                                                            style="width: 220px;" required>
+                                                        <input type="date" class="form-control" name="nasc" id="" style="width: 220px;" required>
                                                         <small id="birthdayHelpId" class="form-text text-muted">Digite
                                                             sua data de nascimento.</small>
                                                     </div>
                                                     <div class="col  mb-3 mr-3">
                                                         <label for="" class="form-label">Telefone</label>
-                                                        <input type="text" class="form-control" name="telefone" id=""
-                                                            aria-describedby="helpId"
-                                                            placeholder="<?php if(isset( $_SESSION['Fone'])){echo $_SESSION['Fone'];}?>"
-                                                            required>
+                                                        <input type="text" class="form-control" name="telefone" id="" aria-describedby="helpId" placeholder="<?php
+                                                        
+                                                        if (isset($_SESSION['user_fone'])) {
+                                                            echo $_SESSION['user_fone'];
+                                                        } ?>" required>
+
                                                         <small id="helpId" class="form-text text-muted">(DDD) - (seu
                                                             numero)</small>
                                                     </div>
@@ -97,12 +92,15 @@
                                                 <div class="col mb-3 ">
                                                     <label for="" class="form-label">Imagem de perfil</label>
                                                     <div class="row m-2 perfil">
-                                                        <img src="<?php if(isset( $_SESSION['img-perfil'])) {?>upload/img-perfil/<?php echo $_SESSION['img-perfil'];}else{echo "app/img/navbar_home/perfil.svg";}?>"
-                                                            class="img-fluid" alt="" required>
+                                                        <img src="<?php 
+                                                        if (isset($_SESSION['user_img'])) {
+                                                            ?>upload/img-perfil/<?php echo $_SESSION['user_img'];
+                                                        } else {
+                                                            echo "/img/navbar_home/perfil.svg";
+                                                        } ?>" class="img-fluid" alt="" required>
                                                     </div>
 
-                                                    <input type="file" class="form-control" name="img-perfil" id=""
-                                                        placeholder="" aria-describedby="fileHelpId">
+                                                    <input type="file" class="form-control" name="img-perfil" id="" placeholder="" aria-describedby="fileHelpId">
 
                                                 </div>
 
@@ -116,12 +114,10 @@
                                             <div class="row d-flex justify-content-start">
 
                                                 <div class="col d-grid gap-2 m-2">
-                                                    <button type="submit" name="" id=""
-                                                        class="button btn">Atualizar</button>
+                                                    <button type="submit" name="" id="" class="button btn">Atualizar</button>
                                                 </div>
                                                 <div class=" col d-grid gap-2 m-2">
-                                                    <button type="button" name="" id=""
-                                                        class="button btn ">Cancelar</button>
+                                                    <button type="button" name="" id="" class="button btn ">Cancelar</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,7 +131,7 @@
                     </div>
                 </div>
                 <!--Navegação Menu -->
-                <?php require_once __DIR__ . "/../app/sidebar.php";?>
+                <?php require_once __DIR__ . "/../app/sidebar.php"; ?>
 
             </div>
 

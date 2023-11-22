@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="css/sidebar.css">
 </head>
 
+<body>
+
 <?php
 
 //Front-controller

@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $novaSenha = $_POST['nova_senha'];
 
     // Armazene a nova senha com segurança no banco de dados
-    armazenarSenhaComSeguranca($_SESSION['ID'], $novaSenha);
+    armazenarSenhaComSeguranca($_SESSION['user_id'], $novaSenha);
 
     // Exiba uma mensagem de sucesso
     echo "Senha redefinida com sucesso!";

@@ -1,6 +1,6 @@
 <?php
      
-    if ($_SESSION['ID'] != true){
+    if ($_SESSION['user_id'] != true){
         header("Location:/home");
         
     }

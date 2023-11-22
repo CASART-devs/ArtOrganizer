@@ -4,7 +4,7 @@
     use artorganizer\Repository\PastaRepository;
 
 
-    $id_user = $_SESSION['ID'];
+    $id_user = $_SESSION['user_id'];
 
     if (isset($_SESSION['id_pasta'])) {
         $id_pasta = $_SESSION['id_pasta'];
@@ -120,7 +120,7 @@
                 <div class="col">
                     <div class="row">
 
-                        <span class="h1 m-2">Biblioteca <?= "do(a) " . $_SESSION['Nick']; ?></span>
+                        <span class="h1 m-2">Biblioteca <?= "do(a) " . $_SESSION['user_nick']; ?></span>
 
                         <?php if (isset($_SESSION['id_pasta'])) { ?>
                             <a type="button" id="btnVoltar" class="btn button col-2 mx-3" href="/voltar"> voltar </a>
@@ -194,7 +194,7 @@
 
                                 <a data-bs-toggle="collapse" data-bs-target="#pastas" aria-expanded="false" aria-controls="pastas">
                                     <div class="btn-alternar">
-                                        <svg class="icone-alternar" xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+                                        <svg class="icone-alternar bi bi-arrow-down-short" xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" />
                                         </svg>
                                         <span class="txt-esconder-pasta">Pastas</span>
@@ -263,7 +263,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-10">
-                                            <h1 class="h5 card-titulo "><?= ($artigo->getTitulo()) ?></h5>
+                                            <h1 class="h5 card-titulo "><?= ($artigo->getTitulo()) ?></h1>
                                                 <h2 class="h6 card-subtitulo-2 "><?= ($artigo->getAutor()) ?></h2>
                                         </div>
 

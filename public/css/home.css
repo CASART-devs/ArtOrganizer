@@ -14,7 +14,10 @@ body {
     color: #090D0B;
 }
 
+#pesquisa{
+    width: 30rem;
 
+}
 
 .btnPasta {
     min-width: 10rem;
@@ -61,7 +64,6 @@ body {
 
 #pesquisa {
     color: #012619;
-    background-color: #D9D8D7;
 
 }
 

@@ -34,6 +34,7 @@
     use artorganizer\Controller\homeController;
     use artorganizer\Controller\landingpageController;
     use artorganizer\Controller\loginController;
+    use artorganizer\Controller\pesquisaController;
     use artorganizer\Controller\logoutController;
     use artorganizer\Repository\ArtigoRepository;
     use artorganizer\Repository\UsuarioRepository;
@@ -78,6 +79,10 @@
 
             require_once __DIR__ .  "/../app/navbar.php";
             $controller =  new explorarController($artigoRepository);
+        } elseif ($_SERVER['PATH_INFO'] === '/pesquisa') {
+
+            require_once __DIR__ .  "/../app/navbar.php";
+            $controller =  new pesquisaController($artigoRepository);
         } elseif ($_SERVER['PATH_INFO'] === '/logout') {
 
             $controller =  new logoutController();

@@ -7,7 +7,7 @@
 
             </a>
         </div>
-
+        
         <div class="ml-2 col-md-2  menu-icons">
             <!--<img class="m-1" src="img/navbar_home/notificação.svg" alt="Notificação" height="30rem">-->
 

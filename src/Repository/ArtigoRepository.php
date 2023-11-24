@@ -130,4 +130,25 @@ class ArtigoRepository
                         $artigoList
                 );
         }
+
+        public function pesquisa($pesquisa):array
+        {
+                $query = $this->bd->prepare("SELECT * FROM artigos where Titulo like ?;");
+                $pesquisa = "%". $pesquisa ."%";
+                $query->bind_param('s', $pesquisa);
+                $query->execute();
+                $result = $query->get_result();
+                $artigoList = $result->fetch_all(MYSQLI_ASSOC);
+
+                return array_map(
+                        function ($dados) {
+                                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
+                                $artigo->setId($dados['ID']);
+
+                                return $artigo;
+                        },
+
+                        $artigoList
+                );
+        }
 }

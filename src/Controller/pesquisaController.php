@@ -5,24 +5,17 @@ namespace artorganizer\Controller;
 use artorganizer\Controller\Controller;
 use artorganizer\Repository\ArtigoRepository;
 
-class explorarController implements Controller
+class pesquisaController implements Controller
 {
 
-    function __construct(private  ArtigoRepository $artigoRepository,)
+    function __construct(private ArtigoRepository $artigoRepository)
     {
     }
 
     function processarRequisicao()
     {
-        $id_user = $_SESSION['user_id'];
-
-        if (isset($_SESSION['id_pasta'])) {
-            $id_pasta = $_SESSION['id_pasta'];
-        } else {
-            $id_pasta = 'root';
-        }
-
-        $ArtigoList = $this->artigoRepository->explorar();
+        $pesquisa = $_POST['pesquisa'];
+        $ArtigoList = $this->artigoRepository->pesquisa($pesquisa);
 
 ?>
         <!-- Modal -->
@@ -116,26 +109,26 @@ class explorarController implements Controller
                 <div class="col  mx-5" id="content">
                     <div class="row my-4" id="head">
                         <div class="col-4 m-2 d-flex align-items-center">
-                            
 
-                                <span class="h1 m-3">Explorar artigos</span>
 
-                                <?php if (isset($_SESSION['id_pasta'])) { ?>
-                                    <a type="button" id="btnVoltar" class="btn button col-2 mx-3" href="/voltar"> voltar </a>
-                                <?php } ?>
+                            <span class="h1 m-3">Explorar artigos</span>
+
+                            <?php if (isset($_SESSION['id_pasta'])) { ?>
+                                <a type="button" id="btnVoltar" class="btn button col-2 mx-3" href="/voltar"> voltar </a>
+                            <?php } ?>
 
 
 
                         </div>
                         <div class="col m-2  d-flex align-items-center justify-content-start     ">
-                            
-                                <form class="d-flex align-items-center  my-3" method="post" action="/pesquisa">
 
-                                    <input class="form-control mx-2"  id="pesquisa" name="pesquisa" type="search" placeholder="Pesquisa" aria-label="Pesquisa">
-                                    <button class="btn btn-outline-light button-nav" type="submit">Pesquisa</button>
-                                    
-                                </form>
-                            
+                            <form class="d-flex align-items-center  my-3" method="post" action="/pesquisa">
+
+                                <input class="form-control mx-2" id="pesquisa" name="pesquisa" type="search" placeholder="Pesquisa" aria-label="Pesquisa">
+                                <button class="btn btn-outline-light button-nav" type="submit">Pesquisa</button>
+
+                            </form>
+
                         </div>
 
 
@@ -146,32 +139,32 @@ class explorarController implements Controller
 
 
                     <div class="row my-4">
-                        
 
-                            <div class="row" id="artigos">
 
-                                <?php foreach ($ArtigoList as $artigo) { ?>
+                        <div class="row" id="artigos">
 
-                                    <div class="card m-2">
-                                        <a href="/upload/artigo/artigo/<?= $artigo->getArtigo(); ?>" target="_blank">
-                                            <img src="/upload/artigo/img/<?= ($artigo->getImg()); ?>" class="card-img" alt="capa_artigo">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <h1 class="h5 card-titulo "><?= ($artigo->getTitulo()) ?></h1>
-                                                        <h2 class="h6 card-subtitulo-2 "><?= ($artigo->getAutor()) ?></h2>
-                                                    </div>
+                            <?php foreach ($ArtigoList as $artigo) { ?>
+
+                                <div class="card m-2">
+                                    <a href="/upload/artigo/artigo/<?= $artigo->getArtigo(); ?>" target="_blank">
+                                        <img src="/upload/artigo/img/<?= ($artigo->getImg()); ?>" class="card-img" alt="capa_artigo">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <h1 class="h5 card-titulo "><?= ($artigo->getTitulo()) ?></h1>
+                                                    <h2 class="h6 card-subtitulo-2 "><?= ($artigo->getAutor()) ?></h2>
                                                 </div>
-
                                             </div>
-                                        </a>
-                                    </div>
 
-                                <?php } ?>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            <?php } ?>
 
 
-                            </div>
-                        
+                        </div>
+
                     </div>
                 </div>
 

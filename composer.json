@@ -1,8 +1,9 @@
 {
     "autoload": {
         "psr-4": {
-            "artorganizer\\Entity\\":"src/Entity",
-            "artorganizer\\Repository\\":"src/Repository"
+            "artorganizer\\Entity\\": "src/Entity",
+            "artorganizer\\Repository\\": "src/Repository",
+            "artorganizer\\Controller\\": "src/Controller"
         }
     },
     "authors": [
@@ -12,9 +13,6 @@
         }
     ],
     "require": {
-       
-        
         "phpmailer/phpmailer": "^6.8"
-      
     }
 }

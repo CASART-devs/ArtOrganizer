@@ -11,6 +11,7 @@ class ComposerStaticInit21867b3d71887c4ef09bd4b3bbb57ce3
         array (
             'artorganizer\\Repository\\' => 24,
             'artorganizer\\Entity\\' => 20,
+            'artorganizer\\Controller\\' => 24,
         ),
         'P' => 
         array (
@@ -26,6 +27,10 @@ class ComposerStaticInit21867b3d71887c4ef09bd4b3bbb57ce3
         'artorganizer\\Entity\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Entity',
+        ),
+        'artorganizer\\Controller\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Controller',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (

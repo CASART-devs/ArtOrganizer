@@ -52,7 +52,6 @@ class UsuarioRepository
     
             $usuarios = array_map(
                 function ($dados) {
-                    var_dump($dados['Data_Nasc']);
                     $usuario = new Usuario($dados['Nome_Usuario'], $dados['Nome_Completo'], $dados['Email'], $dados['Data_Nasc']);
                     $usuario->setSenha($dados['Senha']);
                     $usuario->setId($dados['ID']);

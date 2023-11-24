@@ -24,126 +24,129 @@
 
 <body>
 
-<?php
+    <?php
+    require_once __DIR__ . "/../vendor/autoload.php";
 
-//Front-controller
+    use artorganizer\Controller\atualizacaoController;
+    use artorganizer\Controller\cadastroController;
+    use artorganizer\Controller\configuracaoController;
+    use artorganizer\Controller\explorarController;
+    use artorganizer\Controller\homeController;
+    use artorganizer\Controller\landingpageController;
+    use artorganizer\Controller\loginController;
+    use artorganizer\Controller\logoutController;
+    use artorganizer\Repository\ArtigoRepository;
+    use artorganizer\Repository\UsuarioRepository;
+    use artorganizer\Repository\PastaRepository;
+    
 
-session_start();
-require_once __DIR__ .  "/../app/conexao.php";
-require_once __DIR__ . "/../vendor/autoload.php";
+    //Front-controller
 
-if (!array_key_exists('PATH_INFO', $_SERVER) || ($_SERVER['PATH_INFO'] === '/')) {
+    session_start();
+    require_once __DIR__ .  "/../app/conexao.php";
 
-    require_once __DIR__ .  "/../app/landingpage.php";
 
-} elseif (($_SERVER['PATH_INFO'] === '/login')) {
+    //instanciando repositórios
+    $pastaRepository = new PastaRepository($conexao);
+    $artigoRepository = new ArtigoRepository($conexao);
+    $usuarioRepository = new UsuarioRepository($conexao);
+    
 
-    require_once __DIR__ .  "/../app/login.php";
 
-} elseif (($_SERVER['PATH_INFO'] === '/cadastrar')) {
 
-    require_once __DIR__ .  "/../app/cadastrar.php";
+    if (!array_key_exists('PATH_INFO', $_SERVER) || ($_SERVER['PATH_INFO'] === '/')) {
 
-} elseif (($_SERVER['PATH_INFO'] === '/redefinir_senha')) {
+        $controller = new landingpageController();
+    } elseif (($_SERVER['PATH_INFO'] === '/login')) {
 
-    require_once __DIR__ .  "/../app/redefinir_senha.php";
+        $controller = new loginController($usuarioRepository);
+    } elseif (($_SERVER['PATH_INFO'] === '/cadastrar')) {
 
-}else {
+        $controller =  new cadastroController($usuarioRepository, $pastaRepository);
+    } elseif (($_SERVER['PATH_INFO'] === '/redefinir_senha')) {
 
-    require_once __DIR__ .  "/../app/validar.php";
+        require_once __DIR__ .  "/../app/redefinir_senha.php";
+    } else {
 
-    if (($_SERVER['PATH_INFO'] === '/home')) {
+        require_once __DIR__ .  "/../app/validar.php";
 
-        require_once __DIR__ .  "/../app/navbar.php";
-        require_once __DIR__ .  "/../app/home.php";
+        if (($_SERVER['PATH_INFO'] === '/home')) {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/explorar') {
+            require_once __DIR__ .  "/../app/navbar.php";
+            $controller = new homeController($pastaRepository, $artigoRepository);
+        } elseif ($_SERVER['PATH_INFO'] === '/explorar') {
 
-        require_once __DIR__ .  "/../app/navbar.php";
-        require_once __DIR__ .  "/../app/explorar.php";
+            require_once __DIR__ .  "/../app/navbar.php";
+            $controller =  new explorarController($artigoRepository);
+        } elseif ($_SERVER['PATH_INFO'] === '/logout') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/logout') {
+            $controller =  new logoutController();
+        } elseif ($_SERVER['PATH_INFO'] === '/configuracao') {
 
-        require_once __DIR__ .  "/../app/logout.php";
+            require_once __DIR__ .  "/../app/navbar.php";
+            $controller  =  new configuracaoController();
+        } elseif ($_SERVER['PATH_INFO'] === '/atualizacao') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/configuracao') {
+           $controller = new atualizacaoController($usuarioRepository);
+        } elseif ($_SERVER['PATH_INFO'] === '/adicionarArtigo') {
 
-        require_once __DIR__ .  "/../app/navbar.php";
-        require_once __DIR__ .  "/../app/configuracao.php";
+            require_once __DIR__ .  "/../app/adicionar-artigos.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/informacaoArtigo') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/atualizacao') {
+            require_once __DIR__ .  "/../app/navbar.php";
+            require_once __DIR__ .  "/../app/infoArtigo.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/atualizarArtigo') {
 
-        require_once __DIR__ .  "/../app/atualizacao.php";
+            require_once __DIR__ .  "/../app/attArtigo.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/excluirArtigo') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/adicionarArtigo'){
-        
-        require_once __DIR__ .  "/../app/adicionar-artigos.php";
+            require_once __DIR__ .  "/../app/excluir-artigo.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/adicionarPasta') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/informacaoArtigo'){
-        
-        require_once __DIR__ .  "/../app/navbar.php";
-        require_once __DIR__ .  "/../app/infoArtigo.php";
+            require_once __DIR__ .  "/../app/adicionar-pastas.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/informacaoPasta') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/atualizarArtigo'){
-        
-        require_once __DIR__ .  "/../app/attArtigo.php";
+            require_once __DIR__ .  "/../app/navbar.php";
+            require_once __DIR__ .  "/../app/infoPasta.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/excluirPasta') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/excluirArtigo'){
-        
-        require_once __DIR__ .  "/../app/excluir-artigo.php";
+            require_once __DIR__ .  "/../app/navbar.php";
+            require_once __DIR__ .  "/../app/excluir-pasta.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/atualizarPasta') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/adicionarPasta'){
-        
-        require_once __DIR__ .  "/../app/adicionar-pastas.php";
+            require_once __DIR__ .  "/../app/attPasta.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/pegarIdExcluir') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/informacaoPasta'){
-        
-        require_once __DIR__ .  "/../app/navbar.php";
-        require_once __DIR__ .  "/../app/infoPasta.php";
+            require_once __DIR__ .  "/../app/pegarIdExlcuir.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/excluirSessao') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/excluirPasta'){
-        
-        require_once __DIR__ .  "/../app/navbar.php";
-        require_once __DIR__ .  "/../app/excluir-pasta.php";
+            require_once __DIR__ .  "/../app/excluirSessao.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/voltar') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/atualizarPasta'){
-        
-        require_once __DIR__ .  "/../app/attPasta.php";
+            require_once __DIR__ .  "/../app/voltar.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/pegarSessao') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/pegarIdExcluir'){
-        
-        require_once __DIR__ .  "/../app/pegarIdExlcuir.php";
+            require_once __DIR__ .  "/../app/pegarSessao.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/recuperar') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/excluirSessao'){
-        
-        require_once __DIR__ .  "/../app/excluirSessao.php";
+            require_once __DIR__ .  "/../app/recuperar.php";
+        } elseif ($_SERVER['PATH_INFO'] === '/processar_solicitacao') {
 
-    } elseif ($_SERVER['PATH_INFO'] === '/voltar'){
+            require_once __DIR__ .  "/../app/processar_solicitacao.php";
+        } else {
+            require_once __DIR__ .  "/../app/logout.php";
+        }
+    }
 
-        require_once __DIR__ .  "/../app/voltar.php";
+    if (isset($controller)) {
+        $controller->processarRequisicao();
+    }
 
-    } elseif ($_SERVER['PATH_INFO'] === '/pegarSessao'){
+    ?>
 
-        require_once __DIR__ .  "/../app/pegarSessao.php";
-
-    } elseif ($_SERVER['PATH_INFO'] === '/recuperar') {
-
-        require_once __DIR__ .  "/../app/recuperar.php";
-
-    } elseif ($_SERVER['PATH_INFO'] === '/processar_solicitacao') {
-
-        require_once __DIR__ .  "/../app/processar_solicitacao.php";
-
-    }else{
-        require_once __DIR__ .  "/../app/logout.php";
-    }  
-}
-
-?>
-
-<script src= "bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/sidebar.js"></script>
-<script src="js/index.js"></script>
-<script src="js/limpar.js"></script>
+    <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/limpar.js"></script>
 
 </html>

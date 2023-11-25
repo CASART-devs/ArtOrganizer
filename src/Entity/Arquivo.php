@@ -3,7 +3,8 @@
 namespace artorganizer\Entity;
 
 
-class Arquivo{
+class Arquivo
+{
 
     private string $pasta;
     private string $nome;
@@ -17,38 +18,32 @@ class Arquivo{
         $this->setExtensao('.' . strtolower(pathinfo($arquivo['name'], PATHINFO_EXTENSION)));
         $this->setCaminho($this->getPasta() . $this->getNome() . $this->getExtensao());
 
-        return $this->getCaminho();
 
     }
 
-    public function moverArtigo(array $arquivo){
-
-        if (($this->getExtensao() ==  '.pdf') ||  ($this->getExtensao() ==  '.docx') || ($this->getExtensao() ==  '.txt')){
-            move_uploaded_file($arquivo['tmp_name'], $this->getCaminho());
-        }else{
-            return false;
-        }
-        
-    }
-
-    public function moverImg(array $arquivo){
-        
-        if (($this->getExtensao() ==  '.jpg') ||  ($this->getExtensao() ==  '.jpeg') || ($this->getExtensao() ==  '.png' || ($this->getExtensao() ==  '.svg'))){
-            move_uploaded_file($arquivo['tmp_name'], $this->getCaminho());
-        }else{
-            return false;
-        }
-        
-    }
-
-    public function gerarNome() :string
+    /**
+     * Get the value of pasta
+     *
+     * @return string
+     */
+    public function getPasta(): string
     {
-        $nome = ($this->getNome() . $this->getExtensao());
-        return $nome;
+        return $this->pasta;
     }
 
+    /**
+     * Set the value of pasta
+     *
+     * @param string $pasta
+     *
+     * @return self
+     */
+    public function setPasta(string $pasta): self
+    {
+        $this->pasta = $pasta;
 
-
+        return $this;
+    }
 
     /**
      * Get the value of nome
@@ -93,6 +88,17 @@ class Arquivo{
         return $this;
     }
 
+    public function moverArtigo(array $arquivo): bool
+    {
+
+        if (($this->getExtensao() == '.pdf') || ($this->getExtensao() == '.docx') || ($this->getExtensao() == '.txt')) {
+            return (move_uploaded_file($arquivo['tmp_name'], $this->getCaminho()));
+        } else {
+            return false;
+        }
+
+    }
+
     /**
      * Get the value of caminho
      *
@@ -117,27 +123,19 @@ class Arquivo{
         return $this;
     }
 
-    /**
-     * Get the value of pasta
-     *
-     * @return string
-     */
-    public function getPasta(): string
+    public function moverImg(array $arquivo): bool
     {
-        return $this->pasta;
+
+        if (($this->getExtensao() == '.jpg') || ($this->getExtensao() == '.jpeg') || ($this->getExtensao() == '.png' || ($this->getExtensao() == '.svg'))) {
+            return (move_uploaded_file($arquivo['tmp_name'], $this->getCaminho()));
+        } else {
+            return false;
+        }
+
     }
 
-    /**
-     * Set the value of pasta
-     *
-     * @param string $pasta
-     *
-     * @return self
-     */
-    public function setPasta(string $pasta): self
+    public function gerarNome(): string
     {
-        $this->pasta = $pasta;
-
-        return $this;
+        return ($this->getNome() . $this->getExtensao());
     }
 }

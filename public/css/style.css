@@ -29,7 +29,7 @@ a:hover {
 }
 
 .b1-font-h2 {
-    font-size: max(28px, 2w);
+    font-size: max(28px, 2vw);
 }
 
 .b2-font-h1 {
@@ -50,11 +50,11 @@ a:hover {
 }
 
 .footer-fonts-h1 {
-    font-size: max(30, 2vw);
+    font-size: max(30px, 2vw);
 }
 
 .footer-fonts-h2 {
-    font-size: max(25, 1.5vw);
+    font-size: max(25px, 1.5vw);
 }
 
 .logo {
@@ -73,9 +73,6 @@ a:hover {
 }
 
 
-
-
-
 #navbar {
     width: 100%;
     justify-content: center;
@@ -84,7 +81,7 @@ a:hover {
 
 /*banner1*/
 #banner1 {
-    background-image: url(../img/banner1_b.jpg);
+    background-image: url(../img/home_imgs/banner1_b.jpg);
     align-items: center;
     height: 100vh;
 }
@@ -114,13 +111,13 @@ a:hover {
 
 #banner3_img {
     height: 100%;
-    background-image: url(../img/banner3.jpg);
+    background-image: url(../img/home_imgs/banner3.jpg);
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
 }
 
 #banner3_textos {
-    margin: 0px 15px;
+    margin: 0 15px;
 }
 
 /*banner4*/
@@ -132,13 +129,13 @@ a:hover {
 
 #banner4_img {
     height: 100%;
-    background-image: url(../img/banner4.jpg);
+    background-image: url(../img/home_imgs/banner4.jpg);
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
 }
 
 #banner4_textos {
-    margin: 0px 20px;
+    margin: 0 20px;
 
 }
 

@@ -3,77 +3,83 @@
 namespace artorganizer\Repository;
 
 use artorganizer\Entity\Artigo;
-use artorganizer\Repository\ArtigoPastaRepository;
+use mysqli;
 
-class ArtigoRepository
+readonly class ArtigoRepository
 {
 
 
-        public function __construct(private \mysqli $bd)
-        {
-        }
+    public function __construct(private mysqli $bd)
+    {
+    }
 
 
+    public function add(int $id_pasta, Artigo $artigo): bool
+    {
+        $titulo = $artigo->getTitulo();
+        $autor = $artigo->getAutor();
+        $data = $artigo->getDataPublicacao();
+        $img = $artigo->getImg();
+        $artigoCaminho = $artigo->getArtigo();
 
-        public function add(int $id_pasta, Artigo $artigo): bool
-        {
-                $query = $this->bd->prepare("
+        $query = $this->bd->prepare("
                 INSERT INTO `artigos`
                 (`Titulo`, `Autor`, `Data_Publicacao`, `img-previw`, `artigo-caminho`) 
                 VALUES 
                 (?,?,?,?,?)
             ");
-                $query->bind_param("sssss", $artigo->getTitulo(), $artigo->getAutor(), $artigo->getDataPublicacao(), $artigo->getImg(), $artigo->getArtigo());
-                $inserir = $query->execute();
+        $query->bind_param("sssss", $titulo, $autor, $data, $img, $artigoCaminho);
+        $inserir = $query->execute();
 
-                $artigo->setId($this->bd->insert_id);
+        $artigo->setId($this->bd->insert_id);
 
-                $RelArtigoPasta = new ArtigoPastaRepository($this->bd);
+        $RelArtigoPasta = new ArtigoPastaRepository($this->bd);
 
-                $relacionar = $RelArtigoPasta->add($id_pasta, $artigo->getId());
+        $relacionar = $RelArtigoPasta->add($id_pasta, $artigo->getId());
 
-                if($inserir == true && $relacionar == true){
-                        return true;
-                }else{
-                        return false;   
-                }
+        if ($inserir && $relacionar) {
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        public function excluir(int $id): bool
-        {
+    public function excluir(int $id): bool
+    {
 
-                $query = $this->bd->prepare("DELETE FROM artigo_pasta WHERE id_artigo = ?");
-                $query->bind_param("s", $id);
-                $query->execute();
+        $query = $this->bd->prepare("DELETE FROM artigo_pasta WHERE id_artigo = ?");
+        $query->bind_param("s", $id);
+        $query->execute();
 
-                $query = $this->bd->prepare("DELETE FROM artigos WHERE id = ?;");
-                $query->bind_param("s", $id);
-                $result = $query->execute();
-
-                return $result;
-        }
+        $query = $this->bd->prepare("DELETE FROM artigos WHERE id = ?;");
+        $query->bind_param("s", $id);
+        return $query->execute();
+    }
 
 
-        public function update(Artigo $artigo): bool
-        {
-                $query = $this->bd->prepare("
+    public function update(Artigo $artigo): bool
+    {
+        $titulo = $artigo->getTitulo();
+        $autor = $artigo->getAutor();
+        $data = $artigo->getDataPublicacao();
+        $img = $artigo->getImg();
+        $artigoCaminho = $artigo->getArtigo();
+
+        $query = $this->bd->prepare("
                         UPDATE `artigos`
                         SET titulo = ?, autor = ?, `img-previw` = ?, `artigo-caminho` = ? 
                         WHERE ID = ?
                 ");
 
-                $query->bind_param("ssssi", $artigo->getTitulo(), $artigo->getAutor(), $artigo->getImg(), $artigo->getArtigo(), $artigo->getId());
-                $result = $query->execute();
+        $query->bind_param("sssss", $titulo, $autor, $data, $img, $artigoCaminho);
+        return $query->execute();
+    }
 
-                return $result;
-        }
+    public function all(int $user, $pasta): array
+    {
 
-        public function all(int $user, $pasta): array
-        {
-
-
-                if (gettype($pasta) === 'integer') {
-                        $query = $this->bd->prepare("
+        if (gettype($pasta) === 'integer') {
+            $query = $this->bd->prepare("
                                 SELECT * FROM artigos
                                 INNER JOIN artigo_pasta ON artigos.ID = artigo_pasta.id_artigo
                                 INNER JOIN pastas ON pastas.id = artigo_pasta.id_pasta
@@ -81,9 +87,9 @@ class ArtigoRepository
                                 WHERE artigo_pasta.id_pasta = ? AND pasta_user.id_user = ?; 
                                 ");
 
-                        $query->bind_param("ss", $pasta, $user);
-                } elseif (gettype($pasta) === 'string') {
-                        $query = $this->bd->prepare("
+            $query->bind_param("ss", $pasta, $user);
+        } elseif (gettype($pasta) === 'string') {
+            $query = $this->bd->prepare("
                         SELECT * FROM artigos
                         INNER JOIN artigo_pasta ON artigos.ID = artigo_pasta.id_artigo
                         INNER JOIN pasta_user ON artigo_pasta.id_pasta = pasta_user.id_pasta
@@ -91,64 +97,86 @@ class ArtigoRepository
                         WHERE pastas.nome_pasta = 'root' AND pasta_user.id_user = ?
                         ");
 
-                        $query->bind_param("s", $user);
-                }
-
-
-                $query->execute();
-                $result = $query->get_result();
-                $artigoList = $result->fetch_all(MYSQLI_ASSOC);
-
-                return array_map(
-                        function ($dados) {
-                                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
-                                $artigo->setId($dados['ID']);
-
-                                return $artigo;
-                        },
-
-                        $artigoList
-                );
+            $query->bind_param("s", $user);
+        } else {
+            die();
         }
 
-        public function explorar(): array
-        {
-                $query = $this->bd->prepare("SELECT * FROM artigos");
 
-                $query->execute();
-                $result = $query->get_result();
-                $artigoList = $result->fetch_all(MYSQLI_ASSOC);
+        $query->execute();
+        $result = $query->get_result();
+        $artigoList = $result->fetch_all(MYSQLI_ASSOC);
 
-                return array_map(
-                        function ($dados) {
-                                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
-                                $artigo->setId($dados['ID']);
+        return array_map(
+            function ($dados) {
+                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
+                $artigo->setId($dados['ID']);
 
-                                return $artigo;
-                        },
+                return $artigo;
+            },
 
-                        $artigoList
-                );
-        }
+            $artigoList
+        );
+    }
 
-        public function pesquisa($pesquisa):array
-        {
-                $query = $this->bd->prepare("SELECT * FROM artigos where Titulo like ?;");
-                $pesquisa = "%". $pesquisa ."%";
-                $query->bind_param('s', $pesquisa);
-                $query->execute();
-                $result = $query->get_result();
-                $artigoList = $result->fetch_all(MYSQLI_ASSOC);
+    public function explorar(): array
+    {
+        $query = $this->bd->prepare("SELECT * FROM artigos");
 
-                return array_map(
-                        function ($dados) {
-                                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
-                                $artigo->setId($dados['ID']);
+        $query->execute();
+        $result = $query->get_result();
+        $artigoList = $result->fetch_all(MYSQLI_ASSOC);
 
-                                return $artigo;
-                        },
+        return array_map(
+            function ($dados) {
+                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
+                $artigo->setId($dados['ID']);
 
-                        $artigoList
-                );
-        }
+                return $artigo;
+            },
+
+            $artigoList
+        );
+    }
+
+    public function pesquisa($pesquisa): array
+    {
+        $query = $this->bd->prepare("SELECT * FROM artigos where Titulo like ?;");
+        $pesquisa = "%" . $pesquisa . "%";
+        $query->bind_param('s', $pesquisa);
+        $query->execute();
+        $result = $query->get_result();
+        $artigoList = $result->fetch_all(MYSQLI_ASSOC);
+
+        return array_map(
+            function ($dados) {
+                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
+                $artigo->setId($dados['ID']);
+
+                return $artigo;
+            },
+
+            $artigoList
+        );
+    }
+
+    public function carregarInformacoes(int $id): array
+    {
+        $query = $this->bd->prepare("SELECT * FROM artigos where ID = ?;");
+        $query->bind_param('s', $id);
+        $query->execute();
+        $result = $query->get_result();
+        $artigoList = $result->fetch_all(MYSQLI_ASSOC);
+
+        return array_map(
+            function ($dados) {
+                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
+                $artigo->setId($dados['ID']);
+
+                return $artigo;
+            },
+
+            $artigoList
+        );
+    }
 }

@@ -3,7 +3,6 @@
 namespace artorganizer\Entity;
 
 
-
 class Usuario
 {
     private int $id;
@@ -21,7 +20,7 @@ class Usuario
         $this->setNome($nome);
         $this->setEmail($email);
         $this->setNasc($nasc);
-        
+
     }
 
 

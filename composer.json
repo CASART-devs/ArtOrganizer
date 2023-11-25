@@ -1,18 +1,19 @@
 {
-    "autoload": {
-        "psr-4": {
-            "artorganizer\\Entity\\": "src/Entity",
-            "artorganizer\\Repository\\": "src/Repository",
-            "artorganizer\\Controller\\": "src/Controller"
-        }
-    },
-    "authors": [
-        {
-            "name": "Vinícius de Araujo Goulart",
-            "email": "art.organize1@gmail.com"
-        }
-    ],
-    "require": {
-        "phpmailer/phpmailer": "^6.8"
+  "autoload": {
+    "psr-4": {
+      "artorganizer\\Entity\\": "src/Entity",
+      "artorganizer\\Repository\\": "src/Repository",
+      "artorganizer\\Controller\\": "src/Controller"
     }
+  },
+  "authors": [
+    {
+      "name": "Vinícius de Araujo Goulart",
+      "email": "art.organize1@gmail.com"
+    }
+  ],
+  "require": {
+    "phpmailer/phpmailer": "^6.8",
+    "ext-mysqli": "*"
+  }
 }

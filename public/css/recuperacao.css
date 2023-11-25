@@ -1,15 +1,15 @@
-body{
-    background-color:#40593F;
+body {
+    background-color: #40593F;
     color: #D9D8D7;
 }
 
-#base{
+#base {
     height: 100vh;
 }
 
-#recu{
+#recu {
     width: 900px;
-    
+
 
     background-color: #D9D8D7;
     color: #090D0B;

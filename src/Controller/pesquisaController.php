@@ -2,24 +2,24 @@
 
 namespace artorganizer\Controller;
 
-use artorganizer\Controller\Controller;
 use artorganizer\Repository\ArtigoRepository;
 
-class pesquisaController implements Controller
+readonly class pesquisaController implements Controller
 {
 
     function __construct(private ArtigoRepository $artigoRepository)
     {
     }
 
-    function processarRequisicao()
+    function processarRequisicao(): void
     {
         $pesquisa = $_POST['pesquisa'];
         $ArtigoList = $this->artigoRepository->pesquisa($pesquisa);
 
-?>
+        ?>
         <!-- Modal -->
-        <div class="modal fade" id="adicionar-artigo" tabindex="-1" aria-labelledby="adicionarArtigolLabel" aria-hidden="true">
+        <div class="modal fade" id="adicionar-artigo" tabindex="-1" aria-labelledby="adicionarArtigolLabel"
+             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -30,26 +30,30 @@ class pesquisaController implements Controller
                         <div class="modal-body">
 
                             <div class="mb-3">
-                                <label for="" class="form-label">Titulo</label>
-                                <input type="text" class="form-control" name="titulo-artigo" id="titulo-artigo" aria-describedby="helpId" placeholder="" required>
+                                <label for="titulo-artigo" class="form-label">Titulo</label>
+                                <input type="text" class="form-control" name="titulo-artigo" id="titulo-artigo"
+                                       aria-describedby="helpId" placeholder="" required>
                                 <small id="helpId" class="form-text text-muted">insira o nome do artigo</small>
                             </div>
 
                             <div class="mb-3">
-                                <label for="" class="form-label">Autor</label>
-                                <input type="text" class="form-control" name="autor-artigo" id="autor-artigo" aria-describedby="helpId" placeholder="" required>
+                                <label for="autor-artigo" class="form-label">Autor</label>
+                                <input type="text" class="form-control" name="autor-artigo" id="autor-artigo"
+                                       aria-describedby="helpId" placeholder="" required>
                                 <small id="helpId" class="form-text text-muted">insira o nome do autor do artigo</small>
                             </div>
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Capa do artigo</label>
-                                <input type="file" class="form-control" name="img-previw" id="img-previw" placeholder="" aria-describedby="fileHelpId" required>
+                                <input type="file" class="form-control" name="img-previw" id="img-previw" placeholder=""
+                                       aria-describedby="fileHelpId" required>
                                 <div id="fileHelpId" class="form-text">Insira uma capa para o artigo</div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Artigo</label>
-                                <input type="file" class="form-control" name="artigo" id="artigo" placeholder="" aria-describedby="fileHelpId" required>
+                                <input type="file" class="form-control" name="artigo" id="artigo" placeholder=""
+                                       aria-describedby="fileHelpId" required>
                                 <div id=" fileHelpId" class="form-text">Insira o artigo .pdf
                                 </div>
                             </div>
@@ -64,7 +68,8 @@ class pesquisaController implements Controller
             </div>
         </div>
 
-        <div class="modal fade" id="adicionar-pasta" tabindex="-1" aria-labelledby="adicionarPastaLabel" aria-hidden="true">
+        <div class="modal fade" id="adicionar-pasta" tabindex="-1" aria-labelledby="adicionarPastaLabel"
+             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -76,13 +81,15 @@ class pesquisaController implements Controller
 
                             <div class="mb-3">
                                 <label for="nome-artigo" class="form-label">Nome da pasta</label>
-                                <input type="text" class="form-control" name="nome-pasta" id="nome-artigo" aria-describedby="helpId" placeholder="" required>
+                                <input type="text" class="form-control" name="nome-pasta" id="nome-artigo"
+                                       aria-describedby="helpId" placeholder="" required>
                                 <small id="helpId" class="form-text text-muted">Insira o nome da pasta</small>
                             </div>
 
                             <div class="mb-3">
                                 <label for="desc-pasta" class="form-label">Descrição da pasta</label>
-                                <textarea class="form-control" name="desc-pasta" id="desc-pasta" rows="3" required></textarea>
+                                <textarea class="form-control" name="desc-pasta" id="desc-pasta" rows="3"
+                                          required></textarea>
                                 <small class="helpId">Inisira uma descrição</small>
                             </div>
 
@@ -95,8 +102,6 @@ class pesquisaController implements Controller
                 </div>
             </div>
         </div>
-
-
 
 
         <div class="container-fluid pt-3">
@@ -114,9 +119,9 @@ class pesquisaController implements Controller
                             <span class="h1 m-3">Explorar artigos</span>
 
                             <?php if (isset($_SESSION['id_pasta'])) { ?>
-                                <a type="button" id="btnVoltar" class="btn button col-2 mx-3" href="/voltar"> voltar </a>
+                                <a type="button" id="btnVoltar" class="btn button col-2 mx-3" href="/voltar">
+                                    voltar </a>
                             <?php } ?>
-
 
 
                         </div>
@@ -124,7 +129,8 @@ class pesquisaController implements Controller
 
                             <form class="d-flex align-items-center  my-3" method="post" action="/pesquisa">
 
-                                <input class="form-control mx-2" id="pesquisa" name="pesquisa" type="search" placeholder="Pesquisa" aria-label="Pesquisa">
+                                <input class="form-control mx-2" id="pesquisa" name="pesquisa" type="search"
+                                       placeholder="Pesquisa" aria-label="Pesquisa">
                                 <button class="btn btn-outline-light button-nav" type="submit">Pesquisa</button>
 
                             </form>
@@ -132,10 +138,7 @@ class pesquisaController implements Controller
                         </div>
 
 
-
                     </div>
-
-
 
 
                     <div class="row my-4">
@@ -147,7 +150,8 @@ class pesquisaController implements Controller
 
                                 <div class="card m-2">
                                     <a href="/upload/artigo/artigo/<?= $artigo->getArtigo(); ?>" target="_blank">
-                                        <img src="/upload/artigo/img/<?= ($artigo->getImg()); ?>" class="card-img" alt="capa_artigo">
+                                        <img src="/upload/artigo/img/<?= ($artigo->getImg()); ?>" class="card-img"
+                                             alt="capa_artigo">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-10">
@@ -169,14 +173,13 @@ class pesquisaController implements Controller
                 </div>
 
 
-                <?php require_once __DIR__ . "/../../app/sidebar.php"; ?>
+                <?php $sidebar = new sidebarController(); ?>
 
             </div>
 
         </div>
 
 
-        </body>
-<?php
+        <?php
     }
 }

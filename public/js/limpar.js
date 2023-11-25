@@ -9,7 +9,7 @@ const user_cad = document.querySelector("#user_cad");
 const email_cad = document.querySelector("#email_cad");
 const nasc_cad = document.querySelector("#nasc_cad");
 
-function limpar(){
+function limpar() {
     senha_log.value = "";
     email_log.value = "";
     nome_cad.value = "";
@@ -17,13 +17,13 @@ function limpar(){
     senha_cad.value = "";
     email_cad.value = "";
     nasc_cad.value = "";
-    
+
 }
 
-login.onClick = function(){
+login.onClick = function() {
     limpar();
-}
+};
 
-cadastrar.onClick = function(){
+cadastrar.onClick = function() {
     limpar();
-}
+};

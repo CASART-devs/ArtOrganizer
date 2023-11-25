@@ -1,37 +1,21 @@
-.esconder {
-    display: none;
-   
-}
-.sidebar_tamanho{
-    height: 20rem;
-    width: auto;
-    transition: 500ms;
-}
 
-
-#head_sidebar{
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-}
-#head_sidebar h1{
-    margin: 0;
-}
 #btn_amigos {
     flex-direction: row;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#botao-esconder-menu{
+
+#botao-esconder-menu {
     font-size: 2.5rem;
     font-weight: 500;
 }
-ul a{
+
+ul a {
     color: #3D3D3D;
 }
 
-ul a:hover{
+ul a:hover {
     color: #051446;
 }
 
@@ -41,39 +25,38 @@ ul a:hover{
 }
 
 
-
-.barra-menu{
+.barra-menu {
     position: relative;
     max-width: 15rem;
     transition: 300ms;
 
 }
 
-.barra-menu.fechado{
+.barra-menu.fechado {
     position: relative;
     max-width: 4rem;
-    
+
 
 }
 
-.barra-menu.fechado .texto{
+.barra-menu.fechado .texto {
     display: none;
 }
 
-.barra-amigos{
+.barra-amigos {
     position: relative;
     width: 15rem;
     transition: 300ms;
 
 }
 
-.barra-amigos.fechado{
+.barra-amigos.fechado {
     position: relative;
     width: 4rem;
-    
+
 
 }
 
-.barra-amigos.fechado .texto{
+.barra-amigos.fechado .texto {
     display: none;
 }

@@ -7,7 +7,7 @@
     <title>ArtOrganizer</title>
 
     <!-- bootstrap5 -->
-    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- bootstrap-icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- fonte-->
@@ -24,134 +24,156 @@
 
 <body>
 
-    <?php
-    require_once __DIR__ . "/../vendor/autoload.php";
+<?php
+require_once __DIR__ . "/../vendor/autoload.php";
 
-    use artorganizer\Controller\atualizacaoController;
-    use artorganizer\Controller\cadastroController;
-    use artorganizer\Controller\configuracaoController;
-    use artorganizer\Controller\explorarController;
-    use artorganizer\Controller\homeController;
-    use artorganizer\Controller\landingpageController;
-    use artorganizer\Controller\loginController;
-    use artorganizer\Controller\pesquisaController;
-    use artorganizer\Controller\logoutController;
-    use artorganizer\Repository\ArtigoRepository;
-    use artorganizer\Repository\UsuarioRepository;
-    use artorganizer\Repository\PastaRepository;
-    
+use artorganizer\Controller\{addArtigoController,
+    addPastaController,
+    attArtigoController,
+    attPastaController,
+    atualizacaoController,
+    cadastroController,
+    configuracaoController,
+    excluirArtigoController,
+    excluirPastaController,
+    excluirSessaoController,
+    explorarController,
+    homeController,
+    infoArtigoController,
+    infoPastaController,
+    landingpageController,
+    loginController,
+    logoutController,
+    navbarController,
+    pegarIdExcluir,
+    pegarSessaoController,
+    pesquisaController,
+    processarSolicitacaoController,
+    recuperarController,
+    redefinirSenhaController,
+    ValidarController,
+    voltarController};
+use artorganizer\Entity\Conexao;
+use artorganizer\Repository\{ArtigoRepository,
+    PastaRepository,
+    PastaUserRepository,
+    TokenRepository,
+    UsuarioRepository};
 
-    //Front-controller
+//Front-controller
 
-    session_start();
-    require_once __DIR__ .  "/../app/conexao.php";
-
-
-    //instanciando repositórios
-    $pastaRepository = new PastaRepository($conexao);
-    $artigoRepository = new ArtigoRepository($conexao);
-    $usuarioRepository = new UsuarioRepository($conexao);
-    
+session_start();
+$conexao = new Conexao("1212", "artorganizer");
 
 
+//instanciando repositórios
+$pastaRepository = new PastaRepository($conexao);
+$artigoRepository = new ArtigoRepository($conexao);
+$usuarioRepository = new UsuarioRepository($conexao);
+$pastaUserRepository = new PastaUserRepository($conexao);
+$tokenRepository = new TokenRepository($conexao);
 
-    if (!array_key_exists('PATH_INFO', $_SERVER) || ($_SERVER['PATH_INFO'] === '/')) {
 
-        $controller = new landingpageController();
-    } elseif (($_SERVER['PATH_INFO'] === '/login')) {
+if (!array_key_exists('PATH_INFO', $_SERVER) || ($_SERVER['PATH_INFO'] === '/')) {
 
-        $controller = new loginController($usuarioRepository);
-    } elseif (($_SERVER['PATH_INFO'] === '/cadastrar')) {
+    $controller = new landingpageController();
+} elseif (($_SERVER['PATH_INFO'] === '/login')) {
 
-        $controller =  new cadastroController($usuarioRepository, $pastaRepository);
-    } elseif (($_SERVER['PATH_INFO'] === '/redefinir_senha')) {
+    $controller = new loginController($usuarioRepository);
+} elseif (($_SERVER['PATH_INFO'] === '/cadastrar')) {
 
-        require_once __DIR__ .  "/../app/redefinir_senha.php";
+    $controller = new cadastroController($usuarioRepository, $pastaRepository);
+} elseif (($_SERVER['PATH_INFO'] === '/redefinir_senha')) {
+
+    $controller = new redefinirSenhaController($conexao);
+} else {
+
+    $validar = new ValidarController();
+
+
+    if (($_SERVER['PATH_INFO'] === '/home')) {
+
+        $navbar = new navbarController();
+        $controller = new homeController($pastaRepository, $artigoRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/explorar') {
+
+        $navbar = new navbarController();
+        $controller = new explorarController($artigoRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/pesquisa') {
+
+        $navbar = new navbarController();
+        $controller = new pesquisaController($artigoRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/logout') {
+
+        $controller = new logoutController();
+    } elseif ($_SERVER['PATH_INFO'] === '/configuracao') {
+
+        $navbar = new navbarController();
+        $controller = new configuracaoController();
+    } elseif ($_SERVER['PATH_INFO'] === '/atualizacao') {
+
+        $controller = new atualizacaoController($usuarioRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/adicionarArtigo') {
+
+        $controller = new addArtigoController($artigoRepository, $pastaUserRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/informacaoArtigo') {
+
+        $navbar = new navbarController();
+        $controller = new infoArtigoController($artigoRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/atualizarArtigo') {
+
+        $controller = new attArtigoController($artigoRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/excluirArtigo') {
+
+        $controller = new excluirArtigoController($artigoRepository, $pastaUserRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/adicionarPasta') {
+
+        $controller = new addPastaController($pastaRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/informacaoPasta') {
+
+        $navbar = new navbarController();
+        $controller = new infoPastaController($pastaRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/excluirPasta') {
+
+        $navbar = new navbarController();
+        $controller = new  excluirPastaController($pastaRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/atualizarPasta') {
+
+        $controller = new  attPastaController($pastaRepository);
+    } elseif ($_SERVER['PATH_INFO'] === '/pegarIdExcluir') {
+
+        $controller = new  pegarIdExcluir();
+    } elseif ($_SERVER['PATH_INFO'] === '/excluirSessao') {
+
+        $controller = new  excluirSessaoController();
+    } elseif ($_SERVER['PATH_INFO'] === '/voltar') {
+
+        $controller = new voltarController();
+    } elseif ($_SERVER['PATH_INFO'] === '/pegarSessao') {
+
+        $controller = new  pegarSessaoController();
+    } elseif ($_SERVER['PATH_INFO'] === '/recuperar') {
+
+        $controller = new  recuperarController();
+    } elseif ($_SERVER['PATH_INFO'] === '/processar_solicitacao') {
+
+        $controller = new processarSolicitacaoController($tokenRepository);
     } else {
-
-        require_once __DIR__ .  "/../app/validar.php";
-
-        if (($_SERVER['PATH_INFO'] === '/home')) {
-
-            require_once __DIR__ .  "/../app/navbar.php";
-            $controller = new homeController($pastaRepository, $artigoRepository);
-        } elseif ($_SERVER['PATH_INFO'] === '/explorar') {
-
-            require_once __DIR__ .  "/../app/navbar.php";
-            $controller =  new explorarController($artigoRepository);
-        } elseif ($_SERVER['PATH_INFO'] === '/pesquisa') {
-
-            require_once __DIR__ .  "/../app/navbar.php";
-            $controller =  new pesquisaController($artigoRepository);
-        } elseif ($_SERVER['PATH_INFO'] === '/logout') {
-
-            $controller =  new logoutController();
-        } elseif ($_SERVER['PATH_INFO'] === '/configuracao') {
-
-            require_once __DIR__ .  "/../app/navbar.php";
-            $controller  =  new configuracaoController();
-        } elseif ($_SERVER['PATH_INFO'] === '/atualizacao') {
-
-           $controller = new atualizacaoController($usuarioRepository);
-        } elseif ($_SERVER['PATH_INFO'] === '/adicionarArtigo') {
-
-            require_once __DIR__ .  "/../app/adicionar-artigos.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/informacaoArtigo') {
-
-            require_once __DIR__ .  "/../app/navbar.php";
-            require_once __DIR__ .  "/../app/infoArtigo.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/atualizarArtigo') {
-
-            require_once __DIR__ .  "/../app/attArtigo.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/excluirArtigo') {
-
-            require_once __DIR__ .  "/../app/excluir-artigo.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/adicionarPasta') {
-
-            require_once __DIR__ .  "/../app/adicionar-pastas.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/informacaoPasta') {
-
-            require_once __DIR__ .  "/../app/navbar.php";
-            require_once __DIR__ .  "/../app/infoPasta.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/excluirPasta') {
-
-            require_once __DIR__ .  "/../app/navbar.php";
-            require_once __DIR__ .  "/../app/excluir-pasta.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/atualizarPasta') {
-
-            require_once __DIR__ .  "/../app/attPasta.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/pegarIdExcluir') {
-
-            require_once __DIR__ .  "/../app/pegarIdExlcuir.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/excluirSessao') {
-
-            require_once __DIR__ .  "/../app/excluirSessao.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/voltar') {
-
-            require_once __DIR__ .  "/../app/voltar.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/pegarSessao') {
-
-            require_once __DIR__ .  "/../app/pegarSessao.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/recuperar') {
-
-            require_once __DIR__ .  "/../app/recuperar.php";
-        } elseif ($_SERVER['PATH_INFO'] === '/processar_solicitacao') {
-
-            require_once __DIR__ .  "/../app/processar_solicitacao.php";
-        } else {
-            require_once __DIR__ .  "/../app/logout.php";
-        }
+        $controller = new logoutController();
     }
+}
 
-    if (isset($controller)) {
-        $controller->processarRequisicao();
-    }
+try {
+    $controller->processarRequisicao();
+} catch (Exception $e) {
+    echo "error no controller";
+}
 
-    ?>
+?>
 
-    <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/sidebar.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/limpar.js"></script>
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/index.js"></script>
+<script src="js/limpar.js"></script>
 
 </html>

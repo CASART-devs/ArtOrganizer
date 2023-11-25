@@ -2,20 +2,16 @@
 
 namespace artorganizer\Controller;
 
-use artorganizer\Controller\Controller;
-
 class logoutController implements Controller
 {
-
 
     function __construct()
     {
     }
 
-    function processarRequisicao()
+    function processarRequisicao(): void
     {
         session_destroy();
-
         header("Location:/");
     }
 }

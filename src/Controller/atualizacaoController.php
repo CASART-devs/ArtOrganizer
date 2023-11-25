@@ -2,19 +2,19 @@
 
 namespace artorganizer\Controller;
 
-use artorganizer\Controller\Controller;
 use artorganizer\Entity\Arquivo;
 use artorganizer\Entity\Usuario;
 use artorganizer\Repository\UsuarioRepository;
+use Exception;
 
-class atualizacaoController implements Controller
+readonly class atualizacaoController implements Controller
 {
 
     function __construct(private UsuarioRepository $usuarioRepository)
     {
     }
 
-    function processarRequisicao()
+    function processarRequisicao(): void
     {
 
         $nome = $_POST['nome'];
@@ -46,8 +46,6 @@ class atualizacaoController implements Controller
             }
 
 
-
-
             $_SESSION['user_name'] = $usuario->getNome();
             $_SESSION['user_nick'] = $usuario->getNick();
             $_SESSION['user_email'] = $usuario->getEmail();
@@ -56,10 +54,10 @@ class atualizacaoController implements Controller
             $_SESSION['user_img'] = $usuario->getPerfilImg();
 
             header("Location:/configuracao");
-        } catch (\Exception $error) {
+        } catch (Exception $error) {
 
             echo "Erro ao atualizar!  ($error) <br>";
-            echo "Clique <a href='configuracao.php'>aqui</a> para voltar";
+            echo "Clique <a href='/configuracao'>aqui</a> para voltar";
         }
     }
 }

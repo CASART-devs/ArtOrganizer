@@ -14,7 +14,7 @@ body {
     color: #090D0B;
 }
 
-#pesquisa{
+#pesquisa {
     width: 30rem;
 
 }
@@ -32,10 +32,11 @@ body {
     align-items: center;
     object-fit: cover;
     height: 15rem;
-    
-    
+
+
     padding: 0;
 }
+
 .perfil img {
     display: flex;
     justify-content: center;
@@ -47,7 +48,7 @@ body {
     padding: 0;
 }
 
-#informacoesArtigo{
+#informacoesArtigo {
     max-width: 75rem;
 }
 
@@ -129,16 +130,12 @@ body {
     color: #D9D8D7;
 }
 
-#btn-esconder-artigos {
-    cursor: pointer;
-}
 
 #head-right {
     display: flex;
     justify-content: end;
     align-items: center;
 }
-
 
 
 ul a {

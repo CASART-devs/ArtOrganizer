@@ -5,5 +5,8 @@ namespace artorganizer\Controller;
 interface Controller
 {
 
-    public function processarRequisicao();
+    /**
+     * @return void
+     */
+    public function processarRequisicao(): void;
 }

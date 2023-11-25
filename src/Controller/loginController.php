@@ -2,22 +2,18 @@
 
 namespace artorganizer\Controller;
 
-use artorganizer\Controller\Controller;
 use artorganizer\Repository\UsuarioRepository;
+use Exception;
 
-class loginController implements Controller
+readonly class loginController implements Controller
 {
 
     function __construct(private UsuarioRepository $usuarioRepository)
     {
     }
 
-
-
-
-    function processarRequisicao()
+    function processarRequisicao(): void
     {
-
 
         $email = $_POST['email_log'];
         $senha = $_POST['senha_log'];
@@ -26,7 +22,7 @@ class loginController implements Controller
 
 
             $usuario = $this->usuarioRepository->logar($email, $senha);
-            if ($usuario != false) {
+            if ($usuario) {
                 $_SESSION['user_id'] = $usuario->getId();
                 $_SESSION['user_nick'] = $usuario->getNick();
                 $_SESSION['user_nome'] = $usuario->getNome();
@@ -36,7 +32,7 @@ class loginController implements Controller
             } else {
                 header("Location: /");
             }
-        } catch (\Exception $error) {
+        } catch (Exception $error) {
             echo "erro na query $error";
         }
     }

@@ -2,21 +2,21 @@
 
 namespace artorganizer\Controller;
 
-use artorganizer\Controller\Controller;
-use artorganizer\Repository\UsuarioRepository;
-use artorganizer\Repository\PastaRepository;
-use artorganizer\Entity\Usuario;
 use artorganizer\Entity\Pasta;
+use artorganizer\Entity\Usuario;
+use artorganizer\Repository\PastaRepository;
+use artorganizer\Repository\UsuarioRepository;
+use Exception;
 
 
-class cadastroController implements Controller
+readonly class cadastroController implements Controller
 {
 
     function __construct(private UsuarioRepository $usuarioRepository, private PastaRepository $pastaRepository)
     {
     }
 
-    function processarRequisicao()
+    function processarRequisicao(): void
     {
         try {
 
@@ -37,7 +37,7 @@ class cadastroController implements Controller
             $this->pastaRepository->add($Usuario->getId(), $pasta);
 
             header("location:/");
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo "Erro: " . $e->getMessage();
         }
     }

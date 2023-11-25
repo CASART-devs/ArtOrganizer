@@ -61,9 +61,9 @@ readonly class ArtigoRepository
     {
         $titulo = $artigo->getTitulo();
         $autor = $artigo->getAutor();
-        $data = $artigo->getDataPublicacao();
         $img = $artigo->getImg();
         $artigoCaminho = $artigo->getArtigo();
+        $id = $artigo->getId();
 
         $query = $this->bd->prepare("
                         UPDATE `artigos`
@@ -71,7 +71,7 @@ readonly class ArtigoRepository
                         WHERE ID = ?
                 ");
 
-        $query->bind_param("sssss", $titulo, $autor, $data, $img, $artigoCaminho);
+        $query->bind_param("ssssi", $titulo, $autor, $img, $artigoCaminho, $id);
         return $query->execute();
     }
 

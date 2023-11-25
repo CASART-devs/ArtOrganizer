@@ -85,7 +85,7 @@ readonly class infoArtigoController implements Controller
                                     <a id="btn_voltar" class="btn button m-2" href="/home" role="button">voltar</a>
                                     <button type="submit" class="btn button m-2">Atualizar</button>
                                     <a id="btn_download" class="btn button m-2"
-                                       href="/upload/artigo/artigo/<?= $dados[0]->getImg(); ?>"
+                                       href="/../../upload/artigo/artigo/<?= $dados[0]->getArtigo(); ?>"
                                        target="_blank">Download</a>
                                 </div>
                             </div>

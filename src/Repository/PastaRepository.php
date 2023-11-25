@@ -41,6 +41,8 @@ readonly class PastaRepository
 
     public function excluir(int $id): bool
     {
+        $artigoPasta = new ArtigoPastaRepository($this->bd);
+        $artigoPasta->excluir($id);
 
         $pastaUser = new PastaUserRepository($this->bd);
         $pastaUser->excluir($id);

@@ -19,4 +19,11 @@ readonly class ArtigoPastaRepository
         return $query->execute();
     }
 
+    public function excluir(int $id): bool
+    {
+        $query = $this->bd->prepare("DELETE FROM artigo_pasta WHERE id_pasta = ?");
+        $query->bind_param("i", $id);
+        return $query->execute();
+    }
+
 }

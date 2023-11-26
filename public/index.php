@@ -73,95 +73,22 @@ $usuarioRepository = new UsuarioRepository($conexao);
 $pastaUserRepository = new PastaUserRepository($conexao);
 $tokenRepository = new TokenRepository($conexao);
 
+$repositorios  = [
+    "pastaUser" =>  new PastaUserRepository($conexao),
+    "pasta" => new PastaRepository($conexao),
+    "artigo" => new ArtigoRepository($conexao),
+    "usuario" => new UsuarioRepository($conexao),
+    "token" => $tokenRepository = new TokenRepository($conexao)
+];
 
-if (!array_key_exists('PATH_INFO', $_SERVER) || ($_SERVER['PATH_INFO'] === '/')) {
+$pathInfo = $_SERVER['PATH_INFO'] ?? "/";
+$httpMethod = $_SERVER['REQUEST_METHOD'];
 
-    $controller = new landingpageController();
-} elseif (($_SERVER['PATH_INFO'] === '/login')) {
+$routes = require_once __DIR__ . "/../config/router.php";
 
-    $controller = new loginController($usuarioRepository);
-} elseif (($_SERVER['PATH_INFO'] === '/cadastrar')) {
+$controllerClass = $routes["$httpMethod|$pathInfo"];
 
-    $controller = new cadastroController($usuarioRepository, $pastaRepository);
-} elseif (($_SERVER['PATH_INFO'] === '/redefinir_senha')) {
-
-    $controller = new redefinirSenhaController($conexao);
-} else {
-
-    $validar = new ValidarController();
-
-
-    if (($_SERVER['PATH_INFO'] === '/home')) {
-
-        $navbar = new navbarController();
-        $controller = new homeController($pastaRepository, $artigoRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/explorar') {
-
-        $navbar = new navbarController();
-        $controller = new explorarController($artigoRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/pesquisa') {
-
-        $navbar = new navbarController();
-        $controller = new pesquisaController($artigoRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/logout') {
-
-        $controller = new logoutController();
-    } elseif ($_SERVER['PATH_INFO'] === '/configuracao') {
-
-        $navbar = new navbarController();
-        $controller = new configuracaoController();
-    } elseif ($_SERVER['PATH_INFO'] === '/atualizacao') {
-
-        $controller = new atualizacaoController($usuarioRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/adicionarArtigo') {
-
-        $controller = new addArtigoController($artigoRepository, $pastaUserRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/informacaoArtigo') {
-
-        $navbar = new navbarController();
-        $controller = new infoArtigoController($artigoRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/atualizarArtigo') {
-
-        $controller = new attArtigoController($artigoRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/excluirArtigo') {
-
-        $controller = new excluirArtigoController($artigoRepository, $pastaUserRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/adicionarPasta') {
-
-        $controller = new addPastaController($pastaRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/informacaoPasta') {
-
-        $navbar = new navbarController();
-        $controller = new infoPastaController($pastaRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/excluirPasta') {
-
-        $navbar = new navbarController();
-        $controller = new  excluirPastaController($pastaRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/atualizarPasta') {
-
-        $controller = new  attPastaController($pastaRepository);
-    } elseif ($_SERVER['PATH_INFO'] === '/pegarIdExcluir') {
-
-        $controller = new  pegarIdExcluir();
-    } elseif ($_SERVER['PATH_INFO'] === '/excluirSessao') {
-
-        $controller = new  excluirSessaoController();
-    } elseif ($_SERVER['PATH_INFO'] === '/voltar') {
-
-        $controller = new voltarController();
-    } elseif ($_SERVER['PATH_INFO'] === '/pegarSessao') {
-
-        $controller = new  pegarSessaoController();
-    } elseif ($_SERVER['PATH_INFO'] === '/recuperar') {
-
-        $controller = new  recuperarController();
-    } elseif ($_SERVER['PATH_INFO'] === '/processar_solicitacao') {
-
-        $controller = new processarSolicitacaoController($tokenRepository);
-    } else {
-        $controller = new logoutController();
-    }
-}
+$controller = new $controllerClass($repositorios);
 
 try {
     $controller->processarRequisicao();
@@ -173,7 +100,6 @@ try {
 
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="js/sidebar.js"></script>
-<script src="js/index.js"></script>
 <script src="js/limpar.js"></script>
 
 </html>

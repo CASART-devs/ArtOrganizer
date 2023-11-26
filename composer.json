@@ -3,7 +3,8 @@
     "psr-4": {
       "artorganizer\\Entity\\": "src/Entity",
       "artorganizer\\Repository\\": "src/Repository",
-      "artorganizer\\Controller\\": "src/Controller"
+      "artorganizer\\Controller\\": "src/Controller",
+      "artorganizer\\Config\\": "config"
     }
   },
   "authors": [

@@ -9,8 +9,10 @@ use Override;
 
 readonly class addPastaController implements Controller
 {
-    function __construct(private PastaRepository $pastaRepository)
+    private PastaRepository $pastaRepository;
+    function __construct(array $repository)
     {
+        $this->pastaRepository = $repository['pasta'];
     }
 
     /**

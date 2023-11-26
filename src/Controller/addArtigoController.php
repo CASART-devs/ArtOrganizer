@@ -10,9 +10,12 @@ use Exception;
 
 readonly class addArtigoController implements Controller
 {
-    function __construct(private ArtigoRepository $artigoRepository, private PastaUserRepository $pastaUserRepository)
+    private ArtigoRepository $artigoRepository;
+    private PastaUserRepository $pastaUserRepository;
+    function __construct(array $repository)
     {
-
+        $this->pastaUserRepository = $repository['pastaUser'];
+        $this->artigoRepository = $repository['artigo'];
     }
 
     function processarRequisicao(): void

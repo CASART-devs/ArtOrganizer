@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/Controller" isTestSource="false" packagePrefix="artorganizer\Controller\" />
       <sourceFolder url="file://$MODULE_DIR$/src/Entity" isTestSource="false" packagePrefix="artorganizer\Entity\" />
       <sourceFolder url="file://$MODULE_DIR$/src/Repository" isTestSource="false" packagePrefix="artorganizer\Repository\" />
+      <sourceFolder url="file://$MODULE_DIR$/config" isTestSource="false" packagePrefix="artorganizer\Config\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpmailer/phpmailer" />
     </content>

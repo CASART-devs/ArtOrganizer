@@ -8,8 +8,11 @@ use Exception;
 readonly class loginController implements Controller
 {
 
-    function __construct(private UsuarioRepository $usuarioRepository)
+    private UsuarioRepository $usuarioRepository;
+
+    function __construct(array $repository)
     {
+        $this->usuarioRepository = $repository['usuario'];
     }
 
     function processarRequisicao(): void

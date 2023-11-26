@@ -1,13 +1,11 @@
-/*fontes*/
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-    margin: 0;
+img{
+    object-fit: cover;
+    object-position: bottom;
 }
 
+.text-justify{
+    text-align: justify;
+}
 .menu-icons {
     align-items: center;
     display: flex;
@@ -24,21 +22,7 @@ a:hover {
     text-decoration: none;
 }
 
-.b1-font-h1 {
-    font-size: max(54px, 5vw);
-}
 
-.b1-font-h2 {
-    font-size: max(28px, 2vw);
-}
-
-.b2-font-h1 {
-    font-size: max(32px, 5vw);
-}
-
-.b2-font-h2 {
-    font-size: min(28px, 3.5vw);
-}
 
 
 .footer-fonts-h1 {
@@ -68,11 +52,6 @@ a:hover {
 
 }
 
-.cartao {
-    height: 90%;
-}
-
-
 #navbar {
     width: 100%;
     justify-content: center;
@@ -82,49 +61,60 @@ a:hover {
 /*banner1*/
 #banner1 {
     background-image: url(../img/home_imgs/banner1_b.jpg);
-    align-items: center;
     height: 100vh;
 }
 
 /*banner2*/
 #banner2 {
-    flex-wrap: wrap;
     background-color: #000;
     color: #fff;
-    height: 650px;
-}
 
-#banner2_textos {
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
 }
 
 /*banner3*/
 #banner3 {
-    height: 600px;
     background-color: rgba(255, 255, 255, 0.997);
-    margin: 50px 0;
 }
 
-#banner3_img {
-    height: 100%;
-    background-image: url(../img/home_imgs/banner3.jpg);
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+
+#banner3 img {
+    height: 7rem;
+    width: 100%;
+    border-radius: 5px;
+
 }
 
-#banner3_textos {
-    margin: 0 15px;
+#banner4 img{
+    width: 0;
+
+    border-radius: 5px;
 }
+
+@media (min-width: 720px) {
+    #banner3 img {
+        height: 25rem;
+        width: 100%;
+
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+    }
+
+    #banner4 img {
+        height: 25rem;
+        width: 100%;
+
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+    }
+}
+
+
 
 /*banner4*/
 #banner4 {
-    height: 600px;
+
     background-color: rgba(255, 255, 255, 0.997);
-    margin: 50px 0;
+
 }
 
 #banner4_img {
@@ -139,30 +129,9 @@ a:hover {
 
 }
 
-#footer_contatos {
-    width: 80%;
-}
 
 #banner5 {
-    height: 10%;
     color: #fff;
     background-color: #000;
 }
 
-#popupCadastrar {
-    border: 0;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 1);
-}
-
-.popup_content {
-    width: 80%;
-
-}
-
-#popupLogin {
-    border: 0;
-    border-radius: 10px;
-    max-width: 50rem;
-    box-shadow: rgba(0, 0, 0, 1);
-}

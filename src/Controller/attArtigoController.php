@@ -11,8 +11,10 @@ use Override;
 
 readonly class attArtigoController implements Controller
 {
-    function __construct(private ArtigoRepository $artigoRepository)
+    private ArtigoRepository $artigoRepository;
+    function __construct(array $repository)
     {
+        $this->artigoRepository = $repository['artigo'];
     }
 
     #[Override] public function processarRequisicao(): void

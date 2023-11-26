@@ -6,6 +6,6 @@ class landingpageController implements Controller
 {
     function processarRequisicao(): void
     {
-        require_once __DIR__ . "/../../views/landingPage.html";
+        require_once __DIR__ . "/../../views/landingPage.php";
     }
 }

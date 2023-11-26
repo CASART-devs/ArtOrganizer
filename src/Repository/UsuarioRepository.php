@@ -12,13 +12,25 @@ readonly class UsuarioRepository
     {
     }
 
-    function add(Usuario $user): bool
+    function add(Usuario $user):bool
     {
         $nick = $user->getNick();
         $senha = $user->getSenha();
         $nome = $user->getNome();
         $email = $user->getEmail();
         $nasc = $user->getNasc();
+
+
+        $query = $this->bd->prepare("SELECT * FROM usuarios WHERE Email = ?;");
+        $query->bind_param("s", $email);
+        $query->execute();
+        $result = $query->get_result();
+        $rows = $result->fetch_array(MYSQLI_NUM);
+
+        if ($rows != NULL)
+        {
+            return false;
+        }
 
         $query = $this->bd->prepare("INSERT INTO `usuarios`(`nome_Usuario`, `Senha`, `Nome_Completo`, `Email`, `Data_nasc`) VALUES (?, ?, ?, ?, ?);");
         $query->bind_param("sssss", $nick, $senha, $nome, $email, $nasc);

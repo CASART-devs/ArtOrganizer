@@ -1,10 +1,12 @@
 <body>
 
+
 <!--navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 
     <a class="navbar-brand col-4 col-md-2" href="#">
-        <img alt="Logo" class="mx-3 d-inline-block align-text-top" src="/img/logos/logo_dark.png" width="6923" style="width: 7rem">
+        <img alt="Logo" class="mx-3 d-inline-block align-text-top" src="/img/logos/logo_dark.png" width="6923"
+             style="width: 7rem">
     </a>
 
     <div class="collapse navbar-collapse justify-content-center" id="navbar_links">
@@ -16,6 +18,22 @@
             <a class="nav-item nav-link" href="#banner5" id="contatos-menu">Contatos</a>
         </div>
     </div>
+
+
+    <?php if(isset($_SESSION['error'])) { ?>
+        <div class="modal" style="display:block" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p><?= $_SESSION['error']; ?></p>
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" class="btn button" href="/excluirSessao">Fechar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 
     <div class="col">
         <div class="d-flex justify-content-around justify-content-md-end align-items-center">
@@ -66,7 +84,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Fechar</button>
-                    <button class="btn button btn-primary" id="enviar_log" type="submit">Login</button>
+                    <button class="btn button " id="enviar_log" type="submit">Login</button>
                 </div>
             </form>
         </div>
@@ -112,7 +130,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Fechar</button>
-                    <button class="btn button btn-primary" id="enviar_cad" type="submit">Cadastrar</button>
+                    <button class="btn button" id="enviar_cad" type="submit">Cadastrar</button>
                 </div>
             </form>
         </div>

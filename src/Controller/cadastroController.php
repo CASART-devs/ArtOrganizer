@@ -11,9 +11,12 @@ use Exception;
 
 readonly class cadastroController implements Controller
 {
-
-    function __construct(private UsuarioRepository $usuarioRepository, private PastaRepository $pastaRepository)
+    private UsuarioRepository $usuarioRepository;
+    private PastaRepository $pastaRepository;
+    function __construct(array $repository)
     {
+        $this->pastaRepository = $repository['pasta'];
+        $this->usuarioRepository = $repository['usuario'];
     }
 
     function processarRequisicao(): void
@@ -25,20 +28,23 @@ readonly class cadastroController implements Controller
             $senha = $_POST['senha_cad'];
             $nasc = $_POST['nasc_cad'];
             $nick = $_POST['user_cad'];
-            //cadastra usuario
 
+            //cadastra usuario
             $Usuario = new Usuario($nick, $nome, $email, $nasc);
             $Usuario->setSenha(password_hash($senha, PASSWORD_DEFAULT));
-            $this->usuarioRepository->add($Usuario);
+            if (!$this->usuarioRepository->add($Usuario))
+            {
+                $_SESSION['error'] =  "Erro email já cadastrado";
 
-            //cria pasta root
+            }else {
 
-            $pasta = new Pasta("root", "Pasta princípal");
-            $this->pastaRepository->add($Usuario->getId(), $pasta);
-
+                //cria pasta root
+                $pasta = new Pasta("root", "Pasta princípal");
+                $this->pastaRepository->add($Usuario->getId(), $pasta);
+            }
             header("location:/");
-        } catch (Exception $e) {
-            echo "Erro: " . $e->getMessage();
+        } catch (Exception $erro) {
+            echo "Erro: " . $erro->getMessage();
         }
     }
 }

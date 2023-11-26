@@ -13,7 +13,7 @@ class excluirSessaoController implements Controller
      */
     #[Override] public function processarRequisicao(): void
     {
-        validar();
+        unset($_SESSION['error']);
         unset($_SESSION['id_excluirPasta']);
         unset($_SESSION['id_excluirArtigo']);
 

@@ -90,10 +90,12 @@ readonly class UsuarioRepository
     {
 
         $nick = $user->getNick();
-        $senha = $user->getSenha();
         $nome = $user->getNome();
         $email = $user->getEmail();
         $nasc = $user->getNasc();
+        $fone = $user->getFone();
+        $img = $user->getPerfilImg();
+        $id = $user->getId();
 
         $query = $this->bd->prepare("
                 UPDATE artorganizer.usuarios
@@ -101,7 +103,7 @@ readonly class UsuarioRepository
                 WHERE ID=?;
                 ");
 
-        $query->bind_param("sssss", $nick, $senha, $nome, $email, $nasc);
+        $query->bind_param("ssssssi", $nick, $nome, $email, $nasc, $fone, $img, $id);
         return $query->execute();
     }
 }

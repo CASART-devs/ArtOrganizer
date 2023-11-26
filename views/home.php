@@ -1,6 +1,11 @@
 <?php
-    /** @var Pasta $pastaList */
-    /** @var Artigo $artigoList */
+
+use artorganizer\Entity\Artigo;
+use artorganizer\Entity\Pasta;
+
+/** @var Pasta $pastaList */
+/** @var Artigo $artigoList */
+require_once "navbar.php";
 ?>
 <div aria-hidden="true" aria-labelledby="adicionarArtigolLabel" class="modal fade" id="adicionar-artigo"
      tabindex="-1">
@@ -29,14 +34,16 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="">Capa do artigo</label>
-                        <input aria-describedby="fileHelpId" class="form-control" id="img-previw" name="img-previw" placeholder=""
+                        <input aria-describedby="fileHelpId" class="form-control" id="img-previw" name="img-previw"
+                               placeholder=""
                                required type="file">
                         <div class="form-text" id="fileHelpId">Insira uma capa para o artigo</div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="">Artigo</label>
-                        <input aria-describedby="fileHelpId" class="form-control" id="artigo" name="artigo" placeholder=""
+                        <input aria-describedby="fileHelpId" class="form-control" id="artigo" name="artigo"
+                               placeholder=""
                                required type="file">
                         <div class="form-text" id=" fileHelpId">Insira o artigo .pdf
                         </div>
@@ -87,52 +94,48 @@
     </div>
 </div>
 
-<?php use artorganizer\Controller\sidebarController;
-use artorganizer\Entity\Artigo;
-use artorganizer\Entity\Pasta;
+<?php if (isset($_SESSION['id_excluirArtigo'])) { ?>
+    <div class="modal" id="exluir-pasta" style="display:block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir</h5>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Você tem certeza que deseja excluir o artigo?</p>
 
-if (isset($_SESSION['id_excluirArtigo'])) { ?>
-<div class="modal" id="exluir-pasta" style="display:block" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Excluir</h5>
-                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-            </div>
-            <div class="modal-body">
-                <p>Você tem certeza que deseja excluir o artigo?</p>
-
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-secondary" href="/excluirSessao" type="button">Não</a>
-                <a class="btn button" href="/excluirArtigo?id_artigo=<?= $_SESSION['id_excluirArtigo'] ?>">Sim,
-                    excluir</a>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-secondary" href="/excluirSessao" type="button">Não</a>
+                    <a class="btn button" href="/excluirArtigo?id_artigo=<?= $_SESSION['id_excluirArtigo'] ?>">Sim,
+                        excluir</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 <?php } ?>
 
 <?php if (isset($_SESSION['id_excluirPasta'])) { ?>
-<div class="modal" id="exluir-pasta" style="display:block" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Excluir</h5>
-                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-            </div>
-            <div class="modal-body">
-                <p>Você tem certeza que deseja excluir o pasta?</p>
+    <div class="modal" id="exluir-pasta" style="display:block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir</h5>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Você tem certeza que deseja excluir o pasta?</p>
 
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-secondary" href="/excluirSessao" type="button">Não</a>
-                <a class="btn button" href="/excluirPasta?id_pasta=<?= $_SESSION['id_excluirPasta'] ?>">Sim,
-                    excluir</a>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-secondary" href="/excluirSessao" type="button">Não</a>
+                    <a class="btn button" href="/excluirPasta?id_pasta=<?= $_SESSION['id_excluirPasta'] ?>">Sim,
+                        excluir</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 <?php } ?>
 
 
@@ -151,8 +154,8 @@ if (isset($_SESSION['id_excluirArtigo'])) { ?>
                         <span class="h1 m-2">Biblioteca <?= "do(a) " . $_SESSION['user_nick']; ?></span>
 
                         <?php if (isset($_SESSION['id_pasta'])) { ?>
-                        <a class="btn button col-2 mx-3" href="/voltar" id="btnVoltar" type="button">
-                            voltar </a>
+                            <a class="btn button col-2 mx-3" href="/voltar" id="btnVoltar" type="button">
+                                voltar </a>
                         <?php } ?>
 
                         <div class="row">
@@ -221,61 +224,64 @@ if (isset($_SESSION['id_excluirArtigo'])) { ?>
             <div class="row">
                 <div class="col">
                     <?php if (!isset($_SESSION['id_pasta'])) { ?>
-                    <div class="row">
-                        <div class="grupo-conteudo my-2">
+                        <div class="row">
+                            <div class="grupo-conteudo my-2">
 
-                            <a aria-controls="pastas" aria-expanded="false" data-bs-target="#pastas"
-                               data-bs-toggle="collapse">
-                                <div class="btn-alternar">
-                                    <svg class="icone-alternar bi bi-arrow-down-short"
-                                         fill="currentColor" height="2rem" viewBox="0 0 16 16"
-                                         width="2rem" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"
-                                              fill-rule="evenodd" />
-                                    </svg>
-                                    <span class="txt-esconder-pasta">Pastas</span>
-                                </div>
-                            </a>
+                                <a aria-controls="pastas" aria-expanded="false" data-bs-target="#pastas"
+                                   data-bs-toggle="collapse">
+                                    <div class="btn-alternar">
+                                        <svg class="icone-alternar bi bi-arrow-down-short"
+                                             fill="currentColor" height="2rem" viewBox="0 0 16 16"
+                                             width="2rem" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"
+                                                fill-rule="evenodd" />
+                                        </svg>
+                                        <span class="txt-esconder-pasta">Pastas</span>
+                                    </div>
+                                </a>
 
 
+                            </div>
                         </div>
-                    </div>
                     <?php } ?>
                     <div class="d-flex flex-row " id="pastas">
 
                         <?php if (!(isset($_SESSION['id_pasta']))) { ?>
                             <?php
                             foreach ($pastaList as $pasta) {
-                                        if ($pasta->getNome() != 'root') { ?>
+                                if ($pasta->getNome() != 'root') { ?>
 
-                        <form action="/pegarSessao" class="m-2 " method="post">
+                                    <form action="/pegarSessao" class="m-2 " method="post">
 
-                            <button class="btn button  btnPasta d-flex justify-content-between align-items-center" name="id_pasta" type="submit"
-                                    value="<?= $pasta->getId(); ?>">
-                                <span><?= $pasta->getNome(); ?></span>
+                                        <button
+                                            class="btn button  btnPasta d-flex justify-content-between align-items-center"
+                                            name="id_pasta" type="submit"
+                                            value="<?= $pasta->getId(); ?>">
+                                            <span><?= $pasta->getNome(); ?></span>
 
-                                <div class="dropdown">
-                                    <a aria-expanded="false" class="" data-bs-toggle="dropdown" href="#"
-                                       id="toggle-opcoes" role="button">
-                                        <i class="bi bi-three-dots-vertical"></i>
-                                    </a>
+                                            <div class="dropdown">
+                                                <a aria-expanded="false" class="" data-bs-toggle="dropdown" href="#"
+                                                   id="toggle-opcoes" role="button">
+                                                    <i class="bi bi-three-dots-vertical"></i>
+                                                </a>
 
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
-                                               href="/informacaoPasta?id_pasta=<?= $pasta->getId(); ?>">Informaçãoes</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                               href="/pegarIdExcluir?id_pasta=<?= $pasta->getId(); ?>">Excluir</a>
-                                        </li>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item"
+                                                           href="/informacaoPasta?id_pasta=<?= $pasta->getId(); ?>">Informaçãoes</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item"
+                                                           href="/pegarIdExcluir?id_pasta=<?= $pasta->getId(); ?>">Excluir</a>
+                                                    </li>
 
-                                    </ul>
-                                </div>
-                            </button>
+                                                </ul>
+                                            </div>
+                                        </button>
 
-                        </form>
-                        <?php }
-                                    }
-                                } ?>
+                                    </form>
+                                <?php }
+                            }
+                        } ?>
 
 
                     </div>
@@ -293,8 +299,9 @@ if (isset($_SESSION['id_excluirArtigo'])) { ?>
                                     <svg class="icone-alternar bi bi-arrow-down-short"
                                          fill="currentColor" height="2rem" viewBox="0 0 16 16"
                                          width="2rem" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"
-                                              fill-rule="evenodd" />
+                                        <path
+                                            d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"
+                                            fill-rule="evenodd" />
                                     </svg>
                                     <span class="txt-esconder-pasta">Artigos</span>
                                 </div>
@@ -304,39 +311,39 @@ if (isset($_SESSION['id_excluirArtigo'])) { ?>
                     <div class="row" id="artigos">
 
                         <?php foreach ($artigoList as $artigo) { ?>
-                        <div class="card m-2">
+                            <div class="card m-2">
 
-                            <img alt="capa_artigo" class="card-img"
-                                 src="/upload/artigo/img/<?= ($artigo->getImg()); ?>">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-10">
-                                        <h1 class="h5 card-titulo "><?= ($artigo->getTitulo()) ?></h1>
-                                        <h2 class="h6 card-subtitulo-2 "><?= ($artigo->getAutor()) ?></h2>
-                                    </div>
-
-                                    <div class="col d-flex align-items-center">
-                                        <div class="dropdown">
-                                            <a aria-expanded="false" class="" data-bs-toggle="dropdown" href="#"
-                                               id="toggle-opcoes" role="button">
-                                                <i class="bi bi-three-dots-vertical"></i>
-                                            </a>
-
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item"
-                                                       href="/informacaoArtigo?id_artigo=<?= $artigo->getId() ?>">informações</a>
-                                                </li>
-                                                <li><a class="dropdown-item"
-                                                       href="/pegarIdExcluir?id_artigo=<?= $artigo->getId(); ?>">Excluir</a>
-                                                </li>
-                                            </ul>
+                                <img alt="capa_artigo" class="card-img"
+                                     src="/upload/artigo/img/<?= ($artigo->getImg()); ?>">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h1 class="h5 card-titulo "><?= ($artigo->getTitulo()) ?></h1>
+                                            <h2 class="h6 card-subtitulo-2 "><?= ($artigo->getAutor()) ?></h2>
                                         </div>
+
+                                        <div class="col d-flex align-items-center">
+                                            <div class="dropdown">
+                                                <a aria-expanded="false" class="" data-bs-toggle="dropdown" href="#"
+                                                   id="toggle-opcoes" role="button">
+                                                    <i class="bi bi-three-dots-vertical"></i>
+                                                </a>
+
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item"
+                                                           href="/informacaoArtigo?id_artigo=<?= $artigo->getId() ?>">informações</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item"
+                                                           href="/pegarIdExcluir?id_artigo=<?= $artigo->getId(); ?>">Excluir</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                 </div>
-
                             </div>
-                        </div>
                         <?php } ?>
 
 
@@ -346,7 +353,7 @@ if (isset($_SESSION['id_excluirArtigo'])) { ?>
         </div>
 
 
-        <?php $sidebar = new sidebarController(); ?>
+        <?php require_once "sidebar.html"; ?>
 
     </div>
 

@@ -12,6 +12,7 @@ class pegarSessaoController implements Controller
      */
     #[Override] public function processarRequisicao(): void
     {
+        validar();
         $_SESSION['id_pasta'] = intval($_POST['id_pasta']);
 
         header("Location:/home");

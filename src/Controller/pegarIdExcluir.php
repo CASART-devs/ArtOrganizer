@@ -12,6 +12,7 @@ class pegarIdExcluir implements Controller
      */
     #[Override] public function processarRequisicao(): void
     {
+        validar();
         if (isset($_GET['id_pasta'])) {
             $_SESSION['id_excluirPasta'] = intval($_GET['id_pasta']);
         } elseif (isset($_GET['id_artigo'])) {

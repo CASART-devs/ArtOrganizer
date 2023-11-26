@@ -9,8 +9,10 @@ use Override;
 
 readonly class attPastaController implements Controller
 {
-    function __construct(private PastaRepository $pastaRepository)
+    private PastaRepository $pastaRepository;
+    function __construct(array $repository)
     {
+        $this->pastaRepository = $repository['pasta'];
     }
 
     /**
@@ -18,6 +20,7 @@ readonly class attPastaController implements Controller
      */
     #[Override] public function processarRequisicao(): void
     {
+        validar();
 
         $id = $_SESSION['id_infopasta'];
 

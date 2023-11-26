@@ -10,6 +10,7 @@ use Override;
 readonly class addPastaController implements Controller
 {
     private PastaRepository $pastaRepository;
+
     function __construct(array $repository)
     {
         $this->pastaRepository = $repository['pasta'];
@@ -21,6 +22,7 @@ readonly class addPastaController implements Controller
     #[Override] public function processarRequisicao(): void
     {
 
+        validar();
         $nome = $_POST['nome-pasta'];
         $desc = $_POST['desc-pasta'];
         $id_user = $_SESSION['user_id'];
@@ -30,8 +32,6 @@ readonly class addPastaController implements Controller
 
             $pasta = new Pasta($nome, $desc);
             $this->pastaRepository->add($id_user, $pasta);
-
-            $id_pasta = $pasta->getId();
 
             header("Location:/home");
         } catch (Exception $error) {

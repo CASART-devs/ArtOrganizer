@@ -10,9 +10,9 @@ readonly class redefinirSenhaController implements Controller
 
     private mysqli $bd;
 
-    public function __construct(mysqli $bd)
+    public function __construct(array $repository)
     {
-        $this->bd = $bd;
+        $this->bd = $repository['conexao'];
     }
 
     function verificarTokenValido($token): bool
@@ -64,23 +64,23 @@ readonly class redefinirSenhaController implements Controller
             echo "Token inválido ou expirado.";
             exit;
         }
-        
-            $novaSenha = $_POST['nova_senha'];
 
-            $senhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
+        $novaSenha = $_POST['nova_senha'];
 
-            $usuarioId = $_SESSION['user_id'];
+        $senhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
 
-            $sql = "UPDATE usuarios SET senha = ? WHERE ID = ?";
-            $stmt = $this->bd->prepare($sql);
-            $stmt->bind_param('si', $senhaHash, $usuarioId);
+        $usuarioId = $_SESSION['user_id'];
 
-            $stmt->execute();
+        $sql = "UPDATE usuarios SET senha = ? WHERE ID = ?";
+        $stmt = $this->bd->prepare($sql);
+        $stmt->bind_param('si', $senhaHash, $usuarioId);
 
-            // Exiba uma mensagem de sucesso
-            echo "Senha redefinida com sucesso!";
+        $stmt->execute();
 
-            header('Location:/logout');
+        // Exiba uma mensagem de sucesso
+        echo "Senha redefinida com sucesso!";
+
+        header('Location:/logout');
 
     }
 }

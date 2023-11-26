@@ -1,4 +1,9 @@
-<?php $navbar = new \artorganizer\Controller\navbarController(); ?>
+<?php
+
+use artorganizer\Repository\ArtigoRepository;
+
+require_once "navbar.php";
+?>
 <!-- Modal -->
 <div class="modal fade" id="adicionar-artigo" tabindex="-1" aria-labelledby="adicionarArtigolLabel"
      aria-hidden="true">
@@ -100,12 +105,9 @@
 
                     <span class="h1 m-3">Explorar artigos</span>
 
-                    <?php use artorganizer\Controller\sidebarController;
-                    use artorganizer\Repository\ArtigoRepository;
-
-                    if (isset($_SESSION['id_pasta'])) { ?>
-                    <a type="button" id="btnVoltar" class="btn button col-2 mx-3" href="/voltar">
-                        voltar </a>
+                    <?php if (isset($_SESSION['id_pasta'])) { ?>
+                        <a type="button" id="btnVoltar" class="btn button col-2 mx-3" href="/voltar">
+                            voltar </a>
                     <?php } ?>
 
 
@@ -134,21 +136,21 @@
                     <?php /** @var ArtigoRepository $ArtigoList */
                     foreach ($ArtigoList as $artigo) { ?>
 
-                    <div class="card m-2">
-                        <a href="/upload/artigo/artigo/<?= $artigo->getArtigo(); ?>" target="_blank">
-                            <img src="/upload/artigo/img/<?= ($artigo->getImg()); ?>" class="card-img"
-                                 alt="capa_artigo">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-10">
-                                        <h1 class="h5 card-titulo "><?= ($artigo->getTitulo()) ?></h1>
-                                        <h2 class="h6 card-subtitulo-2 "><?= ($artigo->getAutor()) ?></h2>
+                        <div class="card m-2">
+                            <a href="/upload/artigo/artigo/<?= $artigo->getArtigo(); ?>" target="_blank">
+                                <img src="/upload/artigo/img/<?= ($artigo->getImg()); ?>" class="card-img"
+                                     alt="capa_artigo">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <h1 class="h5 card-titulo "><?= ($artigo->getTitulo()) ?></h1>
+                                            <h2 class="h6 card-subtitulo-2 "><?= ($artigo->getAutor()) ?></h2>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </div>
-                        </a>
-                    </div>
+                                </div>
+                            </a>
+                        </div>
 
                     <?php } ?>
 
@@ -159,7 +161,7 @@
         </div>
 
 
-        <?php $sidebar = new sidebarController(); ?>
+        <?php require_once "sidebar.html"; ?>
 
     </div>
 

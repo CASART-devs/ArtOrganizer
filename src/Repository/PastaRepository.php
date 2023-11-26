@@ -56,6 +56,7 @@ readonly class PastaRepository
     {
         $nome = $pasta->getNome();
         $desc = $pasta->getDescricao();
+        $id = $pasta->getId();
 
         $query = $this->bd->prepare("
                         UPDATE `pastas`
@@ -63,7 +64,7 @@ readonly class PastaRepository
                         WHERE id = ?
                 ");
 
-        $query->bind_param("ss", $nome, $desc);
+        $query->bind_param("ssi", $nome, $desc,  $id);
         return $query->execute();
     }
 

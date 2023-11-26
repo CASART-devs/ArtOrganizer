@@ -10,12 +10,16 @@ use Exception;
 readonly class atualizacaoController implements Controller
 {
 
-    function __construct(private UsuarioRepository $usuarioRepository)
+    private UsuarioRepository $usuarioRepository;
+
+    function __construct(array $repository)
     {
+        $this->usuarioRepository = $repository['usuario'];
     }
 
     function processarRequisicao(): void
     {
+        validar();
 
         $nome = $_POST['nome'];
         $nick = $_POST['nick'];

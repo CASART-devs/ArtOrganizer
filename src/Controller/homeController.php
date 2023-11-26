@@ -18,6 +18,8 @@ readonly class homeController implements Controller
 
     function processarRequisicao(): void
     {
+        validar();
+
         $id_user = $_SESSION['user_id'];
 
         $id_pasta = $_SESSION['id_pasta'] ?? 'root';

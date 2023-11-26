@@ -25,43 +25,31 @@
 <body>
 
 <?php
+
+//imports
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use artorganizer\Controller\{addArtigoController,
-    addPastaController,
-    attArtigoController,
-    attPastaController,
-    atualizacaoController,
-    cadastroController,
-    configuracaoController,
-    excluirArtigoController,
-    excluirPastaController,
-    excluirSessaoController,
-    explorarController,
-    homeController,
-    infoArtigoController,
-    infoPastaController,
-    landingpageController,
-    loginController,
-    logoutController,
-    navbarController,
-    pegarIdExcluir,
-    pegarSessaoController,
-    pesquisaController,
-    processarSolicitacaoController,
-    recuperarController,
-    redefinirSenhaController,
-    ValidarController,
-    voltarController};
 use artorganizer\Entity\Conexao;
-use artorganizer\Repository\{ArtigoRepository,
+use artorganizer\Repository\{
+    ArtigoRepository,
     PastaRepository,
     PastaUserRepository,
     TokenRepository,
-    UsuarioRepository};
+    UsuarioRepository
+};
+
+//functions
+    function validar():bool
+    {
+        if (!$_SESSION['user_id']) {
+            header("Location:/logout");
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 //Front-controller
-
 session_start();
 $conexao = new Conexao("1212", "artorganizer");
 
@@ -73,12 +61,13 @@ $usuarioRepository = new UsuarioRepository($conexao);
 $pastaUserRepository = new PastaUserRepository($conexao);
 $tokenRepository = new TokenRepository($conexao);
 
-$repositorios  = [
-    "pastaUser" =>  new PastaUserRepository($conexao),
+$repositorios = [
+    "pastaUser" => new PastaUserRepository($conexao),
     "pasta" => new PastaRepository($conexao),
     "artigo" => new ArtigoRepository($conexao),
     "usuario" => new UsuarioRepository($conexao),
-    "token" => $tokenRepository = new TokenRepository($conexao)
+    "token" => $tokenRepository = new TokenRepository($conexao),
+    "conexao" => $conexao
 ];
 
 $pathInfo = $_SERVER['PATH_INFO'] ?? "/";

@@ -9,8 +9,10 @@ use Override;
 readonly class excluirPastaController implements Controller
 {
 
-    function __construct(private PastaRepository $pastaRepository)
+    private PastaRepository $pastaRepository;
+    function __construct(array $repository)
     {
+        $this->pastaRepository = $repository['pasta'];
     }
 
     /**
@@ -18,6 +20,7 @@ readonly class excluirPastaController implements Controller
      */
     #[Override] public function processarRequisicao(): void
     {
+        validar();
         try {
             unset($_SESSION['id_excluirPasta']);
             if (!isset($_GET['id_pasta'])) {

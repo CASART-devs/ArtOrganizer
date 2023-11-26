@@ -1,11 +1,12 @@
-img{
+img {
     object-fit: cover;
     object-position: bottom;
 }
 
-.text-justify{
+.text-justify {
     text-align: justify;
 }
+
 .menu-icons {
     align-items: center;
     display: flex;
@@ -21,8 +22,6 @@ a:hover {
     color: #000;
     text-decoration: none;
 }
-
-
 
 
 .footer-fonts-h1 {
@@ -46,11 +45,6 @@ a:hover {
 }
 
 /*Banners*/
-
-.banners {
-    flex-direction: column;
-
-}
 
 #navbar {
     width: 100%;
@@ -84,7 +78,7 @@ a:hover {
 
 }
 
-#banner4 img{
+#banner4 img {
     width: 0;
 
     border-radius: 5px;
@@ -109,23 +103,10 @@ a:hover {
 }
 
 
-
 /*banner4*/
 #banner4 {
 
     background-color: rgba(255, 255, 255, 0.997);
-
-}
-
-#banner4_img {
-    height: 100%;
-    background-image: url(../img/home_imgs/banner4.jpg);
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-}
-
-#banner4_textos {
-    margin: 0 20px;
 
 }
 

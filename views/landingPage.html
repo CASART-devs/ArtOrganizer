@@ -3,42 +3,44 @@
 <!--navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 
-        <a class="navbar-brand col-4 col-md-2" href="#">
-            <img alt="Logo" class="mx-3 d-inline-block align-text-top" src="/img/logos/logo_dark.png" width="130rem">
-        </a>
+    <a class="navbar-brand col-4 col-md-2" href="#">
+        <img alt="Logo" class="mx-3 d-inline-block align-text-top" src="/img/logos/logo_dark.png" width="6923" style="width: 7rem">
+    </a>
 
-        <div class="collapse navbar-collapse justify-content-center" id="navbar_links">
-            <div class="navbar-nav" id="navbar">
-                <a class="nav-item nav-link" href="#banner1" id="artOrganizer-menu">ArtOrganizer</a>
-                <a class="nav-item nav-link" href="#banner2" id="adicionar-menu">Adicionar</a>
-                <a class="nav-item nav-link" href="#banner3" id="organizar-menu">Organizar</a>
-                <a class="nav-item nav-link" href="#banner4" id="compartilhar-menu">Compartilhar</a>
-                <a class="nav-item nav-link" href="#banner5" id="contatos-menu">Contatos</a>
-            </div>
+    <div class="collapse navbar-collapse justify-content-center" id="navbar_links">
+        <div class="navbar-nav" id="navbar">
+            <a class="nav-item nav-link" href="#banner1" id="artOrganizer-menu">ArtOrganizer</a>
+            <a class="nav-item nav-link" href="#banner2" id="adicionar-menu">Adicionar</a>
+            <a class="nav-item nav-link" href="#banner3" id="organizar-menu">Organizar</a>
+            <a class="nav-item nav-link" href="#banner4" id="compartilhar-menu">Compartilhar</a>
+            <a class="nav-item nav-link" href="#banner5" id="contatos-menu">Contatos</a>
         </div>
+    </div>
 
-        <div class="col">
-            <div class="d-flex justify-content-around justify-content-md-end align-items-center">
-                <button class="button btn mx-2" id="btnEntrar" type="button" data-bs-target="#loginModal" data-bs-toggle="modal">
-                    Entrar
-                </button>
+    <div class="col">
+        <div class="d-flex justify-content-around justify-content-md-end align-items-center">
+            <button class="button btn mx-2" data-bs-target="#loginModal" data-bs-toggle="modal" id="btnEntrar"
+                    type="button">
+                Entrar
+            </button>
 
-                <button class="button btn mx-2" id="btnCadastrar" type="button" data-bs-target="#cadastrarModal" data-bs-toggle="modal">
+            <button class="button btn mx-2" data-bs-target="#cadastrarModal" data-bs-toggle="modal" id="btnCadastrar"
+                    type="button">
 
-                    Cadastrar
-                </button>
-            </div>
+                Cadastrar
+            </button>
         </div>
+    </div>
 
-        <!--<button aria-controls="navbar_links" aria-expanded="false" aria-label="togler navigation" class="navbar-toggler"
-                data-target="#navbar_links" data-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>-->
+    <!--<button aria-controls="navbar_links" aria-expanded="false" aria-label="togler navigation" class="navbar-toggler"
+            data-target="#navbar_links" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>-->
 
 </nav>
 
 <!--modals-->
-<div class="modal fade" id="loginModal" aria-labelledby="loginModalLabel" tabindex="-1" aria-hidden="true">
+<div aria-hidden="true" aria-labelledby="loginModalLabel" class="modal fade" id="loginModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -49,16 +51,16 @@
                 <div class="modal-body">
 
 
-                        <div class="mb-3">
-                            <label class="form-label" for="email_log">Email </label>
-                            <input aria-describedby="emailHelp" class="form-control" id="email_log" name="email_log"
-                                   type="email">
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="email_log">Email </label>
+                        <input aria-describedby="emailHelp" class="form-control" id="email_log" name="email_log"
+                               type="email">
+                    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label" for="senha_log">Senha</label>
-                            <input class="form-control" id="senha_log" name="senha_log" type="password">
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="senha_log">Senha</label>
+                        <input class="form-control" id="senha_log" name="senha_log" type="password">
+                    </div>
 
 
                 </div>
@@ -71,46 +73,46 @@
     </div>
 </div>
 
-<div class="modal fade" id="cadastrarModal" aria-labelledby="cadastrarModalLabel" tabindex="-1" aria-hidden="true">
+<div aria-hidden="true" aria-labelledby="cadastrarModalLabel" class="modal fade" id="cadastrarModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
             </div>
             <form action="/cadastrar" method="post">
                 <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label" for="nome_cad">Nome </label>
-                            <input class="form-control" id="nome_cad" name="nome_cad" required type="text">
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="nome_cad">Nome </label>
+                        <input class="form-control" id="nome_cad" name="nome_cad" required type="text">
+                    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label" for="user_cad">Nickname </label>
-                            <input class="form-control" id="user_cad" name="user_cad" required type="text">
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="user_cad">Nickname </label>
+                        <input class="form-control" id="user_cad" name="user_cad" required type="text">
+                    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label" for="email_cad">Email </label>
-                            <input aria-describedby="emailHelp" class="form-control" id="email_cad" name="email_cad"
-                                   required type="email">
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="email_cad">Email </label>
+                        <input aria-describedby="emailHelp" class="form-control" id="email_cad" name="email_cad"
+                               required type="email">
+                    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label" for="senha_cad">Senha</label>
-                            <input class="form-control" id="senha_cad" name="senha_cad" required type="password">
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="senha_cad">Senha</label>
+                        <input class="form-control" id="senha_cad" name="senha_cad" required type="password">
+                    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label" for="nasc_cad">Data de Nacimento</label>
-                            <input id="nasc_cad" max="2008-08-16" name="nasc_cad" required type="date"
-                                   value="2023-08-">
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="nasc_cad">Data de Nacimento</label>
+                        <input id="nasc_cad" max="2008-08-16" name="nasc_cad" required type="date"
+                               value="2023-08-">
+                    </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button  class="btn button btn-primary" id="enviar_cad" type="submit">Cadastrar</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Fechar</button>
+                    <button class="btn button btn-primary" id="enviar_cad" type="submit">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -143,7 +145,7 @@
     <div class="container row">
 
         <div class="container-fluid col-md-4">
-            <img class="object-fit-cover mb-4" src="/img/home_imgs/banner3.jpg" alt=""  srcset="" >
+            <img alt="" class="object-fit-cover mb-4" src="/img/home_imgs/banner3.jpg" srcset="">
         </div>
 
         <div class="container d-flex flex-column align-items-center justify-content-center overflow-auto  col-md-8">
@@ -174,7 +176,7 @@
         </div>
 
         <div class="container-fluid col-md-4">
-            <img class="object-fit-cover mb-4" src="/img/home_imgs/banner4.jpg" alt="banner 3">
+            <img alt="banner 3" class="object-fit-cover mb-4" src="/img/home_imgs/banner4.jpg">
         </div>
     </div>
 </section>

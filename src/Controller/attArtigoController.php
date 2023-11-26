@@ -12,6 +12,7 @@ use Override;
 readonly class attArtigoController implements Controller
 {
     private ArtigoRepository $artigoRepository;
+
     function __construct(array $repository)
     {
         $this->artigoRepository = $repository['artigo'];
@@ -19,6 +20,7 @@ readonly class attArtigoController implements Controller
 
     #[Override] public function processarRequisicao(): void
     {
+        validar();
         $id = $_SESSION['id_artigo'];
 
         $titulo = $_POST['nomeArtigo'];

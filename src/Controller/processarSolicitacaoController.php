@@ -10,8 +10,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 readonly class processarSolicitacaoController implements Controller
 {
-    public function __construct(private TokenRepository $tokenRepository)
+    private TokenRepository $tokenRepository;
+    public function __construct(array $repository)
     {
+        $this->tokenRepository = $repository['token'];
     }
 
     /**
@@ -20,7 +22,7 @@ readonly class processarSolicitacaoController implements Controller
      */
     #[Override] public function processarRequisicao(): void
     {
-
+        validar();
         $id_user = $_SESSION['user_id'];
         $email = $_POST['email'];
 

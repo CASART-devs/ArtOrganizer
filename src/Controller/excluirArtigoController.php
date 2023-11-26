@@ -8,14 +8,15 @@ use Exception;
 
 readonly class excluirArtigoController implements Controller
 {
-
-    function __construct(private ArtigoRepository $artigoRepository, private PastaUserRepository $pastaUserRepository)
+    private ArtigoRepository $artigoRepository;
+    function __construct(array $repository)
     {
+        $this->artigoRepository = $repository['artigo'];
     }
 
     public function processarRequisicao(): void
     {
-
+        validar();
 
         unset($_SESSION['id_excluirArtigo']);
         try {
@@ -23,12 +24,8 @@ readonly class excluirArtigoController implements Controller
                 die();
             } else {
                 $id_artigo = $_GET['id_artigo'];
-                $id_user = $_SESSION['user_id'];
+
             }
-
-
-            $id_pasta = $_SESSION['id_pasta'] ?? $this->pastaUserRepository->getIdRoot($id_user);
-
 
             $this->artigoRepository->excluir($id_artigo);
 

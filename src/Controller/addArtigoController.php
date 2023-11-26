@@ -12,6 +12,7 @@ readonly class addArtigoController implements Controller
 {
     private ArtigoRepository $artigoRepository;
     private PastaUserRepository $pastaUserRepository;
+
     function __construct(array $repository)
     {
         $this->pastaUserRepository = $repository['pastaUser'];
@@ -20,6 +21,7 @@ readonly class addArtigoController implements Controller
 
     function processarRequisicao(): void
     {
+        validar();
         //definição de variaveis
         $titulo = $_POST['titulo-artigo'];
         $autor = $_POST['autor-artigo'];

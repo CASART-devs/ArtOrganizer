@@ -1,0 +1,157 @@
+.img-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 10rem;
+
+}
+
+body {
+    background-color: #fff;
+    color: #090D0B;
+}
+
+#pesquisa {
+    width: 30rem;
+
+}
+
+.btnPasta {
+    min-width: 10rem;
+    height: 4rem;
+
+    max-width: 15rem;
+}
+
+#informacoesArtigo img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    height: 15rem;
+
+
+    padding: 0;
+}
+
+.perfil img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 20rem;
+    padding: 0;
+}
+
+#informacoesArtigo {
+    max-width: 75rem;
+}
+
+.color-nav {
+    background-color: #090D0B;
+}
+
+.button-nav {
+    background-color: #40593F;
+    color: #D9D8D7;
+
+
+}
+
+#pesquisa {
+    color: #012619;
+
+}
+
+::placeholder {
+    color: #7C8C7B;
+}
+
+.button-nav:hover {
+    background-color: #7C8C7B;
+    color: #012619;
+
+
+    transition: background 500ms;
+}
+
+.dropdown-menu {
+    background-color: #D9D8D7;
+}
+
+.dropdown-item:hover {
+    background-color: #40593F;
+    color: #D9D8D7;
+}
+
+.button {
+    background-color: #40593F;
+    color: #D9D8D7;
+}
+
+.button:hover {
+    background-color: #012619;
+    color: #D9D8D7;
+    transition: background 500ms;
+}
+
+#toggle-opcoes {
+    color: #F2F2F2;
+}
+
+.btn-alternar {
+    display: flex;
+    cursor: pointer;
+    justify-content: start;
+}
+
+.icone-alternar {
+    margin-top: 3px;
+}
+
+.card {
+    width: 18rem;
+    padding: 0;
+}
+
+.card-img {
+    object-fit: cover;
+    height: 10rem;
+    object-position: top;
+}
+
+.card-body {
+    background-color: #40593F;
+    color: #D9D8D7;
+}
+
+
+#head-right {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+
+ul a {
+    color: #000;
+}
+
+ul a:hover {
+    color: #051446;
+}
+
+.txt-esconder-pasta {
+
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#h2_menu {
+    margin: 0;
+}

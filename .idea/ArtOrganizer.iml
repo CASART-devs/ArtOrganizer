@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/Controller" isTestSource="false" packagePrefix="artorganizer\Controller\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Entity" isTestSource="false" packagePrefix="artorganizer\Entity\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Repository" isTestSource="false" packagePrefix="artorganizer\Repository\" />
+      <sourceFolder url="file://$MODULE_DIR$/config" isTestSource="false" packagePrefix="artorganizer\Config\" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpmailer/phpmailer" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="bootstrap-icons" level="application" />
+  </component>
+</module>

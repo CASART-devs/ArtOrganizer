@@ -74,7 +74,11 @@ readonly class UsuarioRepository
                 $usuario = new Usuario($dados['Nome_Usuario'], $dados['Nome_Completo'], $dados['Email'], $dados['Data_Nasc']);
                 $usuario->setSenha($dados['Senha']);
                 $usuario->setId($dados['ID']);
-
+                if($dados['img-perfil'] !== null) {
+                    $usuario->setPerfilImg($dados['img-perfil']);
+                }else{
+                    $usuario->setPerfilImg("");
+                }
                 return $usuario;
             },
 

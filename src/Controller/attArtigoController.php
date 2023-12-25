@@ -21,6 +21,7 @@ readonly class attArtigoController implements Controller
     #[Override] public function processarRequisicao(): void
     {
         validar();
+
         $id = $_SESSION['id_artigo'];
 
         $titulo = $_POST['nomeArtigo'];
@@ -28,6 +29,10 @@ readonly class attArtigoController implements Controller
 
         $artigo = $_FILES['artigo'];
         $img = $_FILES['imgArtigo'];
+
+
+        $privacidade = $_POST['radio-privacidade'];
+
 
         try {
 
@@ -41,15 +46,14 @@ readonly class attArtigoController implements Controller
             $arqArtigo->moverArtigo($artigo);
 
             if (($titulo == "") || ($autor == "")) {
-
                 die();
             } else {
-                $artigo = new Artigo($titulo, $autor, $arqImg->gerarNome(), $arqArtigo->gerarNome());
+                $artigo = new Artigo($titulo, $autor, $arqImg->gerarNome(), $arqArtigo->gerarNome(), $privacidade);
                 $artigo->setId($id);
                 $this->artigoRepository->update($artigo);
             }
 
-            header("Location:/informacaoArtigo");
+            header("Location:/home");
         } catch (Exception $error) {
 
             echo "Erro ao atualizar!  ($error) <br>";

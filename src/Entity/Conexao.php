@@ -5,7 +5,7 @@ namespace artorganizer\Entity;
 use mysqli;
 use mysqli_sql_exception;
 
-class Conexao extends mysqli
+class  Conexao extends mysqli
 {
     private string $hostname;
     private string $username;

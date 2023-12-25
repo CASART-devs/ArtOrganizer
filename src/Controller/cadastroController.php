@@ -31,7 +31,7 @@ readonly class cadastroController implements Controller
 
             //cadastra usuario
             $Usuario = new Usuario($nick, $nome, $email, $nasc);
-            $Usuario->setSenha(password_hash($senha, PASSWORD_DEFAULT));
+            $Usuario->setSenha(password_hash($senha, PASSWORD_ARGON2ID));
             if (!$this->usuarioRepository->add($Usuario))
             {
                 $_SESSION['error'] =  "Erro email já cadastrado";

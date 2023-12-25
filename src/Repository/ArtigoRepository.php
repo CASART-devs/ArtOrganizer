@@ -21,14 +21,15 @@ readonly class ArtigoRepository
         $data = $artigo->getDataPublicacao();
         $img = $artigo->getImg();
         $artigoCaminho = $artigo->getArtigo();
+        $privacidade = $artigo->getPrivacidade();
 
         $query = $this->bd->prepare("
                 INSERT INTO `artigos`
-                (`Titulo`, `Autor`, `Data_Publicacao`, `img-previw`, `artigo-caminho`) 
+                (`Titulo`, `Autor`, `Data_Publicacao`, `img-previw`, `artigo-caminho`, `privacidade`) 
                 VALUES 
-                (?,?,?,?,?)
+                (?,?,?,?,?,?)
             ");
-        $query->bind_param("sssss", $titulo, $autor, $data, $img, $artigoCaminho);
+        $query->bind_param("ssssss", $titulo, $autor, $data, $img, $artigoCaminho,$privacidade);
         $inserir = $query->execute();
 
         $artigo->setId($this->bd->insert_id);
@@ -57,21 +58,23 @@ readonly class ArtigoRepository
     }
 
 
-    public function update(Artigo $artigo): bool
+    public function update(Artigo $artigo):bool
     {
         $titulo = $artigo->getTitulo();
         $autor = $artigo->getAutor();
         $img = $artigo->getImg();
         $artigoCaminho = $artigo->getArtigo();
         $id = $artigo->getId();
+        $privacidade = $artigo->getPrivacidade();
 
         $query = $this->bd->prepare("
                         UPDATE `artigos`
-                        SET titulo = ?, autor = ?, `img-previw` = ?, `artigo-caminho` = ? 
+                        SET titulo = ?, autor = ?, `img-previw` = ?, `artigo-caminho` = ?, `privacidade` = ?
                         WHERE ID = ?
                 ");
 
-        $query->bind_param("ssssi", $titulo, $autor, $img, $artigoCaminho, $id);
+        $query->bind_param("sssssi", $titulo, $autor, $img, $artigoCaminho, $privacidade, $id);
+
         return $query->execute();
     }
 
@@ -109,7 +112,7 @@ readonly class ArtigoRepository
 
         return array_map(
             function ($dados) {
-                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
+                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho'], $dados['privacidade']);
                 $artigo->setId($dados['ID']);
 
                 return $artigo;
@@ -121,7 +124,7 @@ readonly class ArtigoRepository
 
     public function explorar(): array
     {
-        $query = $this->bd->prepare("SELECT * FROM artigos");
+        $query = $this->bd->prepare("SELECT * FROM artigos WHERE privacidade = 'pub';");
 
         $query->execute();
         $result = $query->get_result();
@@ -129,7 +132,7 @@ readonly class ArtigoRepository
 
         return array_map(
             function ($dados) {
-                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
+                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho'],$dados['privacidade']);
                 $artigo->setId($dados['ID']);
 
                 return $artigo;
@@ -141,16 +144,16 @@ readonly class ArtigoRepository
 
     public function pesquisa($pesquisa): array
     {
-        $query = $this->bd->prepare("SELECT * FROM artigos where Titulo like ?;");
+        $query = $this->bd->prepare("SELECT * FROM artigos where privacidade = 'pub' and (Titulo like ? or Autor like ? )" );
         $pesquisa = "%" . $pesquisa . "%";
-        $query->bind_param('s', $pesquisa);
+        $query->bind_param('ss', $pesquisa, $pesquisa);
         $query->execute();
         $result = $query->get_result();
         $artigoList = $result->fetch_all(MYSQLI_ASSOC);
 
         return array_map(
             function ($dados) {
-                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
+                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho'], $dados['privacidade']);
                 $artigo->setId($dados['ID']);
 
                 return $artigo;
@@ -170,7 +173,7 @@ readonly class ArtigoRepository
 
         return array_map(
             function ($dados) {
-                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho']);
+                $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho'], $dados['privacidade']);
                 $artigo->setId($dados['ID']);
 
                 return $artigo;

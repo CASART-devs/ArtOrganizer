@@ -2,6 +2,7 @@
 /** @var Artigo $dados */
 
 use artorganizer\Entity\Artigo;
+use artorganizer\Repository\ArtigoRepository;
 
 require_once "navbar.php";
 ?>
@@ -52,6 +53,30 @@ require_once "navbar.php";
                                 <input type="file" class="form-control" name="imgArtigo" id="imgArtigo"
                                        placeholder="imgArtigo" aria-describedby="fileHelpId" required>
                                 <div id="fileHelpId" class="form-text">Selecione outro capa</div>
+                            </div>
+                            <div class="mb-3">
+                                <?php
+
+                                /** @var ArtigoRepository $artigoList */
+                                if($dados[0]->getPrivacidade() == "priv"){
+                                    $priv = "checked";
+                                    $pub = "";
+                                }else{
+                                    $priv = "";
+                                    $pub ="checked";
+                                }?>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radio-privacidade"  value="pub" id="radio-publico" <?=$pub?>>
+                                    <label class="form-check-label" for="radio-publico">
+                                        Público
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radio-privacidade" value="priv" id="radio-privado" <?=$priv?>>
+                                    <label class="form-check-label" for="radio-privado">
+                                        privado
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>

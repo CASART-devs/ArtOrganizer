@@ -15,9 +15,10 @@
             <div class="dropstart">
                 <a aria-expanded="false" class="" data-bs-toggle="dropdown" href="#" role="button">
                     <img class="m-1 mx-4 img-perfil" alt="perfil" height="50rem"
-                         src="<?php if (isset($_SESSION['user_img'])) { ?>/upload/img-perfil/<?php echo $_SESSION['user_img'];
+                         <?php var_dump($_SESSION['user_img']); ?>
+                         src="<?php if (isset($_SESSION['user_img'])){ ?>/upload/img-perfil/<?php echo $_SESSION['user_img'];
                                  } else {
-                                     echo "/img/navbar_home/perfil.svg";
+                                     echo "/../public/img/navbar_home/perfil.svg";
                     } ?>" >
                 </a>
 

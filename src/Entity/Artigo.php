@@ -12,8 +12,12 @@ class Artigo
     private string $artigo;
     private string $pasta;
 
+    private  string $privacidade;
 
-    public function __construct(string $titulo, string $autor, string $img, string $artigo)
+
+
+
+    public function __construct(string $titulo, string $autor, string $img, string $artigo, string $privacidade)
     {
         $this->setTitulo($titulo);
         $this->setAutor($autor);
@@ -21,6 +25,7 @@ class Artigo
         $this->setArtigo($artigo);
         date_default_timezone_set('America/Sao_Paulo');
         $this->setDataPublicacao(date('Y-m-d H:i:s'));
+        $this->privacidade = $privacidade;
     }
 
 
@@ -118,5 +123,15 @@ class Artigo
         $this->pasta = $pasta;
 
         return $this;
+    }
+
+    public function getPrivacidade(): string
+    {
+        return $this->privacidade;
+    }
+
+    public function setPrivacidade(string $privacidade): void
+    {
+        $this->privacidade = $privacidade;
     }
 }

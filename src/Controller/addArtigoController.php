@@ -41,13 +41,19 @@ readonly class addArtigoController implements Controller
                 die();
             }
 
+            if(isset($_POST['radio-privacidade'])){
+                $privacidade = $_POST['radio-privacidade'];
+            }
+
             $arqImg = new Arquivo(__DIR__ . "/../../public/upload/artigo/img/", $img);
             $arqArtigo = new Arquivo(__DIR__ . "/../../public/upload/artigo/artigo/", $artigo);
             $arqImg->moverImg($img);
             $arqArtigo->moverArtigo($artigo);
 
+
+
             //adiciona pasta no banco
-            $artigo = new Artigo($titulo, $autor, $arqImg->gerarNome(), $arqArtigo->gerarNome());
+            $artigo = new Artigo($titulo, $autor, $arqImg->gerarNome(), $arqArtigo->gerarNome(),$privacidade);
             $this->artigoRepository->add($id_pasta, $artigo);
 
             header("Location:/home");

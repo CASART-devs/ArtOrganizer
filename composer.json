@@ -4,7 +4,7 @@
       "artorganizer\\Entity\\": "src/Entity",
       "artorganizer\\Repository\\": "src/Repository",
       "artorganizer\\Controller\\": "src/Controller",
-      "artorganizer\\Config\\": "config"
+      "artorganizer\\Exception\\": "config"
     }
   },
   "authors": [
@@ -15,6 +15,7 @@
   ],
   "require": {
     "phpmailer/phpmailer": "^6.8",
-    "ext-mysqli": "*"
+    "ext-mysqli": "*",
+    "ext-http": "*"
   }
 }

@@ -48,7 +48,7 @@ return [
     "GET|/pegarIdExcluir" => pegarIdExcluir::class,
     "GET|/excluirSessao" => excluirSessaoController::class,
     "GET|/voltar" => voltarController::class,
-    "GET|/pegarSessao" => pegarSessaoController::class,
+    "POST|/pegarSessao" => pegarSessaoController::class,
     "GET|/recuperar" => recuperarController::class,
     "POST|/processar_solicitacao" => processarSolicitacaoController::class,
     "GET|/redefinir_senha" => formRedefinirSenhaController::class,

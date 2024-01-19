@@ -5,7 +5,7 @@ namespace artorganizer\Repository;
 use artorganizer\Entity\Token;
 use mysqli;
 
-readonly class TokenRepository
+readonly class  TokenRepository
 {
 
     public function __construct(private mysqli $bd)

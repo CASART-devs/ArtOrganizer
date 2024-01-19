@@ -30,6 +30,9 @@ readonly class loginController implements Controller
                 $_SESSION['user_nick'] = $usuario->getNick();
                 $_SESSION['user_nome'] = $usuario->getNome();
                 $_SESSION['user_email'] = $usuario->getEmail();
+                if($usuario->getPerfilImg() !== null) {
+                    $_SESSION['user_img'] = $usuario->getPerfilImg();
+                }
 
                 header("Location: /home");
             } else {

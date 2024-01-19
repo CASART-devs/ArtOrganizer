@@ -30,61 +30,66 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use artorganizer\Entity\Conexao;
-use artorganizer\Repository\{
-    ArtigoRepository,
+use artorganizer\Repository\{ArtigoRepository,
     PastaRepository,
     PastaUserRepository,
     TokenRepository,
-    UsuarioRepository
-};
+    UsuarioRepository};
+use artorganizer\Exception\RouteNotFoundException;
 
 //functions
-    function validar():bool
+function validar(): bool
+{
+    if (!$_SESSION['user_id']) {
+        header("Location:/logout");
+        return true;
+    } else {
+        return false;
+    }
+}
+try {
+    //Front-controller
+    session_start();
+    $conexao = new Conexao();
+
+
+    //instanciando repositórios
+    $pastaRepository = new PastaRepository($conexao);
+    $artigoRepository = new ArtigoRepository($conexao);
+    $usuarioRepository = new UsuarioRepository($conexao);
+    $pastaUserRepository = new PastaUserRepository($conexao);
+    $tokenRepository = new TokenRepository($conexao);
+
+    $repositorios = [
+        "pastaUser" => new PastaUserRepository($conexao),
+        "pasta" => new PastaRepository($conexao),
+        "artigo" => new ArtigoRepository($conexao),
+        "usuario" => new UsuarioRepository($conexao),
+        "token" => $tokenRepository = new TokenRepository($conexao),
+        "conexao" => $conexao
+    ];
+
+    $pathInfo = $_SERVER['PATH_INFO'] ?? "/";
+    $httpMethod = $_SERVER['REQUEST_METHOD'];
+
+    $routes = require_once __DIR__ . "/../config/router.php";
+
+    if (empty($routes["$httpMethod|$pathInfo"]))
     {
-        if (!$_SESSION['user_id']) {
-            header("Location:/logout");
-            return true;
-        }else{
-            return false;
-        }
+        throw new RouteNotFoundException("Pagina nao encontrada");
     }
 
-//Front-controller
-session_start();
-$conexao = new Conexao("1212", "artorganizer");
+    $controllerClass = $routes["$httpMethod|$pathInfo"];
+    $controller = new $controllerClass($repositorios);
 
-
-//instanciando repositórios
-$pastaRepository = new PastaRepository($conexao);
-$artigoRepository = new ArtigoRepository($conexao);
-$usuarioRepository = new UsuarioRepository($conexao);
-$pastaUserRepository = new PastaUserRepository($conexao);
-$tokenRepository = new TokenRepository($conexao);
-
-$repositorios = [
-    "pastaUser" => new PastaUserRepository($conexao),
-    "pasta" => new PastaRepository($conexao),
-    "artigo" => new ArtigoRepository($conexao),
-    "usuario" => new UsuarioRepository($conexao),
-    "token" => $tokenRepository = new TokenRepository($conexao),
-    "conexao" => $conexao
-];
-
-$pathInfo = $_SERVER['PATH_INFO'] ?? "/";
-$httpMethod = $_SERVER['REQUEST_METHOD'];
-
-$routes = require_once __DIR__ . "/../config/router.php";
-
-$controllerClass = $routes["$httpMethod|$pathInfo"];
-
-$controller = new $controllerClass($repositorios);
-
-try {
     $controller->processarRequisicao();
-} catch (Exception $e) {
-    echo "error no controller";
-}
 
+}catch (RouteNotFoundException $e){
+    require_once __DIR__ . "/../views/erro404.html";
+}
+catch (RuntimeException|Exception $e) {
+    echo $e->getMessage();
+}
 ?>
 
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>

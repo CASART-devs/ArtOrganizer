@@ -5,6 +5,8 @@ use artorganizer\Entity\Pasta;
 
 /** @var Pasta $pastaList */
 /** @var Artigo $artigoList */
+/**@var Artigo $dados */
+
 require_once "navbar.php";
 ?>
 <div aria-hidden="true" aria-labelledby="adicionarArtigolLabel" class="modal fade" id="adicionar-artigo"
@@ -46,6 +48,21 @@ require_once "navbar.php";
                                placeholder=""
                                required type="file">
                         <div class="form-text" id=" fileHelpId">Insira o artigo .pdf
+                        </div>
+                    </div>
+                    <div class="mb-3">
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio-privacidade"  value="pub" id="radio-publico" checked>
+                            <label class="form-check-label" for="radio-publico">
+                                Público
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio-privacidade" value="priv" id="radio-privado">
+                            <label class="form-check-label" for="radio-privado">
+                                privado
+                            </label>
                         </div>
                     </div>
 

@@ -11,16 +11,17 @@ class  Conexao extends mysqli
     private string $username;
     private string $password;
     private string $database;
+    private string $port;
 
-    public function __construct(string $senha, string $banco)
+    public function __construct()
     {
-        $this->hostname = "localhost";
+        $this->hostname = "monorail.proxy.rlwy.net";
         $this->username = "root";
-        $this->password = $senha;
-        $this->database = $banco;
-
+        $this->password = "f--dE2Bb641fF4A-dha2h52EDABDGhc1";
+        $this->database = "railway";
+        $this->port = "10624";
         try {
-            return parent::__construct($this->hostname, $this->username, $this->password, $this->database);
+            return parent::__construct($this->hostname, $this->username, $this->password, $this->database, $this->port);
         } catch (mysqli_sql_exception) {
             die("Falha ao conectar ao banco de dados: " . mysqli_connect_error());
         }

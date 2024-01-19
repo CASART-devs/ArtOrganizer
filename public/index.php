@@ -50,7 +50,7 @@ function validar(): bool
 try {
     //Front-controller
     session_start();
-    $conexao = new Conexao("1212", "artorganizer");
+    $conexao = new Conexao();
 
 
     //instanciando repositórios

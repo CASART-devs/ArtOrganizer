@@ -112,6 +112,7 @@ readonly class ArtigoRepository
 
         return array_map(
             function ($dados) {
+                
                 $artigo = new artigo($dados['Titulo'], $dados['Autor'], $dados['img-previw'], $dados['artigo-caminho'], $dados['privacidade']);
                 $artigo->setId($dados['ID']);
 

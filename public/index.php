@@ -1,3 +1,7 @@
+<?php
+    ob_start();
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -43,15 +47,15 @@ function validar(): bool
     if (!$_SESSION['user_id']) {
         header("Location:/logout");
         return true;
+        exit();
     } else {
         return false;
     }
 }
 try {
     //Front-controller
-    session_start();
+    
     $conexao = new Conexao();
-
 
     //instanciando repositórios
     $pastaRepository = new PastaRepository($conexao);

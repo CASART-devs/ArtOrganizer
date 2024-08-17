@@ -23,7 +23,6 @@ readonly class loginController implements Controller
 
         try {
 
-
             $usuario = $this->usuarioRepository->logar($email, $senha);
             if ($usuario) {
                 $_SESSION['user_id'] = $usuario->getId();
@@ -35,8 +34,10 @@ readonly class loginController implements Controller
                 }
 
                 header("Location: /home");
+                exit;
             } else {
                 header("Location: /");
+                exit;
             }
         } catch (Exception $error) {
             echo "erro na query $error";
